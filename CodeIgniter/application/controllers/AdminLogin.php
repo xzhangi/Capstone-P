@@ -1,7 +1,7 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Home extends CI_Controller {
+	class AdminLogin extends CI_Controller {
 
 		public function __construct()
 		{
@@ -19,7 +19,7 @@
 			$alllockers = $this->Lockermodel->get_locker_list_all();
 			$data['lockerlist'] = $alllockers;
 			//Load the view
-			$this->load->view('Main-Home', $data);
-		} 
+			$this->load->view('Admin-Login', $data);
+		}
 	}
 ?>
