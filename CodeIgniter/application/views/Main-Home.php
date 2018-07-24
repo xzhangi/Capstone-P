@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?
 <html lang="en">
 
 <head>
@@ -56,7 +56,7 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-          <a class="navbar-brand" href="index.php">
+          <a class="navbar-brand" href="Home">
                     <img src="/assets/Default-BS/img/logo.png" alt="" width="150" height="40" />
                 </a>
         </div>
@@ -74,7 +74,7 @@
               <ul class="dropdown-menu">
                 <li><a href="index.html">FAQ</a></li>
                 <li><a href="index-form.html">Contact Us</a></li>
-                <li><a href="application/views/adminpanel.php">Admin Login</a></li>
+                <li><a href="AdminLogin">Admin Login</a></li>
               </ul>
             </li>
           </ul>
@@ -893,3 +893,4 @@
 </body>
 
 </html>
+?>

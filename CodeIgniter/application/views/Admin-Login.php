@@ -56,8 +56,8 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a> <br />
-                                <a href="../../index.html" class="btn btn-lg btn-success btn-block">Back to Home</a>
+                                <a href="AdminHome" class="btn btn-lg btn-success btn-block">Login</a> <br />
+                                <a href="Home" class="btn btn-lg btn-success btn-block">Back to Home</a>
                             </fieldset>
                         </form>
                     </div>
