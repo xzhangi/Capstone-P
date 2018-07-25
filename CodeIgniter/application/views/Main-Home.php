@@ -1,4 +1,3 @@
-<?
 <html lang="en">
 
 <head>
@@ -10,20 +9,20 @@
   <title>Locka</title>
 
   <!-- css -->
-  <link href="/assets/Default-BS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="/assets/Default-BS/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="/assets/Default-BS/plugins/cubeportfolio/css/cubeportfolio.min.css">
-  <link href="/assets/Default-BS/css/nivo-lightbox.css" rel="stylesheet" />
-  <link href="/assets/Default-BS/css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
-  <link href="/assets/Default-BS/css/owl.carousel.css" rel="stylesheet" media="screen" />
-  <link href="/assets/Default-BS/css/owl.theme.css" rel="stylesheet" media="screen" />
-  <link href="/assets/Default-BS/css/animate.css" rel="stylesheet" />
-  <link href="/assets/Default-BS/css/style.css" rel="stylesheet">
+  <link href="<?php base_url()?>/assets/Default-BS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="<?php base_url()?>/assets/Default-BS/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="<?php base_url()?>/assets/Default-BS/plugins/cubeportfolio/css/cubeportfolio.min.css">
+  <link href="<?php base_url()?>/assets/Default-BS/css/nivo-lightbox.css" rel="stylesheet" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/owl.carousel.css" rel="stylesheet" media="screen" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/owl.theme.css" rel="stylesheet" media="screen" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/animate.css" rel="stylesheet" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/style.css" rel="stylesheet">
 
   <!-- boxed bg -->
-  <link id="bodybg" href="/assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
+  <link id="bodybg" href="<?php base_url()?>/assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
   <!-- template skin -->
-  <link id="t-colors" href="/assets/Default-BS/color/default.css" rel="stylesheet">
+  <link id="t-colors" href="<?php base_url()?>/assets/Default-BS/color/default.css" rel="stylesheet">
 
   <!-- =======================================================
     Theme Name: Medicio
@@ -57,7 +56,7 @@
                     <i class="fa fa-bars"></i>
                 </button>
           <a class="navbar-brand" href="Home">
-                    <img src="/assets/Default-BS/img/logo.png" alt="" width="150" height="40" />
+                    <img src="<?php base_url()?>/assets/Default-BS/img/logo.png" alt="" width="150" height="40" />
                 </a>
         </div>
 
@@ -289,7 +288,7 @@
         <div class="row">
           <div class="col-sm-6 col-md-6">
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <img src="/assets/Default-BS/img/dummy/img-1.png" class="img-responsive" alt="" />
+              <img src="<?php base_url()?>/assets/Default-BS/img/dummy/img-1.png" class="img-responsive" alt="" />
             </div>
           </div>
 		  <div class="row>
@@ -423,7 +422,7 @@
                 <li class="cbp-item psychiatrist ">
                   <a href="doctors/member1.html" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-                      <img src="/assets/Default-BS/img/team/small.png" alt="" width="100%">
+                      <img src="<?php base_url()?>/assets/Default-BS/img/team/small.png" alt="" width="100%">
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -439,7 +438,7 @@
                 <li class="cbp-item cardiologist">
                   <a href="doctors/member2.html" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-                      <img src="/assets/Default-BS/img/team/medium.png" alt="" width="100%">
+                      <img src="<?php base_url()?>/assets/Default-BS/img/team/medium.png" alt="" width="100%">
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -455,7 +454,7 @@
                 <li class="cbp-item cardiologist">
                   <a href="doctors/member3.html" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-                     <img src="/assets/Default-BS/img/team/big.png" alt="" width="100%">
+                     <img src="<?php base_url()?>/assets/Default-BS/img/team/big.png" alt="" width="100%">
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -471,7 +470,7 @@
                 <!--<li class="cbp-item neurologist">
                   <a href="doctors/member4.html" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-                      <img src="/assets/Default-BS/img/team/4.jpg" alt="" width="100%">
+                      <img src="<?php base_url()?>/assets/Default-BS/img/team/4.jpg" alt="" width="100%">
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -517,13 +516,13 @@
           <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="wow bounceInUp" data-wow-delay="0.2s">
               <div id="owl-works" class="owl-carousel">
-                <div class="item"><!--<a href="/assets/Default-BS/img/photo/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="/assets/Default-BS/img/works/1@2x.jpg">--><img src="/assets/Default-BS/img/photo/sit.png" class="img-responsive" alt="img"></a></div>
-                <div class="item"><!--<a href="/assets/Default-BS/img/photo/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="/assets/Default-BS/img/works/2@2x.jpg">--><img src="/assets/Default-BS/img/photo/sidm.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="/assets/Default-BS/img/photo/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="/assets/Default-BS/img/works/3@2x.jpg">--><img src="/assets/Default-BS/img/photo/scl.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="/assets/Default-BS/img/photo/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="/assets/Default-BS/img/works/4@2x.jpg">--><img src="/assets/Default-BS/img/photo/sdn.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="/assets/Default-BS/img/photo/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="/assets/Default-BS/img/works/5@2x.jpg">--><img src="/assets/Default-BS/img/photo/seg.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="/assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="/assets/Default-BS/img/works/6@2x.jpg">--><img src="/assets/Default-BS/img/photo/sbm.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="/assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="/assets/Default-BS/img/works/6@2x.jpg">--><img src="/assets/Default-BS/img/photo/shs.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/1@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/sit.png" class="img-responsive" alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/2@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/sidm.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/3@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/scl.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/4@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/sdn.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/5@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/seg.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/6@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/sbm.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/6@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/shs.png" class="img-responsive " alt="img"></a></div>
 			  </div>
             </div>
           </div>
@@ -553,7 +552,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
                       <a title="" href="#">Anna Tan</a>
                       <span>SIT</span>
                     </div>
@@ -569,7 +568,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
                       <a title="" href="#">Ben Wong</a>
                       <span>SEG</span>
                     </div>
@@ -584,7 +583,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
                       <a title="" href="#">Angel Lim</a>
                       <span>SHS</span>
                     </div>
@@ -601,7 +600,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
                       <a title="" href="#">Ahmad Ibrahim</a>
                       <span>SBM</span>
                     </div>
@@ -617,7 +616,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
                       <a title="" href="#">Siti Aishah</a>
                       <span>SDN</span>
                     </div>
@@ -632,7 +631,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
                       <a title="" href="#">Adam Tan</a>
                       <span>SIDM</span>
                     </div>
@@ -759,22 +758,22 @@
         <div class="row">
           <div class="col-sm-6 col-md-3">
             <div class="partner">
-              <a href="#"><img src="/assets/Default-BS/img/dummy/partner-1.jpg" alt="" /></a>
+              <a href="#"><img src="<?php base_url()?>/assets/Default-BS/img/dummy/partner-1.jpg" alt="" /></a>
             </div>
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="partner">
-              <a href="#"><img src="/assets/Default-BS/img/dummy/partner-2.jpg" alt="" /></a>
+              <a href="#"><img src="<?php base_url()?>/assets/Default-BS/img/dummy/partner-2.jpg" alt="" /></a>
             </div>
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="partner">
-              <a href="#"><img src="/assets/Default-BS/img/dummy/partner-3.jpg" alt="" /></a>
+              <a href="#"><img src="<?php base_url()?>/assets/Default-BS/img/dummy/partner-3.jpg" alt="" /></a>
             </div>
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="partner">
-              <a href="#"><img src="/assets/Default-BS/img/dummy/partner-4.jpg" alt="" /></a>
+              <a href="#"><img src="<?php base_url()?>/assets/Default-BS/img/dummy/partner-4.jpg" alt="" /></a>
             </div>
           </div>
         </div>
@@ -894,20 +893,19 @@
   <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
   <!-- Core JavaScript Files -->
-  <script src="/assets/Default-BS/js/jquery.min.js"></script>
-  <script src="/assets/Default-BS/js/bootstrap.min.js"></script>
-  <script src="/assets/Default-BS/js/jquery.easing.min.js"></script>
-  <script src="/assets/Default-BS/js/wow.min.js"></script>
-  <script src="/assets/Default-BS/js/jquery.scrollTo.js"></script>
-  <script src="/assets/Default-BS/js/jquery.appear.js"></script>
-  <script src="/assets/Default-BS/js/stellar.js"></script>
-  <script src="/assets/Default-BS/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
-  <script src="/assets/Default-BS/js/owl.carousel.min.js"></script>
-  <script src="/assets/Default-BS/js/nivo-lightbox.min.js"></script>
-  <script src="/assets/Default-BS/js/custom.js"></script>
-  <script src="/assets/Default-BS/contactform/contactform.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/jquery.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/bootstrap.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/jquery.easing.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/wow.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/jquery.scrollTo.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/jquery.appear.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/stellar.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/owl.carousel.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/nivo-lightbox.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/custom.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/contactform/contactform.js"></script>
 
 </body>
 
 </html>
-?>
