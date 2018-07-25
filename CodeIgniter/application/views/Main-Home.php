@@ -127,15 +127,32 @@
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>First Name</label>
-                              <input type="text" name="first_name" id="first_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                              <label>Username*</label>
+                              <input type="text" name="user_name" id="user_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
                               <div class="validation"></div>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Last Name</label>
-                              <input type="text" name="last_name" id="last_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                              <label>Password*</label>
+                              <input type="password" name="Password" id="Password" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter at least 6 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+						
+						<div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>NRIC*</label>
+                              <input type="text" name="NRIC" id="NRIC" class="form-control input-md" data-rule="minlen:9" data-msg="Please enter at least 9 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Name*</label>
+                              <input type="text" name="Name" id="Name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
                               <div class="validation"></div>
                             </div>
                           </div>
@@ -144,14 +161,14 @@
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Email</label>
+                              <label>Email*</label>
                               <input type="email" name="email" id="email" class="form-control input-md" data-rule="email" data-msg="Please enter a valid email">
                               <div class="validation"></div>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Phone number</label>
+                              <label>Phone number*</label>
                               <input type="text" name="phone" id="phone" class="form-control input-md" data-rule="required" data-msg="The phone number is required">
                               <div class="validation"></div>
                             </div>
@@ -160,7 +177,7 @@
 
                         <input type="submit" value="Submit" class="btn btn-skin btn-block btn-lg">
 
-                        <p class="lead-footer">* We'll contact you by phone & email later</p>
+                        <p class="lead-footer" style="color: red">*Compulsory Fields</p>
 
                       </form>
                     </div>
