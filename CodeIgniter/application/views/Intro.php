@@ -64,16 +64,16 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#intro">Login</a></li>
-            <li><a href="#service">About Us</a></li>
-            <li><a href="#doctor">Lockers</a></li>
-            <li><a href="#facilities">Locations</a></li>
+            <li><a href="#AboutUs">About Us</a></li>
+            <li><a href="#Lockers">Lockers</a></li>
+            <li><a href="#locations">Locations</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
                 <li><a href="index.html">FAQ</a></li>
                 <li><a href="index-form.html">Contact Us</a></li>
-                <li><a href="AdminLogin">Admin Login</a></li>
+                <li><a href="adminlogin">Admin Login</a></li>
               </ul>
             </li>
           </ul>
@@ -88,6 +88,7 @@
     <section id="intro" class="intro">
       <div class="intro-content">
         <div class="container">
+		
           <div class="row">
             <div class="col-lg-6">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
@@ -98,20 +99,59 @@
               </div>
               <div class="well well-trans">
                 <div class="wow fadeInRight" data-wow-delay="0.1s">
-
                   <ul class="lead-list">
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br />Choose from hourly, weekly, monthly packages!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Variety of Locker Sizes</strong><br />For your ever-changing needs!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lockers At Your Convenience</strong><br />Anywhere in campus!</span></li>
+					<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Simplicity</strong><br />Easy to book and pay!</span></li>
                   </ul>
-
                 </div>
               </div>
-
-
             </div>
+<!---------- login section ------------>	
             <div class="col-lg-6">
-              <div class="form-wrapper">
+			  <div class="form-wrapper" style="padding-top: 70px;">
+                <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
+                  <div class="panel panel-skin">
+                    <div class="panel-heading">
+                      <h3 class="panel-title"><span class="fa fa-pencil-square-o"></span>Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+					<?php if(!is_null($msg)) echo $msg; ?>
+                      <!--<div id="sendmessage">Your message has been sent. Thank you!</div>-->
+                      <div id="errormessage"></div>
+
+                      <form action="<?php echo base_url();?>index.php/Intro/processlogin" method="post" role="form">
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Username</label>
+                              <input type="text" name="username" id="username" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Password</label>
+                              <input type="password" name="password" id="password" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter at least 6 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <input type="submit" value="Login" class="btn btn-skin btn-block btn-lg">
+                        <p class="lead-footer" style="padding-top: 15px; padding-bottom: 15px;">Don't have an account? <a href="#SignUp">Sign up below!</a></p>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+			</div>
+<!--------- sign up section ----------->
+			<div>
+			<section id="SignUp">
+              <div class="form-wrapper" style="padding-top: 100px">
                 <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
 
                   <div class="panel panel-skin">
@@ -174,7 +214,7 @@
                           </div>
                         </div>
 
-                        <input type="submit" value="Submit" class="btn btn-skin btn-block btn-lg">
+                        <input type="submit" value="signup" class="btn btn-skin btn-block btn-lg">
 
                         <p class="lead-footer" style="color: red">*Compulsory Fields</p>
 
@@ -182,9 +222,9 @@
                     </div>
                   </div>
 
-                </div>
               </div>
-            </div>
+			  </section>
+			</div>
           </div>
         </div>
       </div>
@@ -281,7 +321,7 @@
 
 
     <!-- Section: services -->
-    <section id="service" class="home-section nopadding paddingtop-60">
+    <section id="AboutUs" class="home-section nopadding paddingtop-60">
 
       <div class="container">
 
@@ -387,7 +427,7 @@
 
 
     <!-- Section: team -->
-    <section id="doctor" class="home-section bg-gray paddingbot-60">
+    <section id="Lockers" class="home-section bg-gray paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">
@@ -496,7 +536,7 @@
 
 
     <!-- Section: works -->
-    <section id="facilities" class="home-section paddingbot-60">
+    <section id="locations" class="home-section paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">
