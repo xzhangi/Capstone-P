@@ -8,18 +8,19 @@
 			parent::__construct();
 			$this->load->helper('url');
 			$this->load->helper('html');
+			$this->load->database();
 			//$this->check_isvalidated();
 		}
 		 
 		public function index()
 		{
 			// Load model
-			//$this->load->model('Lockermodel');
+			$this->load->model('LockerModel');
 			//Call any required model functions
-			//$alllockers = $this->Lockermodel->get_locker_list_all();
-			//$data['lockerlist'] = $alllockers;
+			$alllockers = $this->LockerModel->get_locker_list_all();
+			$data['lockerlist'] = $alllockers;
 			//Load the view
-			$this->load->view('User-Home');//, $data);
+			$this->load->view('User-Home', $data);
 		} 
 		
 		private function check_isvalidated() {
