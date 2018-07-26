@@ -2,7 +2,7 @@
 	if (!defined('BASEPATH'))
 		exit ('No direct script access allowed!');
 	
-	class Lockermodel extends CI_Model
+	class LockerModel extends CI_Model
 	{
 		function __construct() 
 		{

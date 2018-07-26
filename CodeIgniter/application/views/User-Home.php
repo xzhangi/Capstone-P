@@ -63,17 +63,17 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#intro">Login</a></li>
-            <li><a href="#service">About Us</a></li>
-            <li><a href="#doctor">Lockers</a></li>
-            <li><a href="#facilities">Locations</a></li>
+            <li class="active"><a href="#BookLocker">Book a Locker</a></li>
+            <li><a href="#AboutUs">About Us</a></li>
+            <li><a href="#Lockers">Lockers</a></li>
+            <li><a href="#locations">Locations</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
                 <li><a href="index.html">FAQ</a></li>
                 <li><a href="index-form.html">Contact Us</a></li>
-                <li><a href="AdminLogin">Admin Login</a></li>
+                <li><a href="<?php echo base_url();?>index.php/Intro/">Log Out</a></li>
               </ul>
             </li>
           </ul>
@@ -84,110 +84,26 @@
     </nav>
 
 
-    <!-- Section: intro -->
-    <section id="intro" class="intro">
+    <!-- Section: Book Locker -->
+    <section id="BookLocker" class="intro">
       <div class="intro-content">
         <div class="container">
+		
           <div class="row">
-            <div class="col-lg-6">
+            <div class="">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
-                <h2 class="h-ultra">NYP Locker Rental System</h2>
+                <h2 class="h-ultra">Book a Locker</h2>
               </div>
               <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
-                <!--<h4 class="h-light">Provide <span class="color">best quality healthcare</span> for you</h4>-->
               </div>
               <div class="well well-trans">
                 <div class="wow fadeInRight" data-wow-delay="0.1s">
-
-                  <ul class="lead-list">
-                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br />Choose from hourly, weekly, monthly packages!</span></li>
-                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Variety of Locker Sizes</strong><br />For your ever-changing needs!</span></li>
-                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lockers At Your Convenience</strong><br />Anywhere in campus!</span></li>
-                  </ul>
-
-                </div>
-              </div>
-
-
-            </div>
-            <div class="col-lg-6">
-              <div class="form-wrapper">
-                <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
-
-                  <div class="panel panel-skin">
-                    <div class="panel-heading">
-                      <h3 class="panel-title"><span class="fa fa-pencil-square-o"></span>Sign Up As Guest <small>(It's free!)</small></h3>
-                    </div>
-                    <div class="panel-body">
-                      <div id="sendmessage">Your message has been sent. Thank you!</div>
-                      <div id="errormessage"></div>
-
-                      <form action="" method="post" role="form" class="contactForm lead">
-                        <div class="row">
-                          <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                              <label>Username*</label>
-                              <input type="text" name="user_name" id="user_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                          <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                              <label>Password*</label>
-                              <input type="password" name="Password" id="Password" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter at least 6 chars">
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                        </div>
-						
-						<div class="row">
-                          <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                              <label>NRIC*</label>
-                              <input type="text" name="NRIC" id="NRIC" class="form-control input-md" data-rule="minlen:9" data-msg="Please enter at least 9 chars">
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                          <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                              <label>Name*</label>
-                              <input type="text" name="Name" id="Name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="row">
-                          <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                              <label>Email*</label>
-                              <input type="email" name="email" id="email" class="form-control input-md" data-rule="email" data-msg="Please enter a valid email">
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                          <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                              <label>Phone number*</label>
-                              <input type="text" name="phone" id="phone" class="form-control input-md" data-rule="required" data-msg="The phone number is required">
-                              <div class="validation"></div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <input type="submit" value="Submit" class="btn btn-skin btn-block btn-lg">
-
-                        <p class="lead-footer" style="color: red">*Compulsory Fields</p>
-
-                      </form>
-                    </div>
-                  </div>
-
                 </div>
               </div>
             </div>
+			</div>
           </div>
         </div>
-      </div>
     </section>
 
     <!-- /Section: intro -->
@@ -281,7 +197,7 @@
 
 
     <!-- Section: services -->
-    <section id="service" class="home-section nopadding paddingtop-60">
+    <section id="AboutUs" class="home-section nopadding paddingtop-60">
 
       <div class="container">
 
@@ -387,7 +303,7 @@
 
 
     <!-- Section: team -->
-    <section id="doctor" class="home-section bg-gray paddingbot-60">
+    <section id="Lockers" class="home-section bg-gray paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">
@@ -496,7 +412,7 @@
 
 
     <!-- Section: works -->
-    <section id="facilities" class="home-section paddingbot-60">
+    <section id="locations" class="home-section paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">

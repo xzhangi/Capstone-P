@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -10,20 +9,20 @@
   <title>Locka</title>
 
   <!-- css -->
-  <link href="<?php base_url()?>assets/Default-BS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="<?php base_url()?>assets/Default-BS/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" type="text/css" href="<?php base_url()?>assets/Default-BS/plugins/cubeportfolio/css/cubeportfolio.min.css">
-  <link href="<?php base_url()?>assets/Default-BS/css/nivo-lightbox.css" rel="stylesheet" />
-  <link href="<?php base_url()?>assets/Default-BS/css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
-  <link href="<?php base_url()?>assets/Default-BS/css/owl.carousel.css" rel="stylesheet" media="screen" />
-  <link href="<?php base_url()?>assets/Default-BS/css/owl.theme.css" rel="stylesheet" media="screen" />
-  <link href="<?php base_url()?>assets/Default-BS/css/animate.css" rel="stylesheet" />
-  <link href="<?php base_url()?>assets/Default-BS/css/style.css" rel="stylesheet">
+  <link href="<?php base_url()?>/assets/Default-BS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="<?php base_url()?>/assets/Default-BS/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="<?php base_url()?>/assets/Default-BS/plugins/cubeportfolio/css/cubeportfolio.min.css">
+  <link href="<?php base_url()?>/assets/Default-BS/css/nivo-lightbox.css" rel="stylesheet" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/nivo-lightbox-theme/default/default.css" rel="stylesheet" type="text/css" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/owl.carousel.css" rel="stylesheet" media="screen" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/owl.theme.css" rel="stylesheet" media="screen" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/animate.css" rel="stylesheet" />
+  <link href="<?php base_url()?>/assets/Default-BS/css/style.css" rel="stylesheet">
 
   <!-- boxed bg -->
-  <link id="bodybg" href="<?php base_url()?>assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
+  <link id="bodybg" href="<?php base_url()?>/assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
   <!-- template skin -->
-  <link id="t-colors" href="<?php base_url()?>assets/Default-BS/color/default.css" rel="stylesheet">
+  <link id="t-colors" href="<?php base_url()?>/assets/Default-BS/color/default.css" rel="stylesheet">
 
   <!-- =======================================================
     Theme Name: Medicio
@@ -56,8 +55,8 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-          <a class="navbar-brand" href="index.php">
-                    <img src="<?php base_url()?>assets/Default-BS/img/logo.png" alt="" width="150" height="40" />
+          <a class="navbar-brand" href="Home">
+                    <img src="<?php base_url()?>/assets/Default-BS/img/logo.png" alt="" width="150" height="40" />
                 </a>
         </div>
 
@@ -65,16 +64,16 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#intro">Login</a></li>
-            <li><a href="#service">About Us</a></li>
-            <li><a href="#doctor">Lockers</a></li>
-            <li><a href="#facilities">Locations</a></li>
+            <li><a href="#AboutUs">About Us</a></li>
+            <li><a href="#Lockers">Lockers</a></li>
+            <li><a href="#locations">Locations</a></li>
             <li><a href="#pricing">Pricing</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
                 <li><a href="index.html">FAQ</a></li>
                 <li><a href="index-form.html">Contact Us</a></li>
-                <li><a href="application/views/adminpanel.php">Admin Login</a></li>
+                <li><a href="adminlogin">Admin Login</a></li>
               </ul>
             </li>
           </ul>
@@ -89,6 +88,7 @@
     <section id="intro" class="intro">
       <div class="intro-content">
         <div class="container">
+		
           <div class="row">
             <div class="col-lg-6">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
@@ -99,20 +99,59 @@
               </div>
               <div class="well well-trans">
                 <div class="wow fadeInRight" data-wow-delay="0.1s">
-
                   <ul class="lead-list">
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br />Choose from hourly, weekly, monthly packages!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Variety of Locker Sizes</strong><br />For your ever-changing needs!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lockers At Your Convenience</strong><br />Anywhere in campus!</span></li>
+					<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Simplicity</strong><br />Easy to book and pay!</span></li>
                   </ul>
-
                 </div>
               </div>
-
-
             </div>
+<!---------- login section ------------>	
             <div class="col-lg-6">
-              <div class="form-wrapper">
+			  <div class="form-wrapper" style="padding-top: 70px;">
+                <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
+                  <div class="panel panel-skin">
+                    <div class="panel-heading">
+                      <h3 class="panel-title"><span class="fa fa-pencil-square-o"></span>Sign In</h3>
+                    </div>
+                    <div class="panel-body">
+					<?php if(!is_null($msg)) echo $msg; ?>
+                      <!--<div id="sendmessage">Your message has been sent. Thank you!</div>-->
+                      <div id="errormessage"></div>
+
+                      <form action="<?php echo base_url();?>index.php/Intro/processlogin" method="post" role="form">
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Username</label>
+                              <input type="text" name="username" id="username" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Password</label>
+                              <input type="password" name="password" id="password" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter at least 6 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <input type="submit" value="Login" class="btn btn-skin btn-block btn-lg">
+                        <p class="lead-footer" style="padding-top: 15px; padding-bottom: 15px;">Don't have an account? <a href="#SignUp">Sign up below!</a></p>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+			
+			</div>
+<!--------- sign up section ----------->
+			<div>
+			<section id="SignUp">
+              <div class="form-wrapper" style="padding-top: 100px">
                 <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
 
                   <div class="panel panel-skin">
@@ -127,15 +166,32 @@
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>First Name</label>
-                              <input type="text" name="first_name" id="first_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                              <label>Username*</label>
+                              <input type="text" name="user_name" id="user_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
                               <div class="validation"></div>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Last Name</label>
-                              <input type="text" name="last_name" id="last_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                              <label>Password*</label>
+                              <input type="password" name="Password" id="Password" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter at least 6 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                        </div>
+						
+						<div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>NRIC*</label>
+                              <input type="text" name="NRIC" id="NRIC" class="form-control input-md" data-rule="minlen:9" data-msg="Please enter at least 9 chars">
+                              <div class="validation"></div>
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Name*</label>
+                              <input type="text" name="Name" id="Name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
                               <div class="validation"></div>
                             </div>
                           </div>
@@ -144,31 +200,31 @@
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Email</label>
+                              <label>Email*</label>
                               <input type="email" name="email" id="email" class="form-control input-md" data-rule="email" data-msg="Please enter a valid email">
                               <div class="validation"></div>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Phone number</label>
+                              <label>Phone number*</label>
                               <input type="text" name="phone" id="phone" class="form-control input-md" data-rule="required" data-msg="The phone number is required">
                               <div class="validation"></div>
                             </div>
                           </div>
                         </div>
 
-                        <input type="submit" value="Submit" class="btn btn-skin btn-block btn-lg">
+                        <input type="submit" value="signup" class="btn btn-skin btn-block btn-lg">
 
-                        <p class="lead-footer">* We'll contact you by phone & email later</p>
+                        <p class="lead-footer" style="color: red">*Compulsory Fields</p>
 
                       </form>
                     </div>
                   </div>
 
-                </div>
               </div>
-            </div>
+			  </section>
+			</div>
           </div>
         </div>
       </div>
@@ -265,14 +321,14 @@
 
 
     <!-- Section: services -->
-    <section id="service" class="home-section nopadding paddingtop-60">
+    <section id="AboutUs" class="home-section nopadding paddingtop-60">
 
       <div class="container">
 
         <div class="row">
           <div class="col-sm-6 col-md-6">
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <img src="<?php base_url()?>assets/Default-BS/img/dummy/img-1.png" class="img-responsive" alt="" />
+              <img src="<?php base_url()?>/assets/Default-BS/img/dummy/img-1.png" class="img-responsive" alt="" />
             </div>
           </div>
 		  <div class="row>
@@ -371,7 +427,7 @@
 
 
     <!-- Section: team -->
-    <section id="doctor" class="home-section bg-gray paddingbot-60">
+    <section id="Lockers" class="home-section bg-gray paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">
@@ -406,7 +462,7 @@
                 <li class="cbp-item psychiatrist ">
                   <a href="doctors/member1.html" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-                      <img src="<?php base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
+                      <img src="<?php base_url()?>/assets/Default-BS/img/team/small.png" alt="" width="100%">
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -422,7 +478,7 @@
                 <li class="cbp-item cardiologist">
                   <a href="doctors/member2.html" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-                      <img src="<?php base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
+                      <img src="<?php base_url()?>/assets/Default-BS/img/team/medium.png" alt="" width="100%">
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -438,7 +494,7 @@
                 <li class="cbp-item cardiologist">
                   <a href="doctors/member3.html" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-                     <img src="<?php base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
+                     <img src="<?php base_url()?>/assets/Default-BS/img/team/big.png" alt="" width="100%">
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -454,7 +510,7 @@
                 <!--<li class="cbp-item neurologist">
                   <a href="doctors/member4.html" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-                      <img src="<?php base_url()?>assets/Default-BS/img/team/4.jpg" alt="" width="100%">
+                      <img src="<?php base_url()?>/assets/Default-BS/img/team/4.jpg" alt="" width="100%">
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -480,7 +536,7 @@
 
 
     <!-- Section: works -->
-    <section id="facilities" class="home-section paddingbot-60">
+    <section id="locations" class="home-section paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">
@@ -500,13 +556,13 @@
           <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="wow bounceInUp" data-wow-delay="0.2s">
               <div id="owl-works" class="owl-carousel">
-                <div class="item"><!--<a href="<?php base_url()?>assets/Default-BS/img/photo/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>assets/Default-BS/img/works/1@2x.jpg">--><img src="<?php base_url()?>assets/Default-BS/img/photo/sit.png" class="img-responsive" alt="img"></a></div>
-                <div class="item"><!--<a href="<?php base_url()?>assets/Default-BS/img/photo/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>assets/Default-BS/img/works/2@2x.jpg">--><img src="<?php base_url()?>assets/Default-BS/img/photo/sidm.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php base_url()?>assets/Default-BS/img/photo/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>assets/Default-BS/img/works/3@2x.jpg">--><img src="<?php base_url()?>assets/Default-BS/img/photo/scl.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php base_url()?>assets/Default-BS/img/photo/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>assets/Default-BS/img/works/4@2x.jpg">--><img src="<?php base_url()?>assets/Default-BS/img/photo/sdn.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php base_url()?>assets/Default-BS/img/photo/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>assets/Default-BS/img/works/5@2x.jpg">--><img src="<?php base_url()?>assets/Default-BS/img/photo/seg.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php base_url()?>assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>assets/Default-BS/img/works/6@2x.jpg">--><img src="<?php base_url()?>assets/Default-BS/img/photo/sbm.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php base_url()?>assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>assets/Default-BS/img/works/6@2x.jpg">--><img src="<?php base_url()?>assets/Default-BS/img/photo/shs.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/1@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/sit.png" class="img-responsive" alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/2@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/sidm.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/3@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/scl.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/4@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/sdn.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/5@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/seg.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/6@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/sbm.png" class="img-responsive " alt="img"></a></div>
+                <div class="item"><!--<a href="<?php base_url()?>/assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php base_url()?>/assets/Default-BS/img/works/6@2x.jpg">--><img src="<?php base_url()?>/assets/Default-BS/img/photo/shs.png" class="img-responsive " alt="img"></a></div>
 			  </div>
             </div>
           </div>
@@ -536,7 +592,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="<?php base_url()?>assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
                       <a title="" href="#">Anna Tan</a>
                       <span>SIT</span>
                     </div>
@@ -552,7 +608,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="<?php base_url()?>assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
                       <a title="" href="#">Ben Wong</a>
                       <span>SEG</span>
                     </div>
@@ -567,7 +623,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="<?php base_url()?>assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
                       <a title="" href="#">Angel Lim</a>
                       <span>SHS</span>
                     </div>
@@ -584,7 +640,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="<?php base_url()?>assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
                       <a title="" href="#">Ahmad Ibrahim</a>
                       <span>SBM</span>
                     </div>
@@ -600,7 +656,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="<?php base_url()?>assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
                       <a title="" href="#">Siti Aishah</a>
                       <span>SDN</span>
                     </div>
@@ -615,7 +671,7 @@
                       <ins class="ab zmin sprite sprite-i-triangle block"></ins>
                     </div>
                     <div class="person-text rel text-light">
-                      <img src="<?php base_url()?>assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
+                      <img src="<?php base_url()?>/assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
                       <a title="" href="#">Adam Tan</a>
                       <span>SIDM</span>
                     </div>
@@ -742,22 +798,22 @@
         <div class="row">
           <div class="col-sm-6 col-md-3">
             <div class="partner">
-              <a href="#"><img src="<?php base_url()?>assets/Default-BS/img/dummy/partner-1.jpg" alt="" /></a>
+              <a href="#"><img src="<?php base_url()?>/assets/Default-BS/img/dummy/partner-1.jpg" alt="" /></a>
             </div>
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="partner">
-              <a href="#"><img src="<?php base_url()?>assets/Default-BS/img/dummy/partner-2.jpg" alt="" /></a>
+              <a href="#"><img src="<?php base_url()?>/assets/Default-BS/img/dummy/partner-2.jpg" alt="" /></a>
             </div>
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="partner">
-              <a href="#"><img src="<?php base_url()?>assets/Default-BS/img/dummy/partner-3.jpg" alt="" /></a>
+              <a href="#"><img src="<?php base_url()?>/assets/Default-BS/img/dummy/partner-3.jpg" alt="" /></a>
             </div>
           </div>
           <div class="col-sm-6 col-md-3">
             <div class="partner">
-              <a href="#"><img src="<?php base_url()?>assets/Default-BS/img/dummy/partner-4.jpg" alt="" /></a>
+              <a href="#"><img src="<?php base_url()?>/assets/Default-BS/img/dummy/partner-4.jpg" alt="" /></a>
             </div>
           </div>
         </div>
@@ -877,18 +933,18 @@
   <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 
   <!-- Core JavaScript Files -->
-  <script src="<?php base_url()?>assets/Default-BS/js/jquery.min.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/bootstrap.min.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/jquery.easing.min.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/wow.min.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/jquery.scrollTo.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/jquery.appear.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/stellar.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/owl.carousel.min.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/nivo-lightbox.min.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/js/custom.js"></script>
-  <script src="<?php base_url()?>assets/Default-BS/contactform/contactform.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/jquery.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/bootstrap.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/jquery.easing.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/wow.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/jquery.scrollTo.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/jquery.appear.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/stellar.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/plugins/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/owl.carousel.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/nivo-lightbox.min.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/js/custom.js"></script>
+  <script src="<?php base_url()?>/assets/Default-BS/contactform/contactform.js"></script>
 
 </body>
 
