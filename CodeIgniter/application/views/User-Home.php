@@ -1,5 +1,3 @@
-<html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,7 +71,7 @@
               <ul class="dropdown-menu">
                 <li><a href="index.html">FAQ</a></li>
                 <li><a href="index-form.html">Contact Us</a></li>
-                <li><a href="<?php echo base_url();?>index.php/Intro/">Log Out</a></li>
+                <li><a href="<?php echo base_url();?>Intro/">Log Out</a></li>
               </ul>
             </li>
           </ul>
@@ -88,22 +86,36 @@
     <section id="BookLocker" class="intro">
       <div class="intro-content">
         <div class="container">
-		
           <div class="row">
             <div class="">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
-                <h2 class="h-ultra">Book a Locker</h2>
+                <h2 class="h-ultra" style="text-align: center;">Book a Locker</h2>
               </div>
-              <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
-              </div>
-              <div class="well well-trans">
-                <div class="wow fadeInRight" data-wow-delay="0.1s">
-                </div>
-              </div>
+			  <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
+				<div class="col-md-4">
+				  <img src="<?php base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
+				  <select>
+				  <?php foreach($availablelockerlist as $lockerItem)
+						{ ?>
+						  <?php if ($lockerItem->Locker_Size_ID == '1') 
+						  { ?>
+							<option value="<?php echo $lockerItem->Name; ?>"><?php echo $lockerItem->Name; ?></option>
+							<?php 
+						  }
+						} ?>
+				  </select>
+				</div>
+				<div class="col-md-4">
+				  <img src="<?php base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
+				</div>
+				<div class="col-md-4">
+				  <img src="<?php base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
+				</div>
+			  </div>
             </div>
-			</div>
           </div>
-        </div>
+		</div>
+      </div>
     </section>
 
     <!-- /Section: intro -->
@@ -823,5 +835,3 @@
   <script src="<?php base_url()?>assets/Default-BS/contactform/contactform.js"></script>
 
 </body>
-
-</html>

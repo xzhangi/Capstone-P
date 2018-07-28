@@ -100,7 +100,7 @@
               <div class="well well-trans">
                 <div class="wow fadeInRight" data-wow-delay="0.1s">
                   <ul class="lead-list">
-                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br />Choose from hourly, weekly, monthly packages!</span></li>
+                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br /><?php echo base_url(); ?></span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Variety of Locker Sizes</strong><br />For your ever-changing needs!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lockers At Your Convenience</strong><br />Anywhere in campus!</span></li>
 					<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Simplicity</strong><br />Easy to book and pay!</span></li>
@@ -121,7 +121,7 @@
                       <!--<div id="sendmessage">Your message has been sent. Thank you!</div>-->
                       <div id="errormessage"></div>
 
-                      <form action="<?php echo base_url();?>index.php/Intro/processlogin" method="post" role="form">
+                      <form action="<?php echo base_url();?>Intro/processlogin" method="post" role="form">
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
