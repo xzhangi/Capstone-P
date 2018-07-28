@@ -41,10 +41,11 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+						<?php if(!is_null($msg)) echo $msg; ?>
+                        <form role="form" action="<?php echo base_url();?>AdminLogin/processlogin" method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Username" name="username" type="username" autofocus>
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Password" name="password" type="password" value="">
@@ -55,8 +56,8 @@
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="AdminHome" class="btn btn-lg btn-success btn-block">Login</a> <br />
-                                <a href="Home" class="btn btn-lg btn-success btn-block">Back to Home</a>
+                                <input type="submit" value="Login" class="btn btn-lg btn-success btn-block"> <br />
+                                <a href="<?php echo base_url();?>AdminLogin/exit_page" class="btn btn-lg btn-success btn-block">Back to Home</a>
                             </fieldset>
                         </form>
                     </div>

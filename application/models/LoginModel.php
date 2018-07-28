@@ -11,7 +11,7 @@
 		}
 		
 		//Check user login
-		function validate()
+		function validate($isAdmin = false)
 		{
 			// Post
 			$username = $this->security->xss_clean($this->input->post('username'));
@@ -22,6 +22,12 @@
 			$this->db->from('tbl_users');
 			$this->db->where('Username', $username);
 			$this->db->where('Password', $password);
+			if ($isAdmin) {
+				$this->db->where('Is_Admin', true);
+			}
+			else {
+				$this->db->where('Is_Admin', false);
+			}
 			$query = $this->db->get();
 			
 			// Check for results
@@ -35,6 +41,8 @@
 						'NRIC' => $row->NRIC,
 						'Mobile' => $row->Mobile_No,
 						'Points' => $row->Points,
+						'Is_Active' => $row->Is_Active,
+						'Is_Admin' => $row->Is_Admin,
 						'validated' => true
 						);
 				$this->session->set_userdata($data);

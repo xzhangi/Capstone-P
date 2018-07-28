@@ -7,7 +7,7 @@
 		{
 			parent::__construct();
 			$this->load->helper('html');
-			$this->check_isvalidated();
+			$this->check_session();
 		}
 		 
 		public function index()
@@ -21,15 +21,29 @@
 			$this->load->view('User-Home', $data);
 		} 
 		
-		private function check_isvalidated() {
-			if (! $this->session->userdata('validated')) {
-				redirect('Intro');
-			}
-		}
-		
 		public function do_logout() {
 			$this->session->sess_destroy();
 			redirect('Intro');
+		}
+		
+		//Check if there is a valid session (redirects accordingly if there is)
+		public function check_session()
+		{
+			//Check if is admin or not and redirect accordingly
+			if ($this->session->userdata('validated')) {
+				if ($this->session->userdata('Is_Admin')) {
+					redirect('AdminHome');
+				}
+				else {
+					//Check if user account is active
+					if ($this->session->userdata('Is_Active')) {
+						//redirect('Home');
+					}
+				}
+			}
+			else {
+				redirect('Intro');
+			}
 		}
 	}
 ?>

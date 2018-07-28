@@ -71,7 +71,7 @@
               <ul class="dropdown-menu">
                 <li><a href="index.html">FAQ</a></li>
                 <li><a href="index-form.html">Contact Us</a></li>
-                <li><a href="<?php echo base_url();?>Intro/">Log Out</a></li>
+                <li><a href="<?php echo base_url();?>Home/do_logout">Log Out</a></li>
               </ul>
             </li>
           </ul>
