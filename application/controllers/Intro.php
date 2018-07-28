@@ -12,12 +12,7 @@
 			// Load form validation library
 			$this->load->library('form_validation');
 
-			// Load session library
-			$this->load->library('session');
-			
-			$this->load->helper('url');
 			$this->load->helper('html');
-			$this->load->database();
 		}
 		 
 		public function index($msg = NULL)

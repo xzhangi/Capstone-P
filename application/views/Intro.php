@@ -100,7 +100,7 @@
               <div class="well well-trans">
                 <div class="wow fadeInRight" data-wow-delay="0.1s">
                   <ul class="lead-list">
-                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br /></span></li>
+                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br />Choose from per-minute or monthly packages!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Variety of Locker Sizes</strong><br />For your ever-changing needs!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lockers At Your Convenience</strong><br />Anywhere in campus!</span></li>
 					<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Simplicity</strong><br />Easy to book and pay!</span></li>

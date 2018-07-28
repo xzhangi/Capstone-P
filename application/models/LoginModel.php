@@ -27,7 +27,6 @@
 			// Check for results
 			if($query->num_rows() == 1)
 			{
-				redirect('Home');
 				// If there is a user, then create session data
 				$row = $query->row();
 				$data = array(

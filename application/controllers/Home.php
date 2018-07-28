@@ -6,10 +6,8 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this->load->helper('url');
 			$this->load->helper('html');
-			$this->load->database();
-			//$this->check_isvalidated();
+			$this->check_isvalidated();
 		}
 		 
 		public function index()
@@ -24,7 +22,7 @@
 		} 
 		
 		private function check_isvalidated() {
-			if (!$this->session->userdata('validated')) {
+			if (! $this->session->userdata('validated')) {
 				redirect('Intro');
 			}
 		}
