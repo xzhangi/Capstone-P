@@ -139,7 +139,7 @@
                           </div>
                         </div>
                         <input type="submit" value="Login" class="btn btn-skin btn-block btn-lg">
-                        <p class="lead-footer" style="padding-top: 15px; padding-bottom: 15px;">Don't have an account? <a href="#SignUp">Sign up below!</a></p>
+                        <p class="lead-footer" style="padding-top: 5px;">NYP students can login with your Admin No and portal password!<br>Not a student? <a href="#SignUp">Sign up below!</a></p>
                       </form>
                     </div>
                   </div>
@@ -460,9 +460,13 @@
             <div id="grid-container" class="cbp-l-grid-team">
               <ul>
                 <li class="cbp-item psychiatrist ">
-                  <a href="doctors/member1.html" class="cbp-caption cbp-singlePage">
+                  <a href="assets/default-BS/lockers/small.php" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
+<<<<<<< HEAD:CodeIgniter/application/views/Intro.php
+                      <img src="<?php base_url()?>assets/Default-BS/img/lockers/small.png" alt="" width="100%">
+=======
                       <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
+>>>>>>> master:application/views/Intro.php
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -472,13 +476,17 @@
                       </div>
                     </div>
                   </a>
-                  <a href="doctors/member1.html" class="cbp-singlePage cbp-l-grid-team-name">Small</a>
+                  <a href="assets/default-BS/lockers/small.php" class="cbp-singlePage cbp-l-grid-team-name">Small</a>
                   <!--<div class="cbp-l-grid-team-position">Psychiatrist</div>-->
                 </li>
                 <li class="cbp-item cardiologist">
-                  <a href="doctors/member2.html" class="cbp-caption cbp-singlePage">
+                  <a href="assets/default-BS/lockers/medium.php" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
+<<<<<<< HEAD:CodeIgniter/application/views/Intro.php
+                      <img src="<?php base_url()?>assets/Default-BS/img/lockers/medium.png" alt="" width="100%">
+=======
                       <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
+>>>>>>> master:application/views/Intro.php
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -488,13 +496,17 @@
                       </div>
                     </div>
                   </a>
-                  <a href="doctors/member2.html" class="cbp-singlePage cbp-l-grid-team-name">Medium</a>
+                  <a href="assets/default-BS/lockers/medium.php" class="cbp-singlePage cbp-l-grid-team-name">Medium</a>
                   <!--<div class="cbp-l-grid-team-position">Cardiologist</div>-->
                 </li>
                 <li class="cbp-item cardiologist">
-                  <a href="doctors/member3.html" class="cbp-caption cbp-singlePage">
+                  <a href="assets/default-BS/lockers/big.php" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
+<<<<<<< HEAD:CodeIgniter/application/views/Intro.php
+                     <img src="<?php base_url()?>assets/Default-BS/img/lockers/big.png" alt="" width="100%">
+=======
                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
+>>>>>>> master:application/views/Intro.php
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -504,7 +516,7 @@
                       </div>
                     </div>
                   </a>
-                  <a href="doctors/member3.html" class="cbp-singlePage cbp-l-grid-team-name">Large</a>
+                  <a href="assets/default-BS/lockers/big.php" class="cbp-singlePage cbp-l-grid-team-name">Large</a>
                   <!--<div class="cbp-l-grid-team-position">Cardiologist</div>-->
                 </li>
                 <!--<li class="cbp-item neurologist">
