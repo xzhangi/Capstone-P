@@ -22,7 +22,7 @@
 			//Load model
 			$this->load->model('LoginModel');
 			//Validate credentials
-			$result = $this->LoginModel->validate(true);
+			$result = $this->LoginModel->validate();
 			if (! $result) {
 				//Validation fail
 				$msg = '<font color=red>Invalid Admin Login and/or password.</font><br />';

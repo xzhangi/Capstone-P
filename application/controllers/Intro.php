@@ -28,10 +28,17 @@
 			//Load model
 			$this->load->model('LoginModel');
 			//Validate credentials
-			$result = $this->LoginModel->validate(false);
+			$result = $this->LoginModel->validate();
 			if (! $result) {
 				//Validation fail
-				$msg = '<font color=red>Invalid username and/or password.</font><br />';
+				if (! $this->session->userdata('Is_Active')) {
+					$this->session->sess_destroy();
+					$msg = '<font color=red>Your account is disabled, please contact the Administrator.</font><br />';
+				}
+				else {
+					$msg = '<font color=red>Invalid username and/or password.</font><br />';
+				}
+				
 				$this->index($msg);
 			}
 			else {
@@ -39,7 +46,7 @@
 			}
 		}
 		
-		//Check if there is a valid session (redirect to home if there is)
+		//Check if there is a valid session (redirects accordingly if there is)
 		public function check_session()
 		{
 			//Check if is admin or not and redirect accordingly
@@ -52,12 +59,6 @@
 					if ($this->session->userdata('Is_Active')) {
 						redirect('Home');
 					}
-					else { //Account is not active (blocked)
-						$this->session->sess_destroy();
-						$msg = '<font color=red>Your account is disabled, please contact the Administrator.</font><br />';
-						$this->index($msg);
-					}
-					
 				}
 			}
 		}

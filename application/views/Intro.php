@@ -139,7 +139,7 @@
                           </div>
                         </div>
                         <input type="submit" value="Login" class="btn btn-skin btn-block btn-lg">
-                        <p class="lead-footer" style="padding-top: 5px;">NYP students can login with your Admin No and portal password!<br>Not a student? <a href="#SignUp">Sign up below!</a></p>
+                        <p class="lead-footer" style="padding-top: 15px;">NYP students can login with your Admin No and portal password!<br>Not a student? <a href="#SignUp">Sign up below!</a></p>
                       </form>
                     </div>
                   </div>
