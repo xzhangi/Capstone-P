@@ -17,8 +17,8 @@
 			// Load model
 			$this->load->model('LockerModel');
 			//Call any required model functions
-			$alllockers = $this->LockerModel->get_locker_list_all();
-			$data['lockerlist'] = $alllockers;
+			$alllockers = $this->LockerModel->get_locker_list_available_all();
+			$data['availablelockerlist'] = $alllockers;
 			//Load the view
 			$this->load->view('User-Home', $data);
 		} 

@@ -31,6 +31,7 @@ CREATE TABLE `tbl_locker` (
   `Name` varchar(45) DEFAULT NULL,
   `Desc` varchar(45) DEFAULT NULL,
   `Remarks` varchar(120) DEFAULT NULL,
+  `Is_Available` tinyint(4) NOT NULL DEFAULT '0',
   `Is_Active` tinyint(4) NOT NULL DEFAULT '0',
   `Created_By` varchar(45) NOT NULL,
   `Created_Date` date NOT NULL,
