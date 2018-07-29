@@ -100,5 +100,43 @@
 			
 			return $list;
 		}
+		
+		function book_locker()
+		{
+			$pincode = '';
+			// Generate pin or not
+			if ($this->input->post('autogeneratepin'))
+			{
+				$pincode = $this->generatePIN();
+			}
+			else
+			{
+				$pincode = $this->input->post('pincode');
+			}
+			
+			// Get Post
+			$data = array(
+                //'Rent_From_Date' => @date('Y-m-d H:i', @strtotime($this->input->post('registeredDate'))), //need to change to date time
+				'Rent_From_Date' => @date('Y-m-d H:i'),
+				'Locker_ID' => $this->input->post('lockerselected'),
+                'Rented_By' => $this->session->userdata('Username'),
+                'Rental_Type' => $this->input->post('rentaltype'),
+                'Creation_Date' => @date('Y-m-d H:i'),
+				'Is_Active' => true,
+				'Pin_Code' => $pincode,
+			);
+			$this->db->insert('tbl_locker_rental', $data);
+		}
+		
+		function generatePIN($digits = 4){
+			$i = 0; //counter
+			$pin = ""; //our default pin is blank.
+			while($i < $digits){
+				//generate a random number between 0 and 9.
+				$pin .= mt_rand(0, 9);
+				$i++;
+			}
+			return $pin;
+		}
 	}
 ?>

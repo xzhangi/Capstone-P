@@ -94,16 +94,6 @@
 			  <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
 				<div class="col-md-4">
 				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
-				  <select>
-				  <?php foreach($availablelockerlist as $lockerItem)
-						{ ?>
-						  <?php if ($lockerItem->Locker_Size_ID == '1') 
-						  { ?>
-							<option value="<?php echo $lockerItem->Name; ?>"><?php echo $lockerItem->Name; ?></option>
-							<?php 
-						  }
-						} ?>
-				  </select>
 				</div>
 				<div class="col-md-4">
 				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
@@ -111,6 +101,32 @@
 				<div class="col-md-4">
 				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
 				</div>
+				<form action="<?php echo base_url();?>Home/book_locker" method="post" role="form">
+				<div style="text-align: center">
+				  <select name="lockerselected" id="lockerselected" style="padding: 5px; margin: 10px;">
+				  <?php foreach($availablelockerlist as $lockerItem)
+						{ ?>
+						  <?php if ($lockerItem->Locker_Size_ID == '1') 
+						  { ?>
+							<option value="<?php echo $lockerItem->LockerID; ?>"><?php echo $lockerItem->Name; ?></option>
+							<?php 
+						  }
+						} ?>
+				  </select>
+					
+				  <select name="rentaltype" id="rentaltype" style="padding: 5px; margin: 10px;">
+					<option value="1">Per Minute Rental</option>
+					<option value="2">1 Month Rental</option>
+				  </select>
+				  
+				  <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin" style="color: white;">Automatically generate pin</label></input>
+				  <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="4" pattern="[0-9]{4}" placeholder="Enter a 4 Digits Pin" class="form-control input-md" data-rule="minlen:4" data-msg="Please enter only 4 Digits" required>
+				  <div class="validation"></div>
+				</div>
+				  <div>
+				  <input type="submit" value="Book Locker!" class="btn btn-skin btn-block btn-lg">
+				  </div>
+				</form>
 			  </div>
             </div>
           </div>
@@ -431,7 +447,7 @@
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="section-heading text-center">
                 <h3 class="h-bold">Locations</h3>
-                <p>Our lockers are all around campus for your convenience!</p>
+                <p>View locations of lockers around in Campus!</p>
               </div>
             </div>
             <div class="divider-short"></div>
@@ -443,16 +459,10 @@
         <div class="row">
           <div class="col-sm-12 col-md-12 col-lg-12">
             <div class="wow bounceInUp" data-wow-delay="0.2s">
-              <div id="owl-works" class="owl-carousel">
-                <div class="item"><!--<a href="<?php echo base_url()?>assets/Default-BS/img/photo/1.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url()?>assets/Default-BS/img/works/1@2x.jpg">--><img src="<?php echo base_url()?>assets/Default-BS/img/photo/sit.png" class="img-responsive" alt="img"></a></div>
-                <div class="item"><!--<a href="<?php echo base_url()?>assets/Default-BS/img/photo/2.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url()?>assets/Default-BS/img/works/2@2x.jpg">--><img src="<?php echo base_url()?>assets/Default-BS/img/photo/sidm.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php echo base_url()?>assets/Default-BS/img/photo/3.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url()?>assets/Default-BS/img/works/3@2x.jpg">--><img src="<?php echo base_url()?>assets/Default-BS/img/photo/scl.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php echo base_url()?>assets/Default-BS/img/photo/4.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url()?>assets/Default-BS/img/works/4@2x.jpg">--><img src="<?php echo base_url()?>assets/Default-BS/img/photo/sdn.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php echo base_url()?>assets/Default-BS/img/photo/5.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url()?>assets/Default-BS/img/works/5@2x.jpg">--><img src="<?php echo base_url()?>assets/Default-BS/img/photo/seg.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php echo base_url()?>assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url()?>assets/Default-BS/img/works/6@2x.jpg">--><img src="<?php echo base_url()?>assets/Default-BS/img/photo/sbm.png" class="img-responsive " alt="img"></a></div>
-                <div class="item"><!--<a href="<?php echo base_url()?>assets/Default-BS/img/photo/6.jpg" title="This is an image title" data-lightbox-gallery="gallery1" data-lightbox-hidpi="<?php echo base_url()?>assets/Default-BS/img/works/6@2x.jpg">--><img src="<?php echo base_url()?>assets/Default-BS/img/photo/shs.png" class="img-responsive " alt="img"></a></div>
-			  </div>
-            </div>
+			  <div id="googleMap" style="width:100%;height:400px;"></div>
+				
+              </div>
+			</div>
           </div>
         </div>
       </div>
@@ -819,6 +829,128 @@
 
   </div>
   <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
+  
+  <script>
+		function googleMap() {
+			var map, infoWindow;
+			var Locker1 = new google.maps.LatLng(1.379200,103.849604);
+			var Locker2 = new google.maps.LatLng(1.378514,103.849695); 
+			var Locker3 = new google.maps.LatLng(1.378374,103.848778); 
+			var Locker4 = new google.maps.LatLng(1.379045,103.848735); 
+			var Locker5 = new google.maps.LatLng(1.377849,103.848751); 
+			var Locker6 = new google.maps.LatLng(1.380729,103.849668); 
+			var Locker7 = new google.maps.LatLng(1.380911,103.848607); 
+			var Locker8 = new google.maps.LatLng(1.381072,103.849856); 
+			var Locker9 = new google.maps.LatLng(1.381281,103.848644); 
+			var Locker10 = new google.maps.LatLng(1.381469,103.849899); 
+			var Locker11 = new google.maps.LatLng(1.381951,103.848666); 
+			var mapProp= {
+				center:new google.maps.LatLng(1.380085,103.848973),
+				zoom:20,
+			}
+			map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+			infoWindow = new google.maps.InfoWindow;
+			
+			var marker1 = new google.maps.Marker({
+				position: Locker1,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker1.setMap(map);
+			var marker2 = new google.maps.Marker({
+				position: Locker2,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker2.setMap(map);
+			var marker3 = new google.maps.Marker({
+				position: Locker3,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker3.setMap(map);
+			var marker4 = new google.maps.Marker({
+				position: Locker4,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker4.setMap(map);
+			var marker5 = new google.maps.Marker({
+				position: Locker5,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker5.setMap(map);
+			var marker6 = new google.maps.Marker({
+				position: Locker6,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker6.setMap(map);
+			var marker7 = new google.maps.Marker({
+				position: Locker7,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker7.setMap(map);
+			var marker8 = new google.maps.Marker({
+				position: Locker8,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker8.setMap(map);
+			var marker9 = new google.maps.Marker({
+				position: Locker9,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker9.setMap(map);
+			var marker10 = new google.maps.Marker({
+				position: Locker10,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker10.setMap(map);
+			var marker11 = new google.maps.Marker({
+				position: Locker11,
+				animation: google.maps.Animation.BOUNCE
+			});
+			marker11.setMap(map);
+			
+			// Try HTML5 geolocation.
+			if (navigator.geolocation) {
+			  navigator.geolocation.getCurrentPosition(function(position) {
+				var pos = {
+				  lat: position.coords.latitude,
+				  lng: position.coords.longitude
+				};
+
+				infoWindow.setPosition(pos);
+				infoWindow.setContent('Location found.');
+				infoWindow.open(map);
+				map.setCenter(pos);
+			  }, function() {
+				handleLocationError(true, infoWindow, map.getCenter());
+			  });
+			} else {
+			  // Browser doesn't support Geolocation
+			  handleLocationError(false, infoWindow, map.getCenter());
+			}
+			
+			function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+				infoWindow.setPosition(pos);
+				infoWindow.setContent(browserHasGeolocation ?
+									  'Error: The Geolocation service failed.' :
+									  'Error: Your browser doesn\'t support geolocation.');
+				infoWindow.open(map);
+		    }
+		}
+	</script>
+	
+	<script>
+		function generatePinCheck() {
+			if (document.getElementById('autogeneratepin').checked)
+			{
+				document.getElementById('pincode').style.display = 'none';
+				document.getElementById('pincode').disabled = 'disabled';
+			}
+			else
+			{
+				document.getElementById('pincode').style.display = 'block';
+				document.getElementById('pincode').disabled = '';
+			}
+		}
+	</script>
 
   <!-- Core JavaScript Files -->
   <script src="<?php echo base_url()?>assets/Default-BS/js/jquery.min.js"></script>
@@ -833,5 +965,9 @@
   <script src="<?php echo base_url()?>assets/Default-BS/js/nivo-lightbox.min.js"></script>
   <script src="<?php echo base_url()?>assets/Default-BS/js/custom.js"></script>
   <script src="<?php echo base_url()?>assets/Default-BS/contactform/contactform.js"></script>
+  
+  <!-- Google maps API -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM_ruwPbWftocXUf_rT2ieceDrKLhMMc8&callback=googleMap"></script>
+
 
 </body>

@@ -45,5 +45,12 @@
 				redirect('Intro');
 			}
 		}
+		
+		public function book_locker()
+		{
+			$this->load->model('LockerModel');
+			$this->LockerModel->book_locker();
+			redirect('Home');
+		}
 	}
 ?>

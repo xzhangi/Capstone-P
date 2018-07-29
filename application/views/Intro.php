@@ -139,7 +139,7 @@
                           </div>
                         </div>
                         <input type="submit" value="Login" class="btn btn-skin btn-block btn-lg">
-                        <p class="lead-footer" style="padding-top: 15px;">NYP students can login with your Admin No and portal password!<br>Not a student? <a href="#SignUp">Sign up below!</a></p>
+                        <p class="lead-footer" style="padding-top: 7px;">NYP students can login with your Admin No and portal password!<br>Not a student? <a href="#SignUp">Sign up below!</a></p>
                       </form>
                     </div>
                   </div>
@@ -152,7 +152,7 @@
 			<div>
 			<section id="SignUp">
               <div class="form-wrapper" style="padding-top: 100px">
-                <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
+                <div class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
 
                   <div class="panel panel-skin">
                     <div class="panel-heading">
