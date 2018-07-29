@@ -101,7 +101,7 @@
 			return $list;
 		}
 		
-		function book_locker()
+		function Book_Locker()
 		{
 			$pincode = '';
 			// Generate pin or not
@@ -115,7 +115,7 @@
 			}
 			
 			// Get Post
-			$data = array(
+			$rentaldata = array(
                 //'Rent_From_Date' => @date('Y-m-d H:i', @strtotime($this->input->post('registeredDate'))), //need to change to date time
 				'Rent_From_Date' => @date('Y-m-d H:i'),
 				'Locker_ID' => $this->input->post('lockerselected'),
@@ -125,10 +125,15 @@
 				'Is_Active' => true,
 				'Pin_Code' => $pincode,
 			);
-			$this->db->insert('tbl_locker_rental', $data);
+			//Insert new rent into locker rental table
+			$this->db->insert('tbl_locker_rental', $rentaldata);
+			
+			//Update locker status
+			$this->UpdateLockerStatus($this->input->post('lockerselected'), false);
 		}
 		
-		function generatePIN($digits = 4){
+		private function generatePIN($digits = 4)
+		{
 			$i = 0; //counter
 			$pin = ""; //our default pin is blank.
 			while($i < $digits){
@@ -137,6 +142,61 @@
 				$i++;
 			}
 			return $pin;
+		}
+		
+		public function UpdateLockerStatus($LockerID, $Booked) 
+		{
+			$LockerStatus = array('Is_Available' => $Booked);
+			$this->db->where('ID', $LockerID);
+			$this->db->update('tbl_locker', $LockerStatus);
+		}
+		
+		//Check if user booked a locker
+		public function CheckLockerBooking() {
+			//Select query from tbl_locker_rental where rented_by is session's username
+			//And rental is active
+			$this->db->select('*');
+			$this->db->from('tbl_locker_rental');
+			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Is_Active', true);
+			$query = $this->db->get();
+			
+			// If record exists (user rented locker)
+			if($query->num_rows() == 1)
+			{	
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+			return false;
+		}
+		
+		//Get details regarding locker booking
+		public function GetLockerBookingRecord() 
+		{
+			$this->db->select('*');
+			$this->db->from('tbl_locker_rental');
+			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Is_Active', true);
+			$query = $this->db->get();
+			print_r($query);
+			// Record exists
+			if($query->num_rows() == 1)
+			{
+				$row = $query->row();
+				$data = array(
+							'Rented' => true,
+							'Locker_ID' => $row->Locker_ID,
+							'Rent_From_Date' => $row->Rent_From_Date,
+							'Rent_To_Date' => $row->Rent_To_Date,
+							'Rented_By' => $row->Rented_By,
+							'Rental_Type' => $row->Rental_Type,
+							'Pin_Code' => $row->Pin_Code,
+						);
+				return $data;
+			}
 		}
 	}
 ?>

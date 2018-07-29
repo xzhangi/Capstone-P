@@ -62,7 +62,7 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#BookLocker">Book a Locker</a></li>
-            <li><a href="#AboutUs">About Us</a></li>
+            <li><a href="#LockerStatus">Locker Status</a></li>
             <li><a href="#Lockers">Lockers</a></li>
             <li><a href="#locations">Locations</a></li>
             <li><a href="#pricing">Pricing</a></li>
@@ -89,7 +89,11 @@
           <div class="row">
             <div class="">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
-                <h2 class="h-ultra" style="text-align: center;">Book a Locker</h2>
+				<div class="section-heading text-center">
+					<h2 class="h-ultra" style="text-align: center;">Book a Locker</h2>
+					<p style="color:white">Select and book a locker here!</p>
+                </div>
+			<div class="divider-short" style="margin-bottom: 20px;"></div>
               </div>
 			  <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
 				<div class="col-md-4">
@@ -134,200 +138,27 @@
       </div>
     </section>
 
-    <!-- /Section: intro -->
+    <!-- /Section: Book Locker -->
 
-    <!-- Section: boxes -->
-    <section id="boxes" class="home-section paddingtop-80">
-
+    <!-- Section: Locker Status -->
+	
+    <section id="LockerStatus" class="home-section nopadding paddingtop-60">
       <div class="container">
         <div class="row">
-          <div class="col-sm-3 col-md-3">
+          <div>
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="box text-center">
-
-                <i class="fa fa-check fa-3x circled bg-skin"></i>
-                <h4 class="h-bold">Login/Signup</h4>
-                <p>
-                  Login using your NYP account or signup for a guest account.
-                </p>
+			  <div class="section-heading text-center">
+                <h3 class="h-bold">Locker Booking Status</h3>
+                <p>Check the status of your locker booking here!</p>
               </div>
             </div>
+			<div class="divider-short"></div>
+			<h1><?php echo $bookingdetails['Rented'] ?></h1>
           </div>
-          <div class="col-sm-3 col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="box text-center">
-
-                <i class="fa fa-list-alt fa-3x circled bg-skin"></i>
-                <h4 class="h-bold">Choose Your Locker</h4>
-                <p>
-                  Choose from a range of sizes, locations and pricing packages.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="box text-center">
-                <i class="fa fa-user-md fa-3x circled bg-skin"></i>
-                <h4 class="h-bold">Make Payment</h4>
-                <p>
-                  Top up your eWallet and make payment. 
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="box text-center">
-
-                <i class="fa fa-hospital-o fa-3x circled bg-skin"></i>
-                <h4 class="h-bold">Enjoy Your Locker</h4>
-                <p>
-                  Unlock your locker and voila!
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+		</div>
     </section>
-    <!-- /Section: boxes -->
-
-
-    <section id="callaction" class="home-section paddingtop-40">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="callaction bg-gray">
-              <div class="row">
-                <div class="col-md-8">
-                  <div class="wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="cta-text">
-                      <h3>Any Questions? Any Issues?</h3>
-                      <p>Check out our FAQ (Frequently Asked Questions).</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="wow lightSpeedIn" data-wow-delay="0.1s">
-                    <div class="cta-btn">
-                      <a href="#" class="btn btn-skin btn-lg">Frequently Asked Questions</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Section: services -->
-    <section id="AboutUs" class="home-section nopadding paddingtop-60">
-
-      <div class="container">
-
-        <div class="row">
-          <div class="col-sm-6 col-md-6">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <img src="<?php echo base_url()?>assets/Default-BS/img/dummy/img-1.png" class="img-responsive" alt="" />
-            </div>
-          </div>
-		  <div class="row>
-		  <h5 class="h-light">Created by a group of students, we aim to improve the locker rental experience.
-		  <br><br>We understand your struggle. We've all been there. Trying to lug your things home after a long day is no fun.
-		  Especially if you have to bring it back the next day for your class.
-		  <br><br>Locka aims to provide flexible rental experience with different sizes, packages all around campus. With our
-		  user-friendly and simple booking process, anybody can get a locker anytime they need it. You don't have to pay
-		  for a whole semester and only for when you need it.
-		  <br><br>Now that we've made the locker rental process so easy for you, what are you still waiting for? Go get a locker now!
-		  <br><br>- The Locka Team
-		  </h5>
-		  </div>
-          <!--<div class="col-sm-3 col-md-3">
-
-            <div class="wow fadeInRight" data-wow-delay="0.1s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-stethoscope fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Medical checkup</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="wow fadeInRight" data-wow-delay="0.2s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-wheelchair fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Nursing Services</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-            <div class="wow fadeInRight" data-wow-delay="0.3s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-plus-square fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Pharmacy</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-          <div class="col-sm-3 col-md-3">
-
-            <div class="wow fadeInRight" data-wow-delay="0.1s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-h-square fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Gyn Care</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="wow fadeInRight" data-wow-delay="0.2s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-filter fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Neurology</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-            <div class="wow fadeInRight" data-wow-delay="0.3s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-user-md fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Sleep Center</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>-->
-      </div>
-    </section>
-    <!-- /Section: services -->
+	
+    <!-- /Section: Locker Status -->
 
 
     <!-- Section: team -->
@@ -337,7 +168,7 @@
           <div class="col-lg-8 col-lg-offset-2">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="section-heading text-center">
-                <h3 class="h-bold">Lockers</h2>
+                <h3 class="h-bold">Lockers</h3>
                 <p>Choose from a variety of sizes for your ever-changing needs!</p>
               </div>
             </div>
@@ -829,128 +660,6 @@
 
   </div>
   <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
-  
-  <script>
-		function googleMap() {
-			var map, infoWindow;
-			var Locker1 = new google.maps.LatLng(1.379200,103.849604);
-			var Locker2 = new google.maps.LatLng(1.378514,103.849695); 
-			var Locker3 = new google.maps.LatLng(1.378374,103.848778); 
-			var Locker4 = new google.maps.LatLng(1.379045,103.848735); 
-			var Locker5 = new google.maps.LatLng(1.377849,103.848751); 
-			var Locker6 = new google.maps.LatLng(1.380729,103.849668); 
-			var Locker7 = new google.maps.LatLng(1.380911,103.848607); 
-			var Locker8 = new google.maps.LatLng(1.381072,103.849856); 
-			var Locker9 = new google.maps.LatLng(1.381281,103.848644); 
-			var Locker10 = new google.maps.LatLng(1.381469,103.849899); 
-			var Locker11 = new google.maps.LatLng(1.381951,103.848666); 
-			var mapProp= {
-				center:new google.maps.LatLng(1.380085,103.848973),
-				zoom:20,
-			}
-			map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-			infoWindow = new google.maps.InfoWindow;
-			
-			var marker1 = new google.maps.Marker({
-				position: Locker1,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker1.setMap(map);
-			var marker2 = new google.maps.Marker({
-				position: Locker2,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker2.setMap(map);
-			var marker3 = new google.maps.Marker({
-				position: Locker3,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker3.setMap(map);
-			var marker4 = new google.maps.Marker({
-				position: Locker4,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker4.setMap(map);
-			var marker5 = new google.maps.Marker({
-				position: Locker5,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker5.setMap(map);
-			var marker6 = new google.maps.Marker({
-				position: Locker6,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker6.setMap(map);
-			var marker7 = new google.maps.Marker({
-				position: Locker7,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker7.setMap(map);
-			var marker8 = new google.maps.Marker({
-				position: Locker8,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker8.setMap(map);
-			var marker9 = new google.maps.Marker({
-				position: Locker9,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker9.setMap(map);
-			var marker10 = new google.maps.Marker({
-				position: Locker10,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker10.setMap(map);
-			var marker11 = new google.maps.Marker({
-				position: Locker11,
-				animation: google.maps.Animation.BOUNCE
-			});
-			marker11.setMap(map);
-			
-			// Try HTML5 geolocation.
-			if (navigator.geolocation) {
-			  navigator.geolocation.getCurrentPosition(function(position) {
-				var pos = {
-				  lat: position.coords.latitude,
-				  lng: position.coords.longitude
-				};
-
-				infoWindow.setPosition(pos);
-				infoWindow.setContent('Location found.');
-				infoWindow.open(map);
-				map.setCenter(pos);
-			  }, function() {
-				handleLocationError(true, infoWindow, map.getCenter());
-			  });
-			} else {
-			  // Browser doesn't support Geolocation
-			  handleLocationError(false, infoWindow, map.getCenter());
-			}
-			
-			function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-				infoWindow.setPosition(pos);
-				infoWindow.setContent(browserHasGeolocation ?
-									  'Error: The Geolocation service failed.' :
-									  'Error: Your browser doesn\'t support geolocation.');
-				infoWindow.open(map);
-		    }
-		}
-	</script>
-	
-	<script>
-		function generatePinCheck() {
-			if (document.getElementById('autogeneratepin').checked)
-			{
-				document.getElementById('pincode').style.display = 'none';
-				document.getElementById('pincode').disabled = 'disabled';
-			}
-			else
-			{
-				document.getElementById('pincode').style.display = 'block';
-				document.getElementById('pincode').disabled = '';
-			}
-		}
-	</script>
 
   <!-- Core JavaScript Files -->
   <script src="<?php echo base_url()?>assets/Default-BS/js/jquery.min.js"></script>
@@ -968,6 +677,8 @@
   
   <!-- Google maps API -->
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDM_ruwPbWftocXUf_rT2ieceDrKLhMMc8&callback=googleMap"></script>
-
-
+  <script src="<?php echo base_url()?>assets/GoogleMap.js"></script>
+  
+  <!-- Custom Script -->
+  <script src="<?php echo base_url()?>assets/User-Home.js"></script>
 </body>
