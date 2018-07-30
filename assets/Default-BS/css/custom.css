@@ -13,6 +13,13 @@ td {
             appearance:none;
 }
 
-input[type="radio"]{
-    visibility:hidden;
+LockerRadioSmall:checked + lockerImgSmall {
+   font-weight: bold;
+}
+
+.image-padding {
+  padding: 30px;
+}
+.image-padding img {
+  width: 100%;
 }

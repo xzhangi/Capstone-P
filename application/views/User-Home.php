@@ -106,27 +106,33 @@
                 <!-- If user has not rented any lockers, show locker rental portion -->
                 <?php if(!$bookingdetails['Rented']) { ?>
                 <!-- Locker size selector -->
-                 <div class="cc-selector">
+                 <div class="cc-selector"> <!-- class to hide radio buttons -->
   				        <div class="col-md-4">
-                    <!-- small locker -->
-                    <label>
-                      <input type="radio" name="lockersize" value="1" onchange="lockerSizeChange()">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png">
-                    </label>
+						   <div class="image-padding">
+							<!-- small locker -->
+							  <input type="radio" id="LockerRadioSmall" name="LockerRadioSelector" value="1" onchange="lockerSizeChange()">
+							  <label class="lockerImgSmall" for="LockerRadioSmall">
+							  <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png">
+							  </label>
+						   </div>
   				        </div>
   				        <div class="col-md-4">
-                    <!-- medium locker -->
-                    <label>
-                      <input type="radio" name="lockersize" value="2" onchange="lockerSizeChange()">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png">
-                    </label>
+						  <div class="image-padding">
+							<!-- medium locker -->
+							<label>
+							  <input type="radio" id="LockerRadioMedium" name="LockerRadioSelector" value="2" onchange="lockerSizeChange()">
+							  <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png">
+							</label>
+						  </div>
   				        </div>
   				        <div class="col-md-4">
-                    <!-- big locker -->
-                    <label>
-                      <input type="radio" name="lockersize" value="3" onchange="lockerSizeChange()">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png">
-                    </label>
+						  <div class="image-padding">
+							<!-- big locker -->
+							<label>
+							  <input type="radio" id="LockerRadioBig" name="LockerRadioSelector" value="3" onchange="lockerSizeChange()">
+							  <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png">
+							</label>
+						  </div>
   				        </div>
                   </div>
 
