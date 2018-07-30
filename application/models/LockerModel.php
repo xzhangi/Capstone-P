@@ -8,6 +8,9 @@
 		{
 			// Call the Model Constructor
 			parent::__construct();
+			
+			// Set timezone
+			date_default_timezone_set('Asia/Singapore');
 		}
 		
 		//Get all lockers (whether available or not)
@@ -113,7 +116,7 @@
 			{
 				$pincode = $this->input->post('pincode');
 			}
-			
+
 			// Get Post
 			$rentaldata = array(
                 //'Rent_From_Date' => @date('Y-m-d H:i', @strtotime($this->input->post('registeredDate'))), //need to change to date time
@@ -183,14 +186,13 @@
 			return false;
 		}
 		
-		//Get details regarding locker booking
+		//Get all details regarding locker booking
 		public function GetAllLockerBookingRecord() 
 		{
 			$this->db->select('*');
 			$this->db->from('tbl_locker_rental');
 			$this->db->where('Rented_By', $this->session->userdata('Username'));
 			$query = $this->db->get();
-			print_r($query);
 			// Record exists
 			$result = $query->result();
 			$list = Array();
@@ -210,6 +212,31 @@
 			}
 			
 			return false;
+		}
+		
+		//Complete current on-going booking
+		public function Complete_Booking()
+		{
+			$this->db->select('Is_Active');
+			$this->db->select('Points_Obtained');
+			$this->db->from('tbl_locker_rental');
+			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Is_Active', true);
+			$query = $this->db->get();
+			
+			// If record exists (user currently renting locker)
+			if($query->num_rows() == 1)
+			{
+				$data = array(
+			        'Is_Active' => false
+				);
+				$this->db->where('Rented_By', $this->session->userdata('Username'));
+				$this->db->update('tbl_locker_rental', $data);
+
+				//return true;
+			}
+			//Update booked locker status back to available
+			return $this->UpdateLockerStatus($this->input->post('lockerselected'), true);
 		}
 	}
 ?>

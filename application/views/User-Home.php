@@ -16,6 +16,8 @@
   <link href="<?php echo base_url()?>assets/Default-BS/css/owl.theme.css" rel="stylesheet" media="screen" />
   <link href="<?php echo base_url()?>assets/Default-BS/css/animate.css" rel="stylesheet" />
   <link href="<?php echo base_url()?>assets/Default-BS/css/style.css" rel="stylesheet">
+  
+  <link href="<?php echo base_url()?>assets/Default-BS/css/custom.css" rel="stylesheet">
 
   <!-- boxed bg -->
   <link id="bodybg" href="<?php echo base_url()?>assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
@@ -89,53 +91,79 @@
           <div class="row">
             <div class="well well-trans">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
-				<div class="section-heading text-center">
-					<h3 class="h-bold" style="text-align: center;">Book a Locker</h3>
-					<p>Select and book a locker here!</p>
+        				<div class="section-heading text-center">
+        					<h3 class="h-bold" style="text-align: center;">Book a Locker</h3>
+                  <!-- Show and hide this p accordingly -->
+                  <?php if(!$bookingdetails['Rented']) { ?>
+        					   <p>Select and book a locker here!</p>
+                  <?php } else { ?>
+
+                  <?php } ?>
                 </div>
-			<div class="divider-short" style="margin-bottom: 20px;"></div>
+        			  <div class="divider-short" style="margin-bottom: 20px;"></div>
               </div>
-			  <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
-				<div class="col-md-4">
-				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
-				</div>
-				<div class="col-md-4">
-				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
-				</div>
-				<div class="col-md-4">
-				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
-				</div>
-				<form action="<?php echo base_url();?>Home/book_locker" method="post" role="form">
-				<div style="text-align: center">
-				  <select name="lockerselected" id="lockerselected" style="padding: 5px; margin: 10px;">
-				  <?php foreach($availablelockerlist as $lockerItem)
-						{ ?>
-						  <?php if ($lockerItem->Locker_Size_ID == '1') 
-						  { ?>
-							<option value="<?php echo $lockerItem->LockerID; ?>"><?php echo $lockerItem->Name; ?></option>
-							<?php 
-						  }
-						} ?>
-				  </select>
+			        <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
+                <!-- If user has not rented any lockers, show locker rental portion -->
+                <?php if(!$bookingdetails['Rented']) { ?>
+                <!-- Locker size selector -->
+                 <div class="cc-selector">
+  				        <div class="col-md-4">
+                    <!-- small locker -->
+                    <label>
+                      <input type="radio" name="lockersize" value="1" onchange="lockerSizeChange()">
+                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png">
+                    </label>
+  				        </div>
+  				        <div class="col-md-4">
+                    <!-- medium locker -->
+                    <label>
+                      <input type="radio" name="lockersize" value="2" onchange="lockerSizeChange()">
+                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png">
+                    </label>
+  				        </div>
+  				        <div class="col-md-4">
+                    <!-- big locker -->
+                    <label>
+                      <input type="radio" name="lockersize" value="3" onchange="lockerSizeChange()">
+                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png">
+                    </label>
+  				        </div>
+                  </div>
+
+				        <form action="<?php echo base_url();?>Home/book_locker" method="post" role="form">
+				          <div style="text-align: center">
+				            <select name="lockerselected" id="lockerselected" style="padding: 5px; margin: 10px;" required>
+                      <option value="" disabled selected>Select a Locker</option>
+				              <?php foreach($availablelockerlist as $lockerItem)
+						          { ?>
+            							<option value="<?php echo $lockerItem->LockerID; ?>" ><?php echo $lockerItem->Name; ?></option>
+            			<?php 
+						          } ?>
+				            </select>
 					
-				  <select name="rentaltype" id="rentaltype" style="padding: 5px; margin: 10px;">
-					<option value="1">Per Minute Rental</option>
-					<option value="2">1 Month Rental</option>
-				  </select>
+				            <select name="rentaltype" id="rentaltype" style="padding: 5px; margin: 10px;">
+            					<option value="1">Per Minute Rental</option>
+            					<option value="2">1 Month Rental</option>
+          				  </select>
 				  
-				  <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin">Automatically Generate PIN</label></input>
-				  <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 Digit Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" required>
-				  <div class="validation"></div>
-				</div>
-				  <div>
-				  <input type="submit" value="Book Locker!" class="btn btn-skin btn-block btn-lg">
-				  </div>
-				</form>
-			  </div>
+          				  <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin">Automatically Generate PIN</label></input>
+          				  <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 Digit Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" required>
+                    <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" required>
+          				  <div class="validation"></div>
+				          </div>
+				          <div>
+				            <input type="submit" value="Book Locker!" class="btn btn-skin btn-block btn-lg">
+				          </div>
+				        </form>
+                <!-- User already rented locker, hide locker booking portion -->
+                <?php } else { ?>
+                  <h3 class="section-heading text-center">You are already renting a locker!</h3>
+                <?php } ?>
+			         </div>
+              </div>
             </div>
-          </div>
-		</div>
-      </div>
+	        </div>
+        </div>
     </section>
 
     <!-- /Section: Book Locker -->
@@ -165,15 +193,20 @@
 					<th>Pin Code</th>
 				</tr>
 				<tr>
-					<th><?php echo $bookingdetails['Rented'] ?></th>
-					<th><?php echo $bookingdetails['Locker_ID'] ?></th>
-					<th><?php echo $bookingdetails['Rent_From_Date'] ?></th>
-					<th><?php echo $bookingdetails['Rent_To_Date'] ?></th>
-					<th><?php echo $bookingdetails['Rented_By'] ?></th>
-					<th><?php echo $bookingdetails['Rental_Type'] ?></th>
-					<th><?php echo $bookingdetails['Pin_Code'] ?></th>
+					<td><?php echo $bookingdetails['Rented'] ?></td>
+					<td><?php echo $bookingdetails['Locker_ID'] ?></td>
+          <td><?php echo $bookingdetails['Rental_Type'] ?></td>
+					<td><?php echo $bookingdetails['Rent_From_Date'] ?></td>
+					<td><?php echo $bookingdetails['Rent_To_Date'] ?></td>
+					<td><?php echo $bookingdetails['Rented_By'] ?></td>
+					<td><?php echo $bookingdetails['Pin_Code'] ?></td>
 				</tr>
 			</table>
+      <form action="<?php echo base_url();?>Home/complete_booking" method="post">
+        <!-- Workaround to get Locker_ID rented > sending the booking detail's locker_id through post -->
+        <input type="hidden" name="lockerselected" value="<?php echo $bookingdetails['Locker_ID'] ?>">
+        <input type="submit" value="Complete Booking!" class="btn btn-skin btn-block btn-lg">
+      </form>
 			<?php } else { ?>
 			<h3 class="section-heading text-center">You are not renting any lockers currently!</h3>
 			<?php } ?>
