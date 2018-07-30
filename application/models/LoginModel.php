@@ -18,7 +18,7 @@
 			$password = $this->security->xss_clean($this->input->post('password'));
 			
 			// SQL Query
-			$this->db->select("*");
+			$this->db->select('*');
 			$this->db->from('tbl_users');
 			$this->db->where('Username', $username);
 			$this->db->where('Password', $password);
