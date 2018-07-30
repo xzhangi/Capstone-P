@@ -87,11 +87,11 @@
       <div class="intro-content">
         <div class="container">
           <div class="row">
-            <div class="">
+            <div class="well well-trans">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
 				<div class="section-heading text-center">
-					<h2 class="h-ultra" style="text-align: center;">Book a Locker</h2>
-					<p style="color:white">Select and book a locker here!</p>
+					<h3 class="h-bold" style="text-align: center;">Book a Locker</h3>
+					<p>Select and book a locker here!</p>
                 </div>
 			<div class="divider-short" style="margin-bottom: 20px;"></div>
               </div>
@@ -123,8 +123,8 @@
 					<option value="2">1 Month Rental</option>
 				  </select>
 				  
-				  <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin" style="color: white;">Automatically generate pin</label></input>
-				  <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="4" pattern="[0-9]{4}" placeholder="Enter a 4 Digits Pin" class="form-control input-md" data-rule="minlen:4" data-msg="Please enter only 4 Digits" required>
+				  <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin">Automatically Generate PIN</label></input>
+				  <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 Digit Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" required>
 				  <div class="validation"></div>
 				</div>
 				  <div>
@@ -145,7 +145,7 @@
     <section id="LockerStatus" class="home-section nopadding paddingtop-60">
       <div class="container">
         <div class="row">
-          <div>
+          <div class="col-lg-12">
             <div class="wow fadeInUp" data-wow-delay="0.2s">
 			  <div class="section-heading text-center">
                 <h3 class="h-bold">Locker Booking Status</h3>
@@ -153,7 +153,30 @@
               </div>
             </div>
 			<div class="divider-short"></div>
-			<h1><?php echo $bookingdetails['Rented'] ?></h1>
+			<?php if ($bookingdetails['Rented']) { ?>
+			<table style="width:100%; border: 1px solid black;">
+				<tr style="border: 1px solid black;">
+					<th>Rented</th>
+					<th>Locker ID</th>
+					<th>Rental Type</th>
+					<th>Rent Start Date/Time</th>
+					<th>Rent End Date/Time</th>
+					<th>Rented By</th>
+					<th>Pin Code</th>
+				</tr>
+				<tr>
+					<th><?php echo $bookingdetails['Rented'] ?></th>
+					<th><?php echo $bookingdetails['Locker_ID'] ?></th>
+					<th><?php echo $bookingdetails['Rent_From_Date'] ?></th>
+					<th><?php echo $bookingdetails['Rent_To_Date'] ?></th>
+					<th><?php echo $bookingdetails['Rented_By'] ?></th>
+					<th><?php echo $bookingdetails['Rental_Type'] ?></th>
+					<th><?php echo $bookingdetails['Pin_Code'] ?></th>
+				</tr>
+			</table>
+			<?php } else { ?>
+			<h3 class="section-heading text-center">You are not renting any lockers currently!</h3>
+			<?php } ?>
           </div>
 		</div>
     </section>

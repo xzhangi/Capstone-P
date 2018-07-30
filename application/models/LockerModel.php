@@ -132,7 +132,7 @@
 			$this->UpdateLockerStatus($this->input->post('lockerselected'), false);
 		}
 		
-		private function generatePIN($digits = 4)
+		private function generatePIN($digits = 6)
 		{
 			$i = 0; //counter
 			$pin = ""; //our default pin is blank.
@@ -164,27 +164,6 @@
 			// If record exists (user rented locker)
 			if($query->num_rows() == 1)
 			{	
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-			return false;
-		}
-		
-		//Get details regarding locker booking
-		public function GetLockerBookingRecord() 
-		{
-			$this->db->select('*');
-			$this->db->from('tbl_locker_rental');
-			$this->db->where('Rented_By', $this->session->userdata('Username'));
-			$this->db->where('Is_Active', true);
-			$query = $this->db->get();
-			print_r($query);
-			// Record exists
-			if($query->num_rows() == 1)
-			{
 				$row = $query->row();
 				$data = array(
 							'Rented' => true,
@@ -197,6 +176,40 @@
 						);
 				return $data;
 			}
+			else
+			{
+				return false;
+			}
+			return false;
+		}
+		
+		//Get details regarding locker booking
+		public function GetAllLockerBookingRecord() 
+		{
+			$this->db->select('*');
+			$this->db->from('tbl_locker_rental');
+			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$query = $this->db->get();
+			print_r($query);
+			// Record exists
+			$result = $query->result();
+			$list = Array();
+			
+			if ($query->num_rows() > 0) {
+				for ($i = 0; $i < count($result); $i++)
+				{
+					$list[$i] = (object)NULL;
+					$list[$i]->Locker_ID = $result[$i]->Locker_ID;
+					$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
+					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
+					$list[$i]->Rented_By = $result[$i]->Rented_By;
+					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
+					$list[$i]->Pin_Code = $result[$i]->Pin_Code;
+				}
+				return $list;
+			}
+			
+			return false;
 		}
 	}
 ?>

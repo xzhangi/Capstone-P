@@ -18,9 +18,9 @@
 			//Call any required model functions
 			$alllockers = $this->LockerModel->get_locker_list_available_all();
 			$data['availablelockerlist'] = $alllockers;
-			if ($this->check_booking())
+			if ($this->check_current_booking())
 			{
-				$data['bookingdetails'] = $this->get_booking_details();
+				$data['bookingdetails'] = $this->check_current_booking();
 			}
 			else
 			{
@@ -63,17 +63,18 @@
 			redirect('Home');
 		}
 		
-		public function check_booking()
+		public function check_current_booking()
 		{
 			$this->load->model('LockerModel');
 			$result = $this->LockerModel->CheckLockerBooking();
 			return $result;
 		}
 		
-		public function get_booking_details()
+		public function get_all_booking_details()
 		{
 			$this->load->model('LockerModel');
-			$data = $this->LockerModel->GetLockerBookingRecord();
+			$data = $this->LockerModel->GetAllLockerBookingRecord();
+			return $data;
 		}
 	}
 ?>
