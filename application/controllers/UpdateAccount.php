@@ -6,29 +6,21 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this->load->library('session');
-			$this->load->helper('form');
-			$this->load->helper('url');
-			$this->load->database();
-			$this->load->library('form_validation');
-			$this->load->model('UpdateAccountModel');
+			$this->load->model('AdminModel');
 		}
 		
 		public function index()
 		{
-			// Load model
-			$this->load->model('UpdateAccountModel');
 			//Call any required model functions
-			$userdata = $this->UpdateAccountModel->get_user_record();
-			$data['userdata'] = $userdata;
+			$data['userdata'] = $this->AdminModel->get_user_record();
 			//Load the view
-			$this->load->view('updateaccount', $data);
+			$this->load->view('Admin/EditAccount', $data);
 		}
 		
 		public function GetAccountDetails($username)
 		{
 			//Call any required model functions
-			$data['Userdata'] = $this->UpdateAccountModel->get_user_record($username);
+			$data['Userdata'] = $this->AdminModel->get_user_record($username);
 			//validation conditions
 			$this->form_validation->set_rules('username', 'Username', 'required');
 			$this->form_validation->set_rules('name', 'Name' ,'required');
@@ -39,7 +31,7 @@
 			//if above is successful, load view updateaccount
 			if ($this->form_validation->run() == FALSE)
 			{
-				$this->load->view('updateaccount', $data);
+				$this->load->view('Admin/EditAccount', $data);
 			}
 			else
 			{	
@@ -51,16 +43,11 @@
 				$mobile = $this->input->post('mobile');
 				
 				//which specific record to update
-				if ($this->UpdateAccountModel->update($username, $name, $email, $nric, $mobile)) {
-					redirect('adminhome');
+				if ($this->AdminModel->update_user_record($username, $name, $email, $nric, $mobile)) {
+					redirect('AdminHome');
 				}					
 				
 			}
-		}
-		
-		public function dashboard()
-		{
-			$this->load->view('Dashboard');
 		}
 	}
 ?>

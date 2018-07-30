@@ -6,24 +6,16 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this->load->helper('url');
-			$this->load->database();
 		}
 		 
 		public function index()
 		{
 			// Load model
-			$this->load->model('RentalTransModel');
+			$this->load->model('AdminModel');
 			//Call any required model functions
-			$alllockers = $this->RentalTransModel->get_locker_list_all();
-			$data['lockerlist'] = $alllockers;
+			$data['translist'] = $this->AdminModel->get_all_transactions();
 			//Load the view
-			$this->load->view('rentaltransactions', $data);
-		}
-		
-		public function dashboard()
-		{
-			$this->load->view('Dashboard');
+			$this->load->view('Admin/AllRentalTransactions', $data);
 		}
 	}
 ?>

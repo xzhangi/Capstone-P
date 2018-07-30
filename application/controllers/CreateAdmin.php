@@ -13,55 +13,57 @@ class CreateAdmin extends CI_Controller {
 
 			$this->load->helper('html');
 			
-			$this->load->model('CreateAdminModel');
+			$this->load->model('AdminModel');
 		}
-
-        public function register() // This method initializes the validation class and loads the form helper and URL helper used by view files
+		
+		// This method initializes the validation class and loads the form helper and URL helper used by view files
+        public function register() 
         {
-                $this->load->helper(array('form', 'url'));
+			//$this->load->helper(array('form', 'url'));
 
-                $this->load->library('form_validation');
-				
-				$this->form_validation->set_rules('username', 'Username', 'callback_username_check');
-				$this->form_validation->set_rules('name', 'Name');
-				$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-				$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
-				$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-				$this->form_validation->set_rules('nric', 'Nric', 'required');
-				$this->form_validation->set_rules('mobile', 'MobileNumber', 'required');
+			$this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('username', 'Username', 'callback_username_check');
+			$this->form_validation->set_rules('name', 'Name');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+			$this->form_validation->set_rules('nric', 'Nric', 'required');
+			$this->form_validation->set_rules('mobile', 'MobileNumber', 'required');
 
-                if ($this->form_validation->run() == FALSE)
-                {
-                    $this->load->view('createadmin');
-                }
-                else
-                {
-					// Encrypt password
-					$enc_password = md5($this->input->post('password'));
-                    $this->CreateAdminModel->register($enc_password);
-					// $this->load->model('CreateAdminModel');
-						
-					redirect('adminhome');
-                }
+			if ($this->form_validation->run() == FALSE)
+			{
+				$this->load->view('Admin/Create');
+			}
+			else
+			{
+				// Encrypt password
+				$enc_password = md5($this->input->post('password'));
+				$this->AdminModel->register($enc_password);
+					
+				redirect('AdminHome');
+			}
         }
 		
 		public function username_check($str)
         {
-                if ($str == 'test')
-                {
-                        $this->form_validation->set_message('username_check', 'The {field} field can not be the word "test"');
-                        return FALSE;
-                }
-                else
-                {
-                        return TRUE;
-                }
+			if ($str == 'test')
+			{
+					$this->form_validation->set_message('username_check', 'The {field} field can not be the word "test"');
+					return FALSE;
+			}
+			else
+			{
+					return TRUE;
+			}
         }
 		
 				// Check if username exists
-		public function check_nric_exists($nric){
+		public function check_nric_exists($nric)
+		{
 			$this->form_validation->set_message('check_nric_exists', 'That NRIC already exists. Please choose a different one');
-			if($this->CreateAdminModel->check_nric_exists($nric)){
+			if($this->AdminModel->check_nric_exists($nric))
+			{
 				return true;
 			} else {
 				return false;
@@ -69,16 +71,19 @@ class CreateAdmin extends CI_Controller {
 		}
 
 		// Check if email exists
-		public function check_email_exists($email){
+		public function check_email_exists($email)
+		{
 			$this->form_validation->set_message('check_email_exists', 'That email is taken. Please choose a different one');
-			if($this->CreateAdminModel->check_email_exists($email)){
+			if($this->AdminModel->check_email_exists($email))
+			{
 				return true;
 			} else {
 				return false;
 			}
 		}
 		
-		public function create_admintry() {
-			 $this->load->view('createadmin');
+		public function create_admintry() 
+		{
+			 $this->load->view('Admin/Create');
 		}
 }		

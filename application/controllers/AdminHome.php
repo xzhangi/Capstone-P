@@ -21,7 +21,7 @@
 			$alllockers = $this->Lockermodel->get_locker_list_all();
 			$data['lockerlist'] = $alllockers;
 			//Load the view
-			$this->load->view('Admin-Home', $data);
+			$this->load->view('Admin/Admin-Home', $data);
 		}
 		
 		public function do_logout()

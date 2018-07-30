@@ -6,19 +6,16 @@
 		public function __construct()
 		{
 			parent::__construct();
-			$this->load->helper('url');
-			$this->load->database();
 		}
 		 
 		public function index()
 		{
 			// Load model
-			$this->load->model('LockerStatusModel');
+			$this->load->model('AdminModel');
 			//Call any required model functions
-			$alllockers = $this->LockerStatusModel->get_locker_list_all();
-			$data['lockerlist'] = $alllockers;
+			$data['lockerlist'] = $this->AdminModel->GenerateLockerList();
 			//Load the view
-			$this->load->view('lockerstatus', $data);
+			$this->load->view('Admin/AllLockerStatus', $data);
 		}
 		
 /* 		public function dashboard()

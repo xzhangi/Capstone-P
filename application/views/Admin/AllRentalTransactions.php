@@ -408,16 +408,16 @@
 										<th>Points Obtained</th>
 										
 										<tbody>
-										<?php for ($i = 0; $i < count($lockerlist); ++$i) { ?>
+										<?php for ($i = 0; $i < count($translist); ++$i) { ?>
 										<tr>
 										<td><?php echo ($i+1); ?></td>
-										<td><?php echo $lockerlist[$i]->Rent_From_Date; ?></td>
-										<td><?php echo $lockerlist[$i]->Rent_To_Date; ?></td>
-										<td><?php echo $lockerlist[$i]->Rented_By; ?></td>
-										<td><?php echo $lockerlist[$i]->Rental_TypeType; ?></td>
-										<td><?php echo $lockerlist[$i]->Creation_DateDate; ?></td>
-										<td><?php echo $lockerlist[$i]->Is_Active; ?></td>
-										<td><?php echo $lockerlist[$i]->Points_Obtained; ?></td>
+										<td><?php echo $translist[$i]->Rent_From_Date; ?></td>
+										<td><?php echo $translist[$i]->Rent_To_Date; ?></td>
+										<td><?php echo $translist[$i]->Rented_By; ?></td>
+										<td><?php echo $translist[$i]->Rental_Type; ?></td>
+										<td><?php echo $translist[$i]->Creation_Date; ?></td>
+										<td><?php echo $translist[$i]->Is_Active; ?></td>
+										<td><?php echo $translist[$i]->Points_Obtained; ?></td>
 										</tr>
 										<?php } ?>
 										

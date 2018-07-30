@@ -13,17 +13,11 @@
 		public function index()
 		{
 			// Load model
-			$this->load->model('AccMngmntModel');
+			$this->load->model('AdminModel');
 			//Call any required model functions
-			$allusers = $this->AccMngmntModel->get_locker_list_all();
-			$data['userlist'] = $allusers;
+			$data['userlist'] = $this->AdminModel->Get_User_List();
 			//Load the view
-			$this->load->view('accountmanagement', $data);
-		}
-		
-		public function dashboard()
-		{
-			$this->load->view('Dashboard');
+			$this->load->view('Admin/AccountManagement', $data);
 		}
 	}
 ?>
