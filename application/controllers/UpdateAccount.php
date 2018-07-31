@@ -22,7 +22,7 @@
 			//Call any required model functions
 			$data['Userdata'] = $this->AdminModel->get_user_record($username);
 			//validation conditions
-			$this->form_validation->set_rules('username', 'Username', 'required');
+			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[tbl_users.Username]');
 			$this->form_validation->set_rules('name', 'Name' ,'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('nric', 'Nric', 'required');

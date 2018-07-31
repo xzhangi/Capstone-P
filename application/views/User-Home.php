@@ -204,7 +204,7 @@
           <td><?php echo $bookingdetails['Rental_Type'] ?></td>
 					<td><?php echo $bookingdetails['Rent_From_Date'] ?></td>
 					<td><?php echo $bookingdetails['Rent_To_Date'] ?></td>
-					<td><?php echo $bookingdetails['Rented_By'] ?></td>
+					<td><?php echo $bookingdetails['Username'] ?></td>
 					<td><?php echo $bookingdetails['Pin_Code'] ?></td>
 				</tr>
 			</table>
