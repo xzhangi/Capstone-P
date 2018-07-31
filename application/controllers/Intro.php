@@ -32,7 +32,7 @@
 			$result = $this->UserModel->validate();
 			if (! $result) {
 				//Validation fail
-				if (! $this->session->userdata('Is_Active')) {
+				if ($this->session->userdata('Is_Active')) {
 					$this->session->sess_destroy();
 					$msg = '<font color=red>Your account is disabled, please contact the Administrator.</font><br />';
 				}
@@ -91,9 +91,8 @@
             else
             {
 				// Encrypt password
-				$enc_password = md5($this->input->post('password'));
-                //$this->UserModel->register($enc_password);
-                $this->UserModel->register($this->input->post('password'));
+				$enc_password = md5($this->input->post('newPassConfirm'));
+                $this->UserModel->register($enc_password);
 					
 				redirect('Intro');
             }

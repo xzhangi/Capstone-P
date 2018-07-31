@@ -1,5 +1,3 @@
-var varLockerSizeSelected = 1;
-
 function generatePinCheck() {
 	if (document.getElementById('autogeneratepin').checked)
 	{
@@ -38,4 +36,17 @@ function check(input) {
         // input is valid -- reset the error message
         input.setCustomValidity('');
     }
-}		
+}
+
+$(function() {
+  var $filters = $("input:radio");
+  var $categoryContent = $('#Group2 div');
+
+  $filters.click(function() {
+    $categoryContent.hide();
+    var $selectedFilters = $(this).closest('ul').find(':radio').filter(':checked');
+    var lbl = $selectedFilters.parent().text();
+    
+    $categoryContent.filter(':contains(' + $.trim(lbl) + ')').show();
+  });
+});

@@ -6,12 +6,12 @@ td {
   line-height: inherit;
 }
 
-.cc-selector input{
+/*.cc-selector input{
     margin:0;padding:0;
     -webkit-appearance:none;
        -moz-appearance:none;
             appearance:none;
-}
+}*/
 
 .image-padding {
   padding: 30px;

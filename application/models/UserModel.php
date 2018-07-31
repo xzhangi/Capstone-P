@@ -14,11 +14,11 @@
 		public function register($enc_password){
 			// User data array
 			$data = array(			
-				'Username' => $this->input->post('username'), //Front take from DB Column name, back taake from Controller
-				'NRIC' => $this->input->post('nric'),
-				'Display_Name' => $this->input->post('name'),
-				'Email' => $this->input->post('email'),
-				'Mobile_No' => $this->input->post('phone'),
+				'Username' => $this->input->post('newUser'), //Front take from DB Column name, back taake from Controller
+				'NRIC' => $this->input->post('newNRIC'),
+				'Display_Name' => $this->input->post('newName'),
+				'Email' => $this->input->post('newEmail'),
+				'Mobile_No' => $this->input->post('newPhone'),
 				'Password' => $enc_password,
 				'Is_Active' => true,
 				'Is_Admin' => false
@@ -93,11 +93,8 @@
 				}
 				else {
 					$row = $query->row();
-					$data = array(
-							'Is_Active' => $row->Is_Active
-							);
-					$this->session->set_userdata($data);
-					
+					$this->session->set_userdata('Is_Active', true);
+
 					return false;
 				}
 			}
