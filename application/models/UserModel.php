@@ -2,12 +2,58 @@
 	if (!defined('BASEPATH'))
 		exit ('No direct script access allowed!');
 	
-	class LoginModel extends CI_Model
+	class UserModel extends CI_Model
 	{
 		function __construct() 
 		{
 			// Call the Model Constructor
 			parent::__construct();
+		}
+
+		// Registration
+		public function register($enc_password){
+			// User data array
+			$data = array(			
+				'Username' => $this->input->post('username'), //Front take from DB Column name, back taake from Controller
+				'NRIC' => $this->input->post('nric'),
+				'Display_Name' => $this->input->post('name'),
+				'Email' => $this->input->post('email'),
+				'Mobile_No' => $this->input->post('phone'),
+				'Password' => $enc_password,
+				'Is_Active' => true,
+				'Is_Admin' => false
+			);
+
+			// Insert user
+			$this->db->insert('tbl_users', $data);
+
+			// Create eWallet for user
+			$walletdata = array(
+				'Username' => $this->input->post('username'),
+				'Balance' => '0',
+			);
+
+			return $this->db->insert('tbl_ewallet', $walletdata);
+		}
+
+		// Check username exists
+		public function check_nric_exists($nric){
+			$query = $this->db->get_where('tbl_users', array('nric' => $nric));
+			if(empty($query->row_array())){
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		// Check email exists
+		public function check_email_exists($email){
+			$query = $this->db->get_where('users', array('email' => $email));
+			if(empty($query->row_array())){
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 		//Check user login

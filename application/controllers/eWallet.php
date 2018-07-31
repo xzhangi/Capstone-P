@@ -1,5 +1,5 @@
 <?php
-class eWallet_conc extends CI_Controller {
+class eWallet extends CI_Controller {
 	
 		public function __construct()
 		{
@@ -13,7 +13,7 @@ class eWallet_conc extends CI_Controller {
 
 			$this->load->helper('html');
 			
-			$this->load->model('eWallet_model');
+			$this->load->model('eWalletModel');
 		}
 		
 		public function index() {
@@ -29,16 +29,14 @@ class eWallet_conc extends CI_Controller {
 		
 		//Retrieve user wallet's balance from db
 		public function retrieve($msg = NULL) {
-			$this->load->model('eWallet_model');
 			$data['MsgtoDisplay'] = $msg;
-			$data['userWallet'] = $this->eWallet_model->retrieve_balance($this->session->Userdata('Username'));
+			$data['userWallet'] = $this->eWalletModel->retrieve_balance($this->session->Userdata('Username'));
 			$this->load->view('eWallet', $data);
 		}
 		
 		//Top up amount to user wallet
 		public function top_up() {
-			$this->load->model('eWallet_model');
-			if ($this->eWallet_model->add_balance($this->session->Userdata('Username'), $this->input->post('topupRadio')))
+			if ($this->eWalletModel->add_balance($this->session->Userdata('Username'), $this->input->post('topupRadio')))
 			{
 				$msg = "Top up successful!";
 			}

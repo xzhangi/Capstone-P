@@ -36,9 +36,10 @@
 		//Get only lockers that are available
 		function get_locker_list_available_all()
 		{
-			$this->db->select('tbl_locker.ID');
-			$this->db->select('tbl_locker.Locker_Size_ID');
-			$this->db->select('tbl_locker.Name');
+			$this->db->select('ID');
+			$this->db->select('Locker_Size_ID');
+			$this->db->select('Name');
+			$this->db->select('Is_Available');
 			$this->db->from('tbl_locker');
 			$this->db->where('Is_Available', 1);
 			$this->db->where('Is_Active', 1);
@@ -52,6 +53,7 @@
 				$list[$i]->LockerID = $result[$i]->ID;
 				$list[$i]->Locker_Size_ID = $result[$i]->Locker_Size_ID;
 				$list[$i]->Name = $result[$i]->Name;
+				$list[$i]->Is_Available = $result[$i]->Is_Available;
 			}
 			
 			return $list;
@@ -113,11 +115,13 @@
 		{
 			$i = 0; //counter
 			$pin = ""; //our default pin is blank.
-			while($i < $digits){
-				//generate a random number between 0 and 9.
-				$pin .= mt_rand(0, 9);
-				$i++;
-			}
+			do {
+				while($i < $digits){
+					//generate a random number between 0 and 9.
+					$pin .= mt_rand(0, 9);
+					$i++;
+				}
+			} while (strlen($pin) < 6); //Ensure that pin is 6 digits
 			return $pin;
 		}
 		

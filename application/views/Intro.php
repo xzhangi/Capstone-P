@@ -64,6 +64,7 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#intro">Login</a></li>
+            <li><a href="#SignUp">Sign Up</a></li>
             <li><a href="#AboutUs">About Us</a></li>
             <li><a href="#Lockers">Lockers</a></li>
             <li><a href="#locations">Locations</a></li>
@@ -170,7 +171,7 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username*</label>
-							  <input type="text" class="form-control" name="username" placeholder="Username">
+							  <input type="text" class="form-control" name="username" placeholder="Username" min="7" required>
 							  <?php ?>
                               <!-- <div class="validation"></div> -->
                             </div>
@@ -178,7 +179,7 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Name*</label>
-							  <input type="text" class="form-control" name="name" placeholder="Name">
+							  <input type="text" class="form-control" name="name" placeholder="Name" required>
                             </div>
                           </div>
                         </div>
@@ -187,13 +188,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>NRIC*</label>
-							  <input type="text" class="form-control" name="nric" pattern="^[SFTG]\d{7}[A-Z]$" placeholder="NRIC">	
+							  <input type="text" class="form-control" name="nric" pattern="^[SFTG]\d{7}[A-Z]$" placeholder="NRIC" required>	
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Email*</label>
-							  <input type="text" class="form-control" name="email" placeholder="Email">
+							  <input type="text" class="form-control" name="email" placeholder="Email" required>
                             </div>
                           </div>
                         </div>
@@ -202,7 +203,7 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Phone*</label>
-							  <input type="text" class="form-control" name="phone" pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number">  
+							  <input type="text" class="form-control" name="phone" pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number" required>  
                             </div>
                           </div>
                         </div>
@@ -211,13 +212,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Password*</label>
-							  <input type="password" class="form-control" name="password" placeholder="Password">   
+							  <input type="password" class="form-control" name="password" placeholder="Password" min="8" required>   
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Confirm Password*</label>
-							  <input type="password" class="form-control" name="passconf" placeholder="Confirm Password">
+							  <input type="password" class="form-control" name="passconf" placeholder="Confirm Password" min="8" required>
                             </div>
                           </div>
                         </div>

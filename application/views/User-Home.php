@@ -63,11 +63,10 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#BookLocker">Book a Locker</a></li>
-            <!-- <li><a href="#AboutUs">About Us</a></li> -->
-			<li><a href="<?php echo base_url();?>eWallet_Conc/retrieve">eWallet</a></li>
+            <li><a href="#LockerStatus">Locker Booking Status</a></li>
             <li><a href="#Lockers">Lockers</a></li>
             <li><a href="#locations">Locations</a></li>
-            <li><a href="<?php echo base_url();?>eWallet_Conc/retrieve">eWallet</a></li>
+            <li><a href="<?php echo base_url();?>eWallet">eWallet</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
@@ -103,7 +102,7 @@
                 </div>
         			  <div class="divider-short" style="margin-bottom: 20px;"></div>
               </div>
-			        <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
+			   <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
                 <!-- If user has not rented any lockers, show locker rental portion -->
                 <?php if(!$bookingdetails['Rented']) { ?>
                 <!-- Locker size selector -->
@@ -134,120 +133,50 @@
 							  <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png">
 							</label>
 						  </div>
-  				        </div>
-                  </div>
-			  <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
-				<div class="col-md-4">
-				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
-				  <select>
-				  <?php foreach($availablelockerlist as $lockerItem)
-						{ ?>
-						  <?php if ($lockerItem->Locker_Size_ID == '1') 
-						  { ?>
-							<option value="<?php echo $lockerItem->Name; ?>"><?php echo $lockerItem->Name; ?></option>
-							<?php 
-						  }
-						} ?>
-				  </select>
-				</div>
-				<div class="col-md-4">
-				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
-				</div>
-				<div class="col-md-4">
-				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
-				</div>
-			  </div>
-            </div>
-          </div>
-		</div>
-      </div>
-    </section>
-
-    <!-- /Section: intro -->
-
-    <!-- Section: boxes -->
-    <section id="boxes" class="home-section paddingtop-80">
-
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3 col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="box text-center">
-
-                <i class="fa fa-check fa-3x circled bg-skin"></i>
-                <h4 class="h-bold">Login/Signup</h4>
-                <p>
-                  Login using your NYP account or signup for a guest account.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="box text-center">
-
-				        <form action="<?php echo base_url();?>Home/book_locker" method="post" role="form">
-				          <div style="text-align: center">
-				            <select name="lockerselected" id="lockerselected" style="padding: 5px; margin: 10px;" required>
+						</div>
+                </div>
+				      
+                <form action="<?php echo base_url();?>Home/book_locker" method="post" role="form">
+                  <div style="text-align: center">
+                    <select name="lockerselected" id="lockerselected" style="padding: 5px; margin: 10px;" required>
                       <option value="" disabled selected>Select a Locker</option>
-				              <?php foreach($availablelockerlist as $lockerItem)
-						          { ?>
-            							<option value="<?php echo $lockerItem->LockerID; ?>" ><?php echo $lockerItem->Name; ?></option>
-            			<?php 
-						          } ?>
-				            </select>
-					
-				            <select name="rentaltype" id="rentaltype" style="padding: 5px; margin: 10px;">
-            					<option value="1">Per Minute Rental</option>
-            					<option value="2">1 Month Rental</option>
-          				  </select>
-				  
-          				  <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin">Automatically Generate PIN</label></input>
-          				  <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 Digit Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" required>
+                      <?php foreach($availablelockerlist as $lockerItem)
+                      { ?>
+                          <option value="<?php echo $lockerItem->LockerID; ?>" ><?php echo $lockerItem->Name; ?></option>
+                  <?php 
+                      } ?>
+                    </select>
+          
+                    <select name="rentaltype" id="rentaltype" style="padding: 5px; margin: 10px;">
+                      <option value="1">Per Minute Rental</option>
+                      <option value="2">1 Month Rental</option>
+                    </select>
+          
+                    <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin">Automatically Generate PIN</label></input>
+                    <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 Digit Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" required>
                     <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" required>
-          				  <div class="validation"></div>
-				          </div>
-				          <div>
-				            <input type="submit" value="Book Locker!" class="btn btn-skin btn-block btn-lg">
-				          </div>
-				        </form>
+                    <div class="validation"></div>
+                  </div>
+                  <div>
+                    <input type="submit" value="Book Locker!" class="btn btn-skin btn-block btn-lg">
+                  </div>
+                </form>
                 <!-- User already rented locker, hide locker booking portion -->
                 <?php } else { ?>
                   <h3 class="section-heading text-center">You are already renting a locker!</h3>
                 <?php } ?>
-			         </div>
-                <i class="fa fa-list-alt fa-3x circled bg-skin"></i>
-                <h4 class="h-bold">Choose Your Locker</h4>
-                <p>
-                  Choose from a range of sizes, locations and pricing packages.
-                </p>
-              </div>
-            </div>
-	        </div>
-          </div>
-          <div class="col-sm-3 col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="box text-center">
-                <i class="fa fa-user-md fa-3x circled bg-skin"></i>
-                <h4 class="h-bold">Make Payment</h4>
-                <p>
-                  Top up your eWallet and make payment. 
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-3 col-md-3">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
-              <div class="box text-center">
 
-                <i class="fa fa-hospital-o fa-3x circled bg-skin"></i>
-                <h4 class="h-bold">Enjoy Your Locker</h4>
-                <p>
-                  Unlock your locker and voila!
-                </p>
               </div>
-            </div>
           </div>
+		</div>
+      </div>
+	  </div>
+    </section>
+
+    <!-- /Section: intro -->
+
+				        
+			         </div>
         </div>
       </div>
 
@@ -286,7 +215,7 @@
           <td><?php echo $bookingdetails['Rental_Type'] ?></td>
 					<td><?php echo $bookingdetails['Rent_From_Date'] ?></td>
 					<td><?php echo $bookingdetails['Rent_To_Date'] ?></td>
-					<td><?php echo $bookingdetails['Username'] ?></td>
+					<td><?php echo $bookingdetails['Rented_By'] ?></td>
 					<td><?php echo $bookingdetails['Pin_Code'] ?></td>
 				</tr>
 			</table>
@@ -321,8 +250,8 @@
 		  
 		  <div class="col-lg-12"> 
 			<div class="row">
-				<?php foreach($availablelockerlist as $locker_Ava) { ?>
-					<?php if ($locker_Ava->Is_Available) { ?>
+				<?php foreach($availablelockerlist as $lockerItem) { ?>
+					<?php if ($lockerItem->Is_Available) { ?>
 						<div class="col-xs-12 col-sm-6 col-md-3">
 							<div class="lockerboxavailable"></div>
 						</div>

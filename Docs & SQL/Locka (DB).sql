@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 31, 2018 at 12:12 PM
+-- Generation Time: Jul 31, 2018 at 02:15 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -34,7 +34,7 @@ DROP TABLE IF EXISTS `tbl_ewallet`;
 CREATE TABLE IF NOT EXISTS `tbl_ewallet` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(12) NOT NULL,
-  `Amount` int(11) NOT NULL DEFAULT '0',
+  `Balance` int(11) NOT NULL DEFAULT '0',
   `Created_Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Has_Pending_Payments` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
@@ -46,8 +46,8 @@ CREATE TABLE IF NOT EXISTS `tbl_ewallet` (
 -- Dumping data for table `tbl_ewallet`
 --
 
-INSERT INTO `tbl_ewallet` (`ID`, `Username`, `Amount`, `Created_Date`, `Has_Pending_Payments`) VALUES
-(1, '18A123A', 10, '2018-07-31 19:53:46', 0);
+INSERT INTO `tbl_ewallet` (`ID`, `Username`, `Balance`, `Created_Date`, `Has_Pending_Payments`) VALUES
+(1, '18A123A', 60, '2018-07-31 19:53:46', 0);
 
 -- --------------------------------------------------------
 
@@ -137,28 +137,32 @@ DROP TABLE IF EXISTS `tbl_locker_rental`;
 CREATE TABLE IF NOT EXISTS `tbl_locker_rental` (
   `Rent_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Locker_ID` int(11) NOT NULL,
-  `Rent_From_Date` datetime NOT NULL,
+  `Rent_From_Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Rent_To_Date` datetime NOT NULL,
   `Username` varchar(45) NOT NULL,
   `Rental_Type` int(11) NOT NULL,
-  `Creation_Date` varchar(45) NOT NULL,
+  `Creation_Date` datetime NOT NULL,
   `Is_Active` tinyint(4) NOT NULL,
   `Pin_Code` int(11) NOT NULL,
   `Points_Obtained` int(11) NOT NULL,
   `Paid` tinyint(4) NOT NULL,
   PRIMARY KEY (`Rent_ID`),
   KEY `Username_idx` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_locker_rental`
 --
 
 INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent_To_Date`, `Username`, `Rental_Type`, `Creation_Date`, `Is_Active`, `Pin_Code`, `Points_Obtained`, `Paid`) VALUES
-(54, 16, '2018-07-31 16:11:00', '2018-07-31 16:34:00', '18A123A', 1, '2018-07-31 16:11', 0, 406742, 0, 0),
-(55, 18, '2018-07-31 16:35:00', '2018-07-31 16:39:00', '18A123A', 1, '2018-07-31 16:35', 0, 637683, 0, 0),
-(56, 17, '2018-07-31 16:39:00', '2018-07-31 16:40:00', '18A123A', 1, '2018-07-31 16:39', 0, 610883, 0, 0),
-(57, 17, '2018-07-31 16:42:00', '2018-07-31 16:43:00', '18A123A', 1, '2018-07-31 16:42', 0, 502396, 0, 0);
+(54, 16, '2018-07-31 16:11:00', '2018-07-31 16:34:00', '18A123A', 1, '2018-07-31 16:11:00', 0, 406742, 0, 0),
+(55, 18, '2018-07-31 16:35:00', '2018-07-31 16:39:00', '18A123A', 1, '2018-07-31 16:35:00', 0, 637683, 0, 0),
+(56, 17, '2018-07-31 16:39:00', '2018-07-31 16:40:00', '18A123A', 1, '2018-07-31 16:39:00', 0, 610883, 0, 0),
+(57, 17, '2018-07-31 16:42:00', '2018-07-31 16:43:00', '18A123A', 1, '2018-07-31 16:42:00', 0, 502396, 0, 0),
+(58, 16, '2018-07-31 20:19:00', '2018-07-31 20:20:00', '18A123A', 1, '2018-07-31 20:19:00', 0, 195251, 0, 0),
+(59, 3, '2018-07-31 21:09:00', '0000-00-00 00:00:00', '18A123A', 1, '2018-07-31 21:09:00', 0, 662545, 0, 0),
+(60, 2, '2018-07-31 21:43:00', '0000-00-00 00:00:00', '18A123A', 1, '2018-07-31 21:43:00', 0, 677168, 0, 0),
+(61, 20, '2018-07-31 21:55:00', '0000-00-00 00:00:00', '18A123A', 1, '2018-07-31 21:55:00', 0, 107927, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -255,14 +259,14 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `Is_Admin` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`ID`, `Username`, `NRIC`, `Display_Name`, `Email`, `Mobile_No`, `Password`, `Create_Time`, `Points`, `Is_Active`, `Is_Admin`) VALUES
-(1, '18A123A', 'S1234567A', 'Tom', 'tom@fakeemail.com', '12345678', '123456', '2018-06-11 08:43:54', 33, 1, 0),
+(1, '18A123A', 'S1234555A', 'Tom', 'tom@fakeemail.com', '12345678', '123456', '2018-06-11 08:43:54', 33, 1, 0),
 (2, '18B123B', 'S1234567B', 'Jane', 'jane@fakeemail.com', '87654321', '123456', '2018-06-11 08:43:54', 11, 1, 0),
 (3, '18C123C', 'S1234567C', 'God', 'god@fakeemail.com', '12348765', '123456', '2018-06-11 08:43:54', 0, 1, 0),
 (4, '18D123D', 'S1234567D', 'Hacker', 'hacker@fakeemail.com', '12344321', '123456', '2018-06-11 08:45:23', 9999, 0, 0),

@@ -45,17 +45,15 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="<?php echo base_url();?>home">Book a Locker</a></li>
-            <!-- <li><a href="#AboutUs">About Us</a></li> -->
-			<li><a href="<?php echo base_url();?>balance">eWallet</a></li>
-            <li><a href="#Lockers">Lockers</a></li>
-            <li><a href="#locations">Locations</a></li>
-            <li><a href="#pricing">Pricing</a></li>
+            <li class="active"><a href="<?php echo base_url();?>Home">Book a Locker</a></li>
+			<li><a href="<?php echo base_url();?>Home#LockerStatus">Locker Booking Status</a></li>
+            <li><a href="<?php echo base_url();?>Home#Lockers">Lockers</a></li>
+            <li><a href="<?php echo base_url();?>Home#locations">Locations</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
-                <li><a href="index.html">FAQ</a></li>
-                <li><a href="index-form.html">Contact Us</a></li>
+                <li><a href="">FAQ</a></li>
+                <li><a href="">Contact Us</a></li>
                 <li><a href="<?php echo base_url();?>Home/do_logout">Log Out</a></li>
               </ul>
             </li>
@@ -75,7 +73,7 @@
       <h2>My Wallet</h2><!--<a id="add" href="#"></a>-->
     </header>
     <div class="content">
-	<form action="<?php echo base_url();?>eWallet_conc/top_up" method="post" role="form" id="topupform"> 
+	<form action="<?php echo base_url();?>eWallet/top_up" method="post" role="form" id="topupform"> 
       <div class="card active" data-id="#{id}">
         <div class="row">
 			<input type="radio" id="topUp10" name="topupRadio" value="10" checked="checked"  />
@@ -110,7 +108,7 @@
                 </div>		
     </div>
 	
-	<button type="button" class="btn btn-skin btn-block btn-lg" a href="<?php echo base_url();?>home">Book a Locker</button>
+	<a href="<?php echo base_url();?>Home" class="btn btn-skin btn-block btn-lg">Back to Home</a>
 
   </div>
 

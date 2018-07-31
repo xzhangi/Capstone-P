@@ -2,7 +2,7 @@
 	if (!defined('BASEPATH'))
 		exit ('No direct script access allowed!');
 	
-	class eWallet_model extends CI_Model
+	class eWalletModel extends CI_Model
 	{
 		function __construct() 
 		{
@@ -13,7 +13,7 @@
 		public function retrieve_balance($username)
 		{		
 			$this->db->select('Balance'); //Select what
-			$this->db->from('ewallet'); //From which table
+			$this->db->from('tbl_ewallet'); //From which table
 			$this->db->where('Username', $username); //Where?
 			$query = $this->db->get();
 
@@ -35,7 +35,7 @@
 			$top_up_amount += $currBalance;
 			$topUpArray = array('Balance' => $top_up_amount); // getting the top up amount and putting it in an array
 			$this->db->where('Username', $username); //Where?
-			$this->db->update('ewallet', $topUpArray); //Select what
+			$this->db->update('tbl_ewallet', $topUpArray); //Select what
 			return true;
 		}
 	}
