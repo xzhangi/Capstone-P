@@ -96,7 +96,7 @@
                 //'Rent_From_Date' => @date('Y-m-d H:i', @strtotime($this->input->post('registeredDate'))), //need to change to date time
 				'Rent_From_Date' => @date('Y-m-d H:i'),
 				'Locker_ID' => $this->input->post('lockerselected'),
-                'Rented_By' => $this->session->userdata('Username'),
+                'username' => $this->session->userdata('Username'),
                 'Rental_Type' => $this->input->post('rentaltype'),
                 'Creation_Date' => @date('Y-m-d H:i'),
 				'Is_Active' => true,
@@ -130,11 +130,11 @@
 		
 		//Check if user booked a locker
 		public function CheckLockerBooking() {
-			//Select query from tbl_locker_rental where rented_by is session's username
+			//Select query from tbl_locker_rental where username is session's username
 			//And rental is active
 			$this->db->select('*');
 			$this->db->from('tbl_locker_rental');
-			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Username', $this->session->userdata('Username'));
 			$this->db->where('Is_Active', true);
 			$query = $this->db->get();
 			
@@ -147,7 +147,7 @@
 							'Locker_ID' => $row->Locker_ID,
 							'Rent_From_Date' => $row->Rent_From_Date,
 							'Rent_To_Date' => $row->Rent_To_Date,
-							'Rented_By' => $row->Rented_By,
+							'Username' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
 							'Pin_Code' => $row->Pin_Code,
 						);
@@ -159,13 +159,30 @@
 			}
 			return false;
 		}
+
+		public function GetBookingID($Username) {
+			$this->db->select('Rent_ID');
+			$this->db->from('tbl_locker_rental');
+			$this->db->where('Username', $Username);
+			$this->db->where('Is_Active', true);
+			$query = $this->db->get();
+
+			if($query->num_rows() == 1)
+			{
+				$row = $query->row();
+				return $row->Rent_ID;
+			}
+
+			return false;
+		}
+		
 		
 		//Get all details regarding locker booking
 		public function GetAllLockerBookingRecord() 
 		{
 			$this->db->select('*');
 			$this->db->from('tbl_locker_rental');
-			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Username', $this->session->userdata('Username'));
 			$query = $this->db->get();
 			// Record exists
 			$result = $query->result();
@@ -178,7 +195,7 @@
 					$list[$i]->Locker_ID = $result[$i]->Locker_ID;
 					$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
 					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
-					$list[$i]->Rented_By = $result[$i]->Rented_By;
+					$list[$i]->Username = $result[$i]->Username;
 					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
 					$list[$i]->Pin_Code = $result[$i]->Pin_Code;
 				}
@@ -194,7 +211,7 @@
 			$this->db->select('Is_Active');
 			$this->db->select('Points_Obtained');
 			$this->db->from('tbl_locker_rental');
-			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Username', $this->session->userdata('Username'));
 			$this->db->where('Is_Active', true);
 			$query = $this->db->get();
 			
@@ -202,15 +219,39 @@
 			if($query->num_rows() == 1)
 			{
 				$data = array(
-			        'Is_Active' => false
+			        'Is_Active' => false,
+			        'Rent_To_Date' => @date('Y-m-d H:i')
 				);
-				$this->db->where('Rented_By', $this->session->userdata('Username'));
+				$this->db->where('Rent_ID', $this->GetBookingID($this->session->userdata('Username')));
 				$this->db->update('tbl_locker_rental', $data);
 
 				//return true;
 			}
 			//Update booked locker status back to available
 			return $this->UpdateLockerStatus($this->input->post('lockerselected'), true);
+		}
+
+		//Get locker rental rates
+		public function Get_All_Rental_Rates() 
+		{
+			$this->db->select('Rental_Type_ID', 'Name');
+			$this->db->from('tbl_locker_rental_type');
+			$query = $this->db->get();
+
+			$result = $query->result();
+			$list = Array();
+			
+			if ($query->num_rows() > 0) {
+				for ($i = 0; $i < count($result); $i++)
+				{
+					$list[$i] = (object)NULL;
+					$list[$i]->Rental_Type_ID = $result[$i]->Rental_Type_ID;
+					$list[$i]->Rent_FromName_Date = $result[$i]->Name;
+				}
+				return $list;
+			}
+			
+			return false;
 		}
 	}
 ?>
