@@ -1,7 +1,7 @@
 <?php
 	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class AccountManagement extends CI_Controller {
+	class LockerInfo extends CI_Controller {
 
 		public function __construct()
 		{
@@ -15,18 +15,12 @@
 			// Load model
 			$this->load->model('AdminModel');
 			//Call any required model functions
-			$data['userlist'] = $this->AdminModel->Get_User_List();
+			$data['lockerlocationlist'] = $this->AdminModel->Get_Lockerlocation_List();
 			//Load the view
-			$this->load->view('Admin/AccountManagement', $data);
-		}
-		
-			//delete user record from db
-		function delete_user($username)
-		{
-			$this->db->where('username', $username);
-			$this->db->delete('tbl_users');
-			redirect('AdminHome');
+			$this->load->view('Admin/LockerInfo', $data);
 		}
 
-	}
+		
+
+		}
 ?>

@@ -22,8 +22,7 @@ class CreateAdmin extends CI_Controller {
 			//$this->load->helper(array('form', 'url'));
 
 			$this->load->library('form_validation');
-			
-			$this->form_validation->set_rules('username', 'Username', 'callback_username_check');
+			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[tbl_users.username]');
 			$this->form_validation->set_rules('name', 'Name');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
 			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');

@@ -256,7 +256,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?php echo base_url();?>AdminHome/do_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -328,12 +328,16 @@
 
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <table width="100%" class="table table-striped" id="dataTables-example">
                                 <thead>
                                     <tr>
                                         <th>#</th>
-										<th>Location ID</th>
-										<th>Locker Size</th>
+										<th>
+										<a href="<?php echo base_url();?>LockerInfo"><i class=""></i> Location ID</a>                        
+										</th>
+										<th>
+										<a href="<?php echo base_url();?>LockerSize"><i class=""></i> Locker Size</a>                        
+										</th>
 										<th>Name</th>
 										<th>Active</th>
 										<th>Available</th>

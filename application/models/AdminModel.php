@@ -10,7 +10,7 @@
 			parent::__construct();
 		}
 		
-		// Get all users
+		// Get all users from user table
 		function get_user_list()
 		{
 			$this->db->select('*');
@@ -37,6 +37,47 @@
 			return $list;
 		}
 		
+		// Get all lockers from locker location table
+		function get_lockerlocation_list()
+		{
+			$this->db->select('*');
+			$this->db->from('tbl_locker_location');			
+			$query = $this->db->get();
+			$result = $query->result();
+			$list = Array();
+			
+			for ($i = 0; $i < count($result); $i++)
+			{
+				$list[$i] = (object)NULL;
+				$list[$i]->Location_ID = $result[$i]->Location_ID;
+				$list[$i]->Name = $result[$i]->Name;
+				$list[$i]->Remarks = $result[$i]->Remarks;
+				$list[$i]->Is_Active = $result[$i]->Is_Active;
+				$list[$i]->Created_Date = $result[$i]->Created_Date;
+
+			}
+			
+			return $list;
+		}
+		
+		// Get all lockers size from locker size table
+		function get_lockersize_list()
+		{
+			$this->db->select('*');
+			$this->db->from('tbl_locker_size');			
+			$query = $this->db->get();
+			$result = $query->result();
+			$list = Array();
+			
+			for ($i = 0; $i < count($result); $i++)
+			{
+				$list[$i] = (object)NULL;
+				$list[$i]->Locker_Size_ID = $result[$i]->Locker_Size_ID;
+				$list[$i]->Name = $result[$i]->Name;
+			}
+			
+			return $list;
+		}
 		function get_all_transactions()
 		{
 			$this->db->select('*');
@@ -104,7 +145,7 @@
 			return $this->db->insert('tbl_users', $data);
 		}
 		
-		// Check if username exists in DB
+		// Check if nric exists in DB
 		public function check_nric_exists($nric)
 		{
 			$query = $this->db->get_where('tbl_users', array('nric' => $nric));

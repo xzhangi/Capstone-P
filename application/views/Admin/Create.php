@@ -310,12 +310,11 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <?php echo validation_errors(); ?>
-
-									<?php echo form_open('CreateAdmin/register'); ?>
+                                <?php echo validation_errors(); ?>
+								<?php echo form_open('CreateAdmin/register'); ?>
 								<div class="form-group">
                                 <label>Username</label>
-                                <input class="form-control" name= "username" placeholder="Enter text">
+                                <input class="form-control" name= "username" placeholder="Enter text" onblur="">
                                  </div>
 								<div class="form-group">
                                 <label>Name</label>
@@ -341,7 +340,7 @@
 								<label>Mobile Number</label>
 								<input class="form-control" name= "mobile" placeholder="Enter text">
 								</div>			
-                                <button type="submit" class="btn btn-default">Submit Button</button>
+                                <button type="submit" class="btn btn-success">Submit Button</button>
 								<button type="reset" class="btn btn-default">Reset Button</button>											 
                                   <?php echo form_close(); ?>
                                 </div>
@@ -365,6 +364,11 @@
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
 
+<script>
+
+</script>
+
+	
 </body>
 
 </html>

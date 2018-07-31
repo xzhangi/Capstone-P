@@ -256,7 +256,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo base_url();?>AdminHome/do_logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -279,20 +279,8 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
+                       <li>
                             <a href="adminlogin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        <li>
-                           <!-- <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="flot.html">Flot Charts</a>
-                                </li>
-                                <li>
-                                    <a href="morris.html">Morris.js Charts</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
                         </li>
                         <li>
                             <a href="accountmanagement"><i class="fa fa-table fa-fw"></i>Account Management</a>
@@ -305,132 +293,73 @@
                         </li>
 						<li>
                             <a href="userreport"><i class="fa fa-edit fa-fw"></i>Report Misuse</a>
-                        </li>
-                        <li>
-                          <!--  <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
-                                </li>
-                                <li>
-                                    <a href="buttons.html">Buttons</a>
-                                </li>
-                                <li>
-                                    <a href="notifications.html">Notifications</a>
-                                </li>
-                                <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
+						</li>
                             </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                       <!--     <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                          <!--  <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
                 </div>
-                <!-- /.sidebar-collapse -->
             </div>
-            <!-- /.navbar-static-side -->
         </nav>
 
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Rental Transactions</h1>
+                    <h1 class="page-header">Location Details</h1>              
+					</div>
+					</div>
+
+					<div class="col-lg-12">
+                            </div>
+                         <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>LocationID</th>
+										<th>Name</th>
+										<th>Remarks</th>
+										<th>Active</th>
+										<th>Created Date</th>
+										
+										<tbody>	
+										<?php for ($i = 0; $i < count($lockerlocationlist); $i++) { ?>
+										<tr class="danger">
+										<td><?php echo $lockerlocationlist[$i]->Location_ID; ?></td>
+										<td><?php echo $lockerlocationlist[$i]->Name; ?></td>
+										<td><?php echo $lockerlocationlist[$i]->Remarks; ?></td>
+										<td><?php echo $lockerlocationlist[$i]->Is_Active; ?></td>
+										<td><?php echo $lockerlocationlist[$i]->Created_Date; ?></td>
+
+										</tr>
+										<?php } ?>
+										</tr>
+                                    </thead>
+
+                            </table>
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            DataTables Advanced Tables
+                <!-- /.col-lg-6 -->
+ 
+ 
+                            <!-- /.table-responsive -->
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table width="100%" class="table table-striped" id="dataTables-example">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-										<th>Rent From Date</th>
-										<th>Rent To Date</th>
-										<th>Rented By</th>
-										<th>Rental Type</th>
-										<th>Creation Date</th>
-										<th>Active</th>
-										<th>Points Obtained</th>
-										
-										<tbody>
-										<?php for ($i = 0; $i < count($translist); ++$i) { ?>
-										<tr>
-										<td><?php echo ($i+1); ?></td>
-										<td><?php echo $translist[$i]->Rent_From_Date; ?></td>
-										<td><?php echo $translist[$i]->Rent_To_Date; ?></td>
-										<td><?php echo $translist[$i]->Rented_By; ?></td>
-										<td><?php echo $translist[$i]->Rental_Type; ?></td>
-										<td><?php echo $translist[$i]->Creation_Date; ?></td>
-										<td><?php echo $translist[$i]->Is_Active; ?></td>
-										<td><?php echo $translist[$i]->Points_Obtained; ?></td>
-										</tr>
-										<?php } ?>
-										
-                                    </tr>
-                                </thead>
-                         
-                            </table>
-                        </div>
+                        <!-- /.panel-body -->
                     </div>
+                    <!-- /.panel -->
                 </div>
+                <!-- /.col-lg-6 -->
             </div>
-       </div>
- </div>
+            <!-- /.row -->
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->

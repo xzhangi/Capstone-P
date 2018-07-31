@@ -49,5 +49,11 @@
 				
 			}
 		}
+		
+		public function delete_user()
+		{
+			
+			$this->load->view('Admin/EditAccount', $data);
+		}
 	}
 ?>

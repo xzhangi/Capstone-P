@@ -325,11 +325,10 @@
 										 <label>Activation</label>
 										 <select class="form-control">
 										 <option>Active</option>
-										 <option>Deactivate</option>
+										 <option>Inactive</option>
 											</select>
 										</div>
-										<button type="submit" class="btn btn-default">Update</button>
-										<button onclick="document.getElementById('name').value=''">Clear input field</button>
+										<button type="submit" class="btn btn-success">Update</button>
 										<button type="reset" class="btn btn-default">Reset</button>
 										<div class="form-group">
 										   <label></label>
