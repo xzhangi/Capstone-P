@@ -96,7 +96,7 @@
                 //'Rent_From_Date' => @date('Y-m-d H:i', @strtotime($this->input->post('registeredDate'))), //need to change to date time
 				'Rent_From_Date' => @date('Y-m-d H:i'),
 				'Locker_ID' => $this->input->post('lockerselected'),
-                'Rented_By' => $this->session->userdata('Username'),
+                'Username' => $this->session->userdata('Username'),
                 'Rental_Type' => $this->input->post('rentaltype'),
                 'Creation_Date' => @date('Y-m-d H:i'),
 				'Is_Active' => true,
@@ -134,7 +134,7 @@
 			//And rental is active
 			$this->db->select('*');
 			$this->db->from('tbl_locker_rental');
-			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Username', $this->session->userdata('Username'));
 			$this->db->where('Is_Active', true);
 			$query = $this->db->get();
 			
@@ -147,7 +147,7 @@
 							'Locker_ID' => $row->Locker_ID,
 							'Rent_From_Date' => $row->Rent_From_Date,
 							'Rent_To_Date' => $row->Rent_To_Date,
-							'Rented_By' => $row->Rented_By,
+							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
 							'Pin_Code' => $row->Pin_Code,
 						);
@@ -165,7 +165,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('tbl_locker_rental');
-			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Username', $this->session->userdata('Username'));
 			$query = $this->db->get();
 			// Record exists
 			$result = $query->result();
@@ -178,7 +178,7 @@
 					$list[$i]->Locker_ID = $result[$i]->Locker_ID;
 					$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
 					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
-					$list[$i]->Rented_By = $result[$i]->Rented_By;
+					$list[$i]->Rented_By = $result[$i]->Username;
 					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
 					$list[$i]->Pin_Code = $result[$i]->Pin_Code;
 				}
@@ -194,7 +194,7 @@
 			$this->db->select('Is_Active');
 			$this->db->select('Points_Obtained');
 			$this->db->from('tbl_locker_rental');
-			$this->db->where('Rented_By', $this->session->userdata('Username'));
+			$this->db->where('Username', $this->session->userdata('Username'));
 			$this->db->where('Is_Active', true);
 			$query = $this->db->get();
 			
@@ -204,7 +204,7 @@
 				$data = array(
 			        'Is_Active' => false
 				);
-				$this->db->where('Rented_By', $this->session->userdata('Username'));
+				$this->db->where('Username', $this->session->userdata('Username'));
 				$this->db->update('tbl_locker_rental', $data);
 
 				//return true;
