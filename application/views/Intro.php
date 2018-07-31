@@ -161,21 +161,24 @@
                     <div class="panel-body">
                       <div id="sendmessage">Your message has been sent. Thank you!</div>
                       <div id="errormessage"></div>
-
-                      <form action="" method="post" role="form" class="contactForm lead">
+					  
+					<?php echo validation_errors(); ?>
+					<?php echo form_open('Intro/register'); ?>
+					  
+                      <!-- <form action="" method="post" role="form" class="contactForm lead"> -->
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username*</label>
-                              <input type="text" name="user_name" id="user_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
-                              <div class="validation"></div>
+							  <input type="text" class="form-control" name="username" placeholder="Username">
+							  <?php ?>
+                              <!-- <div class="validation"></div> -->
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Password*</label>
-                              <input type="password" name="Password" id="Password" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter at least 6 chars">
-                              <div class="validation"></div>
+                              <label>Name*</label>
+							  <input type="text" class="form-control" name="name" placeholder="Name">
                             </div>
                           </div>
                         </div>
@@ -184,15 +187,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>NRIC*</label>
-                              <input type="text" name="NRIC" id="NRIC" class="form-control input-md" data-rule="minlen:9" data-msg="Please enter at least 9 chars">
-                              <div class="validation"></div>
+							  <input type="text" class="form-control" name="nric" pattern="^[SFTG]\d{7}[A-Z]$" placeholder="NRIC">	
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Name*</label>
-                              <input type="text" name="Name" id="Name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
-                              <div class="validation"></div>
+                              <label>Email*</label>
+							  <input type="text" class="form-control" name="email" placeholder="Email">
                             </div>
                           </div>
                         </div>
@@ -200,21 +201,28 @@
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Email*</label>
-                              <input type="email" name="email" id="email" class="form-control input-md" data-rule="email" data-msg="Please enter a valid email">
-                              <div class="validation"></div>
+                              <label>Phone*</label>
+							  <input type="text" class="form-control" name="phone" pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number">  
+                            </div>
+                          </div>
+                        </div>
+						
+						   <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Password*</label>
+							  <input type="password" class="form-control" name="password" placeholder="Password">   
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Phone number*</label>
-                              <input type="text" name="phone" id="phone" class="form-control input-md" data-rule="required" data-msg="The phone number is required">
-                              <div class="validation"></div>
+                              <label>Confirm Password*</label>
+							  <input type="password" class="form-control" name="passconf" placeholder="Confirm Password">
                             </div>
                           </div>
                         </div>
 
-                        <input type="submit" value="signup" class="btn btn-skin btn-block btn-lg">
+                        <div><input type="submit" value="signup" class="btn btn-skin btn-block btn-lg"></div>
 
                         <p class="lead-footer" style="color: red">*Compulsory Fields</p>
 

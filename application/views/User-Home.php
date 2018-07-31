@@ -16,7 +16,6 @@
   <link href="<?php echo base_url()?>assets/Default-BS/css/owl.theme.css" rel="stylesheet" media="screen" />
   <link href="<?php echo base_url()?>assets/Default-BS/css/animate.css" rel="stylesheet" />
   <link href="<?php echo base_url()?>assets/Default-BS/css/style.css" rel="stylesheet">
-  
   <link href="<?php echo base_url()?>assets/Default-BS/css/custom.css" rel="stylesheet">
 
   <!-- boxed bg -->
@@ -64,15 +63,17 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#BookLocker">Book a Locker</a></li>
-            <li><a href="#LockerStatus">Locker Status</a></li>
+            <!-- <li><a href="#AboutUs">About Us</a></li> -->
+			<li><a href="<?php echo base_url();?>eWallet_Conc/retrieve">eWallet</a></li>
             <li><a href="#Lockers">Lockers</a></li>
             <li><a href="#locations">Locations</a></li>
-            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="<?php echo base_url();?>eWallet_Conc/retrieve">eWallet</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
                 <li><a href="index.html">FAQ</a></li>
                 <li><a href="index-form.html">Contact Us</a></li>
+				<li><a href="<?php echo base_url();?>cardDetails_conc/cardDetails">Payment</a></li>
                 <li><a href="<?php echo base_url();?>Home/do_logout">Log Out</a></li>
               </ul>
             </li>
@@ -135,6 +136,55 @@
 						  </div>
   				        </div>
                   </div>
+			  <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
+				<div class="col-md-4">
+				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
+				  <select>
+				  <?php foreach($availablelockerlist as $lockerItem)
+						{ ?>
+						  <?php if ($lockerItem->Locker_Size_ID == '1') 
+						  { ?>
+							<option value="<?php echo $lockerItem->Name; ?>"><?php echo $lockerItem->Name; ?></option>
+							<?php 
+						  }
+						} ?>
+				  </select>
+				</div>
+				<div class="col-md-4">
+				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
+				</div>
+				<div class="col-md-4">
+				  <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
+				</div>
+			  </div>
+            </div>
+          </div>
+		</div>
+      </div>
+    </section>
+
+    <!-- /Section: intro -->
+
+    <!-- Section: boxes -->
+    <section id="boxes" class="home-section paddingtop-80">
+
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3 col-md-3">
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
+              <div class="box text-center">
+
+                <i class="fa fa-check fa-3x circled bg-skin"></i>
+                <h4 class="h-bold">Login/Signup</h4>
+                <p>
+                  Login using your NYP account or signup for a guest account.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
+              <div class="box text-center">
 
 				        <form action="<?php echo base_url();?>Home/book_locker" method="post" role="form">
 				          <div style="text-align: center">
@@ -166,11 +216,43 @@
                   <h3 class="section-heading text-center">You are already renting a locker!</h3>
                 <?php } ?>
 			         </div>
+                <i class="fa fa-list-alt fa-3x circled bg-skin"></i>
+                <h4 class="h-bold">Choose Your Locker</h4>
+                <p>
+                  Choose from a range of sizes, locations and pricing packages.
+                </p>
               </div>
             </div>
 	        </div>
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
+              <div class="box text-center">
+                <i class="fa fa-user-md fa-3x circled bg-skin"></i>
+                <h4 class="h-bold">Make Payment</h4>
+                <p>
+                  Top up your eWallet and make payment. 
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-3 col-md-3">
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
+              <div class="box text-center">
+
+                <i class="fa fa-hospital-o fa-3x circled bg-skin"></i>
+                <h4 class="h-bold">Enjoy Your Locker</h4>
+                <p>
+                  Unlock your locker and voila!
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+
     </section>
+    <!-- /Section: boxes -->
 
     <!-- /Section: Book Locker -->
 
@@ -230,103 +312,32 @@
           <div class="col-lg-8 col-lg-offset-2">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="section-heading text-center">
-                <h3 class="h-bold">Lockers</h3>
-                <p>Choose from a variety of sizes for your ever-changing needs!</p>
+                <h3 class="h-bold">Lockers</h2>
+                <p>Locker Availability</p>
               </div>
             </div>
             <div class="divider-short"></div>
           </div>
+		  
+		  <div class="col-lg-12"> 
+			<div class="row">
+				<?php foreach($availablelockerlist as $locker_Ava) { ?>
+					<?php if ($locker_Ava->Is_Available) { ?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="lockerboxavailable"></div>
+						</div>
+					<?php } else { ?>
+						<div class="col-xs-12 col-sm-6 col-md-3">
+							<div class="lockerboxunavailable"></div>
+						</div>
+					<?php } ?>
+				<?php } ?>
+			</div>
+		  
+		  </div>
+		  
         </div>
       </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-
-            <!--<div id="filters-container" class="cbp-l-filters-alignLeft">
-              <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All (
-                <div class="cbp-filter-counter"></div>)</div>
-              <div data-filter=".cardiologist" class="cbp-filter-item">Cardiologist (
-                <div class="cbp-filter-counter"></div>)</div>
-              <div data-filter=".psychiatrist" class="cbp-filter-item">Psychiatrist (
-                <div class="cbp-filter-counter"></div>)</div>
-              <div data-filter=".neurologist" class="cbp-filter-item">Neurologist (
-                <div class="cbp-filter-counter"></div>)</div>
-            </div>-->
-
-            <div id="grid-container" class="cbp-l-grid-team">
-              <ul>
-                <li class="cbp-item psychiatrist ">
-                  <a href="doctors/member1.html" class="cbp-caption cbp-singlePage">
-                    <div class="cbp-caption-defaultWrap">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                      <div class="cbp-l-caption-alignCenter">
-                        <div class="cbp-l-caption-body">
-                          <div class="cbp-l-caption-text">VIEW DETAILS</div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="doctors/member1.html" class="cbp-singlePage cbp-l-grid-team-name">Small</a>
-                  <!--<div class="cbp-l-grid-team-position">Psychiatrist</div>-->
-                </li>
-                <li class="cbp-item cardiologist">
-                  <a href="doctors/member2.html" class="cbp-caption cbp-singlePage">
-                    <div class="cbp-caption-defaultWrap">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                      <div class="cbp-l-caption-alignCenter">
-                        <div class="cbp-l-caption-body">
-                          <div class="cbp-l-caption-text">VIEW DETAILS</div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="doctors/member2.html" class="cbp-singlePage cbp-l-grid-team-name">Medium</a>
-                  <!--<div class="cbp-l-grid-team-position">Cardiologist</div>-->
-                </li>
-                <li class="cbp-item cardiologist">
-                  <a href="doctors/member3.html" class="cbp-caption cbp-singlePage">
-                    <div class="cbp-caption-defaultWrap">
-                     <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                      <div class="cbp-l-caption-alignCenter">
-                        <div class="cbp-l-caption-body">
-                          <div class="cbp-l-caption-text">VIEW DETAILS</div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="doctors/member3.html" class="cbp-singlePage cbp-l-grid-team-name">Large</a>
-                  <!--<div class="cbp-l-grid-team-position">Cardiologist</div>-->
-                </li>
-                <!--<li class="cbp-item neurologist">
-                  <a href="doctors/member4.html" class="cbp-caption cbp-singlePage">
-                    <div class="cbp-caption-defaultWrap">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/4.jpg" alt="" width="100%">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                      <div class="cbp-l-caption-alignCenter">
-                        <div class="cbp-l-caption-body">
-                          <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="doctors/member4.html" class="cbp-singlePage cbp-l-grid-team-name">Adam Taylor</a>
-                  <div class="cbp-l-grid-team-position">Neurologist</div>
-                </li>-->
-
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
     </section>
     <!-- /Section: team -->
 
@@ -340,7 +351,7 @@
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="section-heading text-center">
                 <h3 class="h-bold">Locations</h3>
-                <p>View locations of lockers around in Campus!</p>
+                <p>Our lockers are all around campus for your convenience!</p>
               </div>
             </div>
             <div class="divider-short"></div>
