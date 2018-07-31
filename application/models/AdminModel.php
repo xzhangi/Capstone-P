@@ -92,7 +92,7 @@
 				$list[$i]->Rent_ID = $result[$i]->Rent_ID;
 				$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
 				$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
-				$list[$i]->Rented_By = $result[$i]->Rented_By;
+				$list[$i]->Rented_By = $result[$i]->Username;
 				$list[$i]->Rental_Type = $result[$i]->Rental_Type;
 				$list[$i]->Creation_Date = $result[$i]->Creation_Date;
 				$list[$i]->Is_Active = $result[$i]->Is_Active;

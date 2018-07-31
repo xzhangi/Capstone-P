@@ -1,8 +1,7 @@
 <?php
-	defined('BASEPATH') OR exit('No direct script access allowed');
 
-	class Intro extends CI_Controller {
-
+class Form extends CI_Controller {
+	
 		public function __construct()
 		{
 			parent::__construct();
@@ -14,62 +13,10 @@
 
 			$this->load->helper('html');
 			
-			$this->check_session();
+			$this->load->model('guest_model');
 		}
-		 
-		public function index($msg = NULL)
-		{
-			$data['msg'] = $msg;
-			$this->load->view('Intro', $data);
-		}
-		
-		public function processlogin()
-		{
-			//Load model
-			$this->load->model('LoginModel');
-			//Validate credentials
-			$result = $this->LoginModel->validate();
-			if (! $result) {
-				//Validation fail
-				if (! $this->session->userdata('Is_Active')) {
-					$this->session->sess_destroy();
-					$msg = '<font color=red>Your account is disabled, please contact the Administrator.</font><br />';
-				}
-				else {
-					$msg = '<font color=red>Invalid username and/or password.</font><br />';
-				}
-				
-				$this->index($msg);
-			}
-			else {
-				$this->check_session();
-			}
-		}
-		
-		//Check if there is a valid session (redirects accordingly if there is)
-		public function check_session()
-		{
-			//Check if is admin or not and redirect accordingly
-			if ($this->session->userdata('validated')) {
-				if ($this->session->userdata('Is_Admin')) {
-					redirect('AdminHome');
-				}
-				else {
-					//Check if user account is active
-					if ($this->session->userdata('Is_Active')) {
-						redirect('Home');
-					}
-				}
-			}
-		}
-		
-		public function adminlogin() 
-		{
-			redirect('AdminLogin');
-		}
-		
-		// Register Guests
-		        public function register() // This method initializes the validation class and loads the form helper and URL helper used by view files
+
+        public function register() // This method initializes the validation class and loads the form helper and URL helper used by view files
         {
                 $this->load->helper(array('form', 'url'));
 
@@ -85,7 +32,7 @@
 
                 if ($this->form_validation->run() == FALSE)
                 {
-                    $this->load->view('Home');
+                    $this->load->view('Intro');
                 }
                 else
                 {
@@ -94,7 +41,7 @@
                     $this->guest_model->register($enc_password);
 					// $this->load->model('guest_model');
 						
-					redirect('Home');
+					redirect('Intro');
                 }
         }
 		
@@ -130,5 +77,4 @@
 				return false;
 			}
 		}
-	}
-?>
+}		

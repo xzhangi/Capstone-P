@@ -15,11 +15,24 @@ td {
 
 LockerRadioSmall:checked + lockerImgSmall {
    font-weight: bold;
+.lockerboxavailable{
+  text-align: left;
+  background: #50f441;
+  width: 100%;
+  padding-top: 50%;
+  margin: 15px 0;
+  /*display: none; <-- uncomment this rule for use with MixItUp */
 }
 
 .image-padding {
   padding: 30px;
 }
 .image-padding img {
+.lockerboxunavailable{
+  text-align: left;
+  background: #f44b42;
   width: 100%;
+  padding-top: 50%;
+  margin: 15px 0;
+  /*display: none; <-- uncomment this rule for use with MixItUp */
 }
