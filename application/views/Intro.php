@@ -24,6 +24,8 @@
   <!-- template skin -->
   <link id="t-colors" href="<?php echo base_url()?>assets/Default-BS/color/default.css" rel="stylesheet">
 
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
   <!-- =======================================================
     Theme Name: Medicio
     Theme URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
@@ -104,7 +106,7 @@
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br />Choose from per-minute or monthly packages!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Variety of Locker Sizes</strong><br />For your ever-changing needs!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lockers At Your Convenience</strong><br />Anywhere in campus!</span></li>
-					<li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Simplicity</strong><br />Easy to book and pay!</span></li>
+					          <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Simplicity</strong><br />Easy to book and pay!</span></li>
                   </ul>
                 </div>
               </div>
@@ -122,19 +124,19 @@
                       <!--<div id="sendmessage">Your message has been sent. Thank you!</div>-->
                       <div id="errormessage"></div>
 
-                      <form action="<?php echo base_url();?>Intro/processlogin" method="post" role="form" name="">
+                      <form action="<?php echo base_url();?>Intro/processlogin" method="post" role="form">
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username</label>
-                              <input type="text" name="username" id="username" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
+                              <input type="text" name="username" id="username" class="form-control input-md" pattern="[a-zA-Z0-9-]+.{6,12}" min="7" max="12" required>
                               <div class="validation"></div>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Password</label>
-                              <input type="password" name="password" id="password" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter at least 6 chars">
+                              <input type="password" name="password" id="password" class="form-control input-md" placeholder="Password" min="8" required>
                               <div class="validation"></div>
                             </div>
                           </div>
@@ -163,38 +165,50 @@
                       <div id="sendmessage">Your message has been sent. Thank you!</div>
                       <div id="errormessage"></div>
 					  
-					<?php echo validation_errors(); ?>
-					<?php echo form_open('Intro/register'); ?>
-					  
-                      <!-- <form action="" method="post" role="form" class="contactForm lead"> -->
+            					<?php echo validation_errors(); ?>
+            					<?php echo form_open('Intro/register'); ?>
+
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username*</label>
-							  <input type="text" class="form-control" name="username" placeholder="Username" min="7" required>
-							  <?php ?>
-                              <!-- <div class="validation"></div> -->
+              							  <input type="text" class="form-control" name="newUser" id="newUser" pattern="[a-zA-Z0-9-]+.{6,12}" placeholder="Username" min="7" max="12" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Name*</label>
-							  <input type="text" class="form-control" name="name" placeholder="Name" required>
+                              <label>NRIC*</label>
+                              <input type="text" class="form-control" name="newNRIC" id="newNRIC" pattern="^[SFTGstfg]\d{7}[A-Za-z]$" placeholder="NRIC" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required> 
+                            </div>
+                          </div> 
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Password*</label>
+                              <input type="password" class="form-control" name="newPass" id="newPass" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="Password" min="8" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>   
+                            </div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Confirm Password*</label>
+                              <input type="password" class="form-control" name="newPassConfirm" id="newPassConfirm" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="Confirm Password" min="8" onkeyup="check(this)" oninput="setCustomValidity('')" required>
                             </div>
                           </div>
                         </div>
 						
-						<div class="row">
+						            <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>NRIC*</label>
-							  <input type="text" class="form-control" name="nric" pattern="^[SFTG]\d{7}[A-Z]$" placeholder="NRIC" required>	
+                              <label>Name*</label>
+                              <input type="text" class="form-control" name="newName" id="newName" placeholder="Name" pattern="^[A-Za-z -]+$" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Email*</label>
-							  <input type="text" class="form-control" name="email" placeholder="Email" required>
+						                  <input type="text" class="form-control" name="newEmail" id="newEmail" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                             </div>
                           </div>
                         </div>
@@ -203,28 +217,16 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Phone*</label>
-							  <input type="text" class="form-control" name="phone" pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number" required>  
-                            </div>
-                          </div>
-                        </div>
-						
-						   <div class="row">
-                          <div class="col-xs-6 col-sm-6 col-md-6">
-                            <div class="form-group">
-                              <label>Password*</label>
-							  <input type="password" class="form-control" name="password" placeholder="Password" min="8" required>   
+							                <input type="text" class="form-control" name="newPhone" id="newPhone" pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>  
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Confirm Password*</label>
-							  <input type="password" class="form-control" name="passconf" placeholder="Confirm Password" min="8" required>
+                              <div class="g-recaptcha" data-sitekey="6LcYeWcUAAAAAGFfwR8EY7xhtskz_FpwO67fowZ1" data-callback="recaptchaCallback"></div>
                             </div>
                           </div>
                         </div>
-
-                        <div><input type="submit" value="signup" class="btn btn-skin btn-block btn-lg"></div>
-
+                        <div><button type="submit" id="signUpBtn" onclick="newSignUp()" class="btn btn-skin btn-block btn-lg">Sign Up</button></div>
                         <p class="lead-footer" style="color: red">*Compulsory Fields</p>
 
                       </form>
@@ -329,7 +331,7 @@
     </section>
 
 
-    <!-- Section: services -->
+    <!-- Section: AboutUs -->
     <section id="AboutUs" class="home-section nopadding paddingtop-60">
 
       <div class="container">
@@ -340,99 +342,20 @@
               <img src="<?php echo base_url()?>assets/Default-BS/img/dummy/img-1.png" class="img-responsive" alt="" />
             </div>
           </div>
-		  <div class="row>
-		  <h5 class="h-light">Created by a group of students, we aim to improve the locker rental experience.
-		  <br><br>We understand your struggle. We've all been there. Trying to lug your things home after a long day is no fun.
-		  Especially if you have to bring it back the next day for your class.
-		  <br><br>Locka aims to provide flexible rental experience with different sizes, packages all around campus. With our
-		  user-friendly and simple booking process, anybody can get a locker anytime they need it. You don't have to pay
-		  for a whole semester and only for when you need it.
-		  <br><br>Now that we've made the locker rental process so easy for you, what are you still waiting for? Go get a locker now!
-		  <br><br>- The Locka Team
-		  </h5>
-		  </div>
-          <!--<div class="col-sm-3 col-md-3">
-
-            <div class="wow fadeInRight" data-wow-delay="0.1s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-stethoscope fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Medical checkup</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="wow fadeInRight" data-wow-delay="0.2s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-wheelchair fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Nursing Services</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-            <div class="wow fadeInRight" data-wow-delay="0.3s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-plus-square fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Pharmacy</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-
-
-          </div>
-          <div class="col-sm-3 col-md-3">
-
-            <div class="wow fadeInRight" data-wow-delay="0.1s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-h-square fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Gyn Care</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="wow fadeInRight" data-wow-delay="0.2s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-filter fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Neurology</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-            <div class="wow fadeInRight" data-wow-delay="0.3s">
-              <div class="service-box">
-                <div class="service-icon">
-                  <span class="fa fa-user-md fa-3x"></span>
-                </div>
-                <div class="service-desc">
-                  <h5 class="h-light">Sleep Center</h5>
-                  <p>Vestibulum tincidunt enim in pharetra malesuada.</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>-->
-      </div>
+    		  <div class="row>
+      		  <h5 class="h-light">Created by a group of students, we aim to improve the locker rental experience.
+      		  <br><br>We understand your struggle. We've all been there. Trying to lug your things home after a long day is no fun.
+      		  Especially if you have to bring it back the next day for your class.
+      		  <br><br>Locka aims to provide flexible rental experience with different sizes, packages all around campus. With our
+      		  user-friendly and simple booking process, anybody can get a locker anytime they need it. You don't have to pay
+      		  for a whole semester and only for when you need it.
+      		  <br><br>Now that we've made the locker rental process so easy for you, what are you still waiting for? Go get a locker now!
+      		  <br><br>- The Locka Team
+      		  </h5>
+		      </div>
+        </div>
     </section>
-    <!-- /Section: services -->
+    <!-- /Section: AboutUs -->
 
 
     <!-- Section: Lockers -->
@@ -929,6 +852,7 @@
   <script src="<?php echo base_url()?>assets/Default-BS/js/owl.carousel.min.js"></script>
   <script src="<?php echo base_url()?>assets/Default-BS/js/nivo-lightbox.min.js"></script>
   <script src="<?php echo base_url()?>assets/Default-BS/js/custom.js"></script>
+  <script src="<?php echo base_url()?>assets/Default-BS/js/Intro.js"></script>
   <script src="<?php echo base_url()?>assets/Default-BS/contactform/contactform.js"></script>
 
 </body>

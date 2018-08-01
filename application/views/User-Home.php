@@ -110,7 +110,7 @@
   				        <div class="col-md-4">
 						   <div class="image-padding">
 							<!-- small locker -->
-							  <input type="radio" id="LockerRadioSmall" name="LockerRadioSelector" value="1" onchange="lockerSizeChange()">
+							  <input type="radio" id="LockerRadioSmall" name="LockerRadioSelector" value="Small"">
 							  <label class="lockerImgSmall" for="LockerRadioSmall">
 							  <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png">
 							  </label>
@@ -120,7 +120,7 @@
 						  <div class="image-padding">
 							<!-- medium locker -->
 							<label>
-							  <input type="radio" id="LockerRadioMedium" name="LockerRadioSelector" value="2" onchange="lockerSizeChange()">
+							  <input type="radio" id="LockerRadioMedium" name="LockerRadioSelector" value="Medium"">
 							  <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png">
 							</label>
 						  </div>
@@ -129,12 +129,12 @@
 						  <div class="image-padding">
 							<!-- big locker -->
 							<label>
-							  <input type="radio" id="LockerRadioBig" name="LockerRadioSelector" value="3" onchange="lockerSizeChange()">
+							  <input type="radio" id="LockerRadioBig" name="LockerRadioSelector" value="Large"">
 							  <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png">
 							</label>
 						  </div>
 						</div>
-                </div>
+          </div>
 				      
                 <form action="<?php echo base_url();?>Home/book_locker" method="post" role="form">
                   <div style="text-align: center">
@@ -153,8 +153,8 @@
                     </select>
           
                     <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin">Automatically Generate PIN</label></input>
-                    <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 Digit Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" required>
-                    <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" required>
+                    <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 Digit Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+                    <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your Pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" Title="Please enter 6 digits" required>
                     <div class="validation"></div>
                   </div>
                   <div>

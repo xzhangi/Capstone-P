@@ -14,11 +14,11 @@
 		public function register($enc_password){
 			// User data array
 			$data = array(			
-				'Username' => $this->input->post('username'), //Front take from DB Column name, back taake from Controller
-				'NRIC' => $this->input->post('nric'),
-				'Display_Name' => $this->input->post('name'),
-				'Email' => $this->input->post('email'),
-				'Mobile_No' => $this->input->post('phone'),
+				'Username' => $this->input->post('newUser'), //Front take from DB Column name, back taake from Controller
+				'NRIC' => $this->input->post('newNRIC'),
+				'Display_Name' => $this->input->post('newName'),
+				'Email' => $this->input->post('newEmail'),
+				'Mobile_No' => $this->input->post('newPhone'),
 				'Password' => $enc_password,
 				'Is_Active' => true,
 				'Is_Admin' => false
@@ -29,7 +29,7 @@
 
 			// Create eWallet for user
 			$walletdata = array(
-				'Username' => $this->input->post('username'),
+				'Username' => $this->input->post('newUser'),
 				'Balance' => '0',
 			);
 
@@ -64,10 +64,11 @@
 			$password = $this->security->xss_clean($this->input->post('password'));
 			
 			// SQL Query
+			$md5pass = md5($password);
 			$this->db->select('*');
 			$this->db->from('tbl_users');
 			$this->db->where('Username', $username);
-			$this->db->where('Password', $password);
+			$this->db->where('Password', $md5pass);
 			$query = $this->db->get();
 			
 			// Check for results
@@ -93,11 +94,8 @@
 				}
 				else {
 					$row = $query->row();
-					$data = array(
-							'Is_Active' => $row->Is_Active
-							);
-					$this->session->set_userdata($data);
-					
+					$this->session->set_userdata('Is_Active', true);
+
 					return false;
 				}
 			}

@@ -32,7 +32,7 @@
 			$result = $this->UserModel->validate();
 			if (! $result) {
 				//Validation fail
-				if (! $this->session->userdata('Is_Active')) {
+				if ($this->session->userdata('Is_Active')) {
 					$this->session->sess_destroy();
 					$msg = '<font color=red>Your account is disabled, please contact the Administrator.</font><br />';
 				}
@@ -76,13 +76,13 @@
 
             $this->load->library('form_validation');
 			
-			$this->form_validation->set_rules('username', 'Username', 'callback_username_check|is_unique[tbl_users.username]');
-			$this->form_validation->set_rules('name', 'Name');
-			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
-			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
-			$this->form_validation->set_rules('nric', 'Nric', 'required');
-			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-			$this->form_validation->set_rules('phone', 'Phone', 'required');
+			$this->form_validation->set_rules('newUser', 'Username', 'callback_username_check|is_unique[tbl_users.username]');
+			$this->form_validation->set_rules('newName', 'Name');
+			$this->form_validation->set_rules('newPass', 'Password', 'trim|required|min_length[8]');
+			$this->form_validation->set_rules('newPassConfirm', 'Password Confirmation', 'trim|required|matches[newPass]');
+			$this->form_validation->set_rules('newNRIC', 'Nric', 'required');
+			$this->form_validation->set_rules('newEmail', 'Email', 'trim|required|valid_email');
+			$this->form_validation->set_rules('newPhone', 'Phone', 'required');
 
             if ($this->form_validation->run() == FALSE)
             {
@@ -91,9 +91,8 @@
             else
             {
 				// Encrypt password
-				$enc_password = md5($this->input->post('password'));
-                //$this->UserModel->register($enc_password);
-                $this->UserModel->register($this->input->post('password'));
+				$enc_password = md5($this->input->post('newPassConfirm'));
+                $this->UserModel->register($enc_password);
 					
 				redirect('Intro');
             }

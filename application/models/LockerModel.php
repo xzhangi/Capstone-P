@@ -93,6 +93,8 @@
 				$pincode = $this->input->post('pincode');
 			}
 
+			$md5pin = md5($pincode);
+
 			// Get Post
 			$rentaldata = array(
                 //'Rent_From_Date' => @date('Y-m-d H:i', @strtotime($this->input->post('registeredDate'))), //need to change to date time
@@ -102,7 +104,7 @@
                 'Rental_Type' => $this->input->post('rentaltype'),
                 'Creation_Date' => @date('Y-m-d H:i'),
 				'Is_Active' => true,
-				'Pin_Code' => $pincode,
+				'Pin_Code' => $md5pin,
 			);
 			//Insert new rent into locker rental table
 			$this->db->insert('tbl_locker_rental', $rentaldata);
@@ -146,6 +148,7 @@
 			if($query->num_rows() == 1)
 			{	
 				$row = $query->row();
+				$md5pin = $row->Pin_Code;
 				$data = array(
 							'Rented' => true,
 							'Locker_ID' => $row->Locker_ID,
@@ -153,7 +156,7 @@
 							'Rent_To_Date' => $row->Rent_To_Date,
 							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
-							'Pin_Code' => $row->Pin_Code,
+							'Pin_Code' => $md5pin,
 						);
 				return $data;
 			}
