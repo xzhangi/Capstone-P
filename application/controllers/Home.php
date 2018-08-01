@@ -14,11 +14,11 @@
 			$this->output->enable_profiler(TRUE);
 		}
 		 
-		public function index()
+		public function index($pinErrMsg = NULL, $showPinMsg = NULL , $unlockMsg = NULL)
 		{
 			// Load model
 			//Call any required model functions
-			$alllockers = $this->LockerModel->get_locker_list_available_all();
+			$alllockers = $this->LockerModel->get_locker_list_all();
 			$data['availablelockerlist'] = $alllockers;
 			if ($this->check_current_booking())
 			{
@@ -28,6 +28,11 @@
 			{
 				$data['bookingdetails'] = array('Rented' => false);
 			}
+			//Load message to display
+			$data['pinErrMsg'] = $pinErrMsg;
+			$data['showPinMsg'] = $showPinMsg;
+			$data['lockerUnlockMsg'] = $unlockMsg;
+
 			//Load the view
 			$this->load->view('User-Home', $data);
 		} 
@@ -83,6 +88,42 @@
 		{
 			$result = $this->LockerModel->Complete_Booking();
 			redirect('Home');
+		}
+
+		public function change_pin()
+		{
+			$result = $this->LockerModel->Change_Pin();
+			if ($result) //Change pin success
+			{
+				$msg = "<font size=2 color=red>Your pin has been changed successfully!</font> <br \>";
+			} else { //Change pin fail
+				$msg = "<font size=2 color=red>Your old pin is incorrect. </font> <br \>";
+			}
+			$this->index($msg);
+		}
+
+		public function unlock_locker()
+		{
+			$result = $this->LockerModel->Unlock_Locker();
+			if ($result) //Change pin success
+			{
+				$msg = "<font size=2 color=red>Your locker is unlocked.</font> <br \>";
+			} else { //Change pin fail
+				$msg = "<font size=2 color=red>Your locker is locked. </font> <br \>";
+			}
+			$this->index(null, $msg);
+		}
+
+		public function show_pin()
+		{
+			$result = $this->LockerModel->Show_Pin(true);
+			if ($result) //Change pin success
+			{
+				$msg = "<font size=2 color=red>Your pin is revealed.</font> <br \>";
+			} else { //Change pin fail
+				$msg = "<font size=2 color=red>Your password is incorrect. </font> <br \>";
+			}
+			$this->index(null, null, $msg);
 		}
 	}
 ?>

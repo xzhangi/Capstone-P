@@ -58,6 +58,8 @@
 				else {
 					//Check if user account is active
 					if ($this->session->userdata('Is_Active')) {
+						$this->load->model('LockerModel');
+						$this->LockerModel->Show_Pin(false);
 						redirect('Home');
 					}
 				}
@@ -72,8 +74,6 @@
 		// Register Guests
 		public function register() // This method initializes the validation class and loads the form helper and URL helper used by view files
         {
-            $this->load->helper(array('form', 'url'));
-
             $this->load->library('form_validation');
 			
 			$this->form_validation->set_rules('newUser', 'Username', 'callback_username_check|is_unique[tbl_users.username]');

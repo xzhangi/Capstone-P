@@ -17,8 +17,11 @@
 		function get_locker_list_all()
 		{
 			$this->db->select('ID');
+			$this->db->select('Locker_Size_ID');
 			$this->db->select('Name');
+			$this->db->select('Is_Available');
 			$this->db->from('tbl_locker');
+			$this->db->where('Is_Active', 1);
 			$query = $this->db->get();
 			$result = $query->result();
 			$list = Array();
@@ -28,6 +31,8 @@
 				$list[$i] = (object)NULL;
 				$list[$i]->LockerID = $result[$i]->ID;
 				$list[$i]->Name = $result[$i]->Name;
+				$list[$i]->Locker_Size_ID = $result[$i]->Locker_Size_ID;
+				$list[$i]->Is_Available = $result[$i]->Is_Available;
 			}
 			
 			return $list;
@@ -93,8 +98,6 @@
 				$pincode = $this->input->post('pincode');
 			}
 
-			$md5pin = md5($pincode);
-
 			// Get Post
 			$rentaldata = array(
                 //'Rent_From_Date' => @date('Y-m-d H:i', @strtotime($this->input->post('registeredDate'))), //need to change to date time
@@ -104,7 +107,7 @@
                 'Rental_Type' => $this->input->post('rentaltype'),
                 'Creation_Date' => @date('Y-m-d H:i'),
 				'Is_Active' => true,
-				'Pin_Code' => $md5pin,
+				'Pin_Code' => $pincode,
 			);
 			//Insert new rent into locker rental table
 			$this->db->insert('tbl_locker_rental', $rentaldata);
@@ -148,16 +151,33 @@
 			if($query->num_rows() == 1)
 			{	
 				$row = $query->row();
-				$md5pin = $row->Pin_Code;
-				$data = array(
+				if ($row->Show_Pin)
+				{
+					$data = array(
 							'Rented' => true,
 							'Locker_ID' => $row->Locker_ID,
 							'Rent_From_Date' => $row->Rent_From_Date,
 							'Rent_To_Date' => $row->Rent_To_Date,
 							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
-							'Pin_Code' => $md5pin,
+							'Pin_Code' => $row->Pin_Code
+							
 						);
+				}
+				else 
+				{
+					$data = array(
+							'Rented' => true,
+							'Locker_ID' => $row->Locker_ID,
+							'Rent_From_Date' => $row->Rent_From_Date,
+							'Rent_To_Date' => $row->Rent_To_Date,
+							'Rented_By' => $row->Username,
+							'Rental_Type' => $row->Rental_Type,
+							'Pin_Code' => '******'
+							
+						);
+				}
+
 				return $data;
 			}
 			else
@@ -218,6 +238,121 @@
 			}
 			//Update booked locker status back to available
 			return $this->UpdateLockerStatus($this->input->post('lockerselected'), true);
+		}
+
+		public function Change_Pin()
+		{
+			$this->db->select('Is_Active');
+			$this->db->from('tbl_locker_rental');
+			$this->db->where('Username', $this->session->userdata('Username'));
+			$this->db->where('Is_Active', true);
+			$this->db->where('Pin_Code', $this->input->post('pincode_old'));
+			$query = $this->db->get();
+			
+			// If record exists and pincode is correct (user currently renting locker)
+			if($query->num_rows() == 1)
+			{
+				//Change pin
+				$data = array(
+			        'Pin_Code' => $this->input->post('pincode_confirm')
+				);
+				$this->db->where('Username', $this->session->userdata('Username'));
+				$this->db->where('Is_Active', true);
+				$this->db->where('Pin_Code', $this->input->post('pincode_old'));
+				$this->db->update('tbl_locker_rental', $data);
+
+				return true;
+			}
+
+			//Pin is incorrect
+			return false;
+		}
+
+		public function Unlock_Locker()
+		{
+			$this->db->select('Locker_Unlocked');
+			$this->db->from('tbl_locker_rental');
+			$this->db->where('Username', $this->session->userdata('Username'));
+			$this->db->where('Is_Active', true);
+			$query = $this->db->get();
+			$result = $query->result();
+
+			// If record exists and pincode is correct (user currently renting locker)
+			if($query->num_rows() == 1)
+			{
+				//Change pin
+				$data = array(
+			        'Locker_Unlocked' => !$result[0]->Locker_Unlocked
+				);
+				$this->db->where('Username', $this->session->userdata('Username'));
+				$this->db->where('Is_Active', true);
+				$this->db->update('tbl_locker_rental', $data);
+
+				return !$result[0]->Locker_Unlocked;
+			}
+		}
+
+		public function Show_Pin($show)
+		{
+			// Show the pin
+			if ($show)
+			{
+				// Verify credentials
+				$this->db->select('password');
+				$this->db->from('tbl_users');
+				$this->db->where('Username', $this->session->userdata('Username'));
+				$encryptpass = md5($this->input->post('userPass'));
+				$query = $this->db->get();
+				$result = $query->result();
+
+				// Password verified
+				if ($result[0]->password == $encryptpass)
+				{
+					$this->db->select('Show_Pin');
+					$this->db->from('tbl_locker_rental');
+					$this->db->where('Username', $this->session->userdata('Username'));
+					$this->db->where('Is_Active', true);
+					$query = $this->db->get();
+					$result = $query->result();
+
+					// If record exists (user currently renting locker)
+					if($query->num_rows() == 1)
+					{
+						// Show the pin by setting Show_Pin to true
+						$data = array(
+					        'Show_Pin' => true
+						);
+						$this->db->where('Username', $this->session->userdata('Username'));
+						$this->db->where('Is_Active', true);
+						$this->db->update('tbl_locker_rental', $data);
+
+						return true;
+					}
+
+				}
+				else { //Wrong password
+					return false;
+				}
+			} else { //Hide the pin (for initial login)
+				$this->db->select('Show_Pin');
+				$this->db->from('tbl_locker_rental');
+				$this->db->where('Username', $this->session->userdata('Username'));
+				$this->db->where('Is_Active', true);
+				$query = $this->db->get();
+				$result = $query->result();
+
+				// If record exists (user currently renting locker)
+				if($query->num_rows() == 1)
+				{
+					// Hide the pin by setting Show_Pin to false
+					$data = array(
+				        'Show_Pin' => false
+					);
+					$this->db->where('Username', $this->session->userdata('Username'));
+					$this->db->where('Is_Active', true);
+					$this->db->update('tbl_locker_rental', $data);
+				}
+			}
 		}
 	}
 ?>

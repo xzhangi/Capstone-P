@@ -20,9 +20,9 @@
 		public function processlogin()
 		{
 			//Load model
-			$this->load->model('LoginModel');
+			$this->load->model('UserModel');
 			//Validate credentials
-			$result = $this->LoginModel->validate();
+			$result = $this->UserModel->validate();
 			if (! $result) {
 				//Validation fail
 				$msg = '<font color=red>Invalid Admin Login and/or password.</font><br />';

@@ -54,7 +54,7 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-          <a class="navbar-brand" href="Home">
+          <a class="navbar-brand" href="<?php echo base_url();?>Home">
                     <img src="<?php echo base_url()?>assets/Default-BS/img/logo.png" alt="" width="150" height="40" />
                 </a>
         </div>
@@ -163,7 +163,7 @@
                 </form>
                 <!-- User already rented locker, hide locker booking portion -->
                 <?php } else { ?>
-                  <h3 class="section-heading text-center">You are already renting a locker!</h3>
+                  <h3 class="section-heading text-center">You are currently renting a locker!</h3>
                 <?php } ?>
 
               </div>
@@ -192,7 +192,7 @@
         <div class="row">
           <div class="col-lg-12">
             <div class="wow fadeInUp" data-wow-delay="0.2s">
-			  <div class="section-heading text-center">
+			        <div class="section-heading text-center">
                 <h3 class="h-bold">Locker Booking Status</h3>
                 <p>Check the status of your locker booking here!</p>
               </div>
@@ -214,16 +214,51 @@
 					<td><?php echo $bookingdetails['Locker_ID'] ?></td>
           <td><?php echo $bookingdetails['Rental_Type'] ?></td>
 					<td><?php echo $bookingdetails['Rent_From_Date'] ?></td>
-					<td><?php echo $bookingdetails['Rent_To_Date'] ?></td>
+          <?php if(empty($bookingdetails['Rent_To_Date'])) { ?> <!-- echo - if no end date-->
+            <td><?php echo '----' ?></td>
+          <?php } else { ?>
+          <td><?php echo $bookingdetails['Rent_To_Date'] ?></td>
+					<?php } ?>
 					<td><?php echo $bookingdetails['Rented_By'] ?></td>
 					<td><?php echo $bookingdetails['Pin_Code'] ?></td>
 				</tr>
 			</table>
+
+      <form action="<?php echo base_url();?>Home/change_pin" method="post">
+        <div class="col-md-3" style="margin-top: 10px;">
+          <div style="margin-top: 5px; margin-bottom: 5px;">
+          <?php if(!is_null($pinErrMsg)) echo $pinErrMsg; ?>
+          </div>
+          <input type="password" name="pincode_old" id="pincode_old" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your old pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+        <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 digit pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+        <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" Title="Please enter 6 digits" required>
+        <input type="submit" value="Change pin" class="btn btn-skin btn-block btn-lg">
+        </div>
+      </form>
+
+      <form action="<?php echo base_url();?>Home/show_pin" method="post">
+       <div class="col-md-6">
+        <div style="margin-top: 5px; margin-bottom: 5px;">
+          <?php if(!is_null($lockerUnlockMsg)) echo $lockerUnlockMsg; ?>
+          
+          </div>
+          <input type="password" name="userPass" id="userPass" style="margin-bottom: 10px;" placeholder="Enter your password" class="form-control input-md" Title="Please enter your password" required>
+          <input type="submit" id="showPinBtn" name="showPinBtn" value="Show Pin" class="btn btn-skin btn-block btn-lg">
+       </div>
+     </form>
+
+       <div class="col-md-3">
+      <form  action="<?php echo base_url();?>Home/unlock_locker" method="post">
+        <?php if(!is_null($showPinMsg)) echo $showPinMsg; ?>
+        <input type="submit" value="Unlock Locker" class="btn btn-skin btn-block btn-lg">
+      </form>
       <form action="<?php echo base_url();?>Home/complete_booking" method="post">
         <!-- Workaround to get Locker_ID rented > sending the booking detail's locker_id through post -->
         <input type="hidden" name="lockerselected" value="<?php echo $bookingdetails['Locker_ID'] ?>">
         <input type="submit" value="Complete Booking!" class="btn btn-skin btn-block btn-lg">
       </form>
+    </div>
+
 			<?php } else { ?>
 			<h3 class="section-heading text-center">You are not renting any lockers currently!</h3>
 			<?php } ?>
