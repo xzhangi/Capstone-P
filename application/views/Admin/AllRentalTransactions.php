@@ -12,19 +12,22 @@
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="<?php echo base_url()?>assets/Admin-BS/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/admin-bs/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="<?php echo base_url()?>assets/Admin-BS/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/admin-bs/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- DataTables CSS -->
+    <link href="<?=base_url()?>assets/admin-bs/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="<?=base_url()?>assets/admin-bs/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="<?php echo base_url()?>assets/Admin-BS/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="<?php echo base_url()?>assets/Admin-BS/vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="<?=base_url()?>assets/admin-bs/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="<?php echo base_url()?>assets/Admin-BS/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?=base_url()?>assets/admin-bs/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +51,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Locka Admin Panel</a>
+                <a class="navbar-brand" href="AdminHome">Locka Admin Panel</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -277,10 +280,10 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="adminlogin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                           <!-- <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="flot.html">Flot Charts</a>
@@ -292,13 +295,19 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="accountmanagement"><i class="fa fa-table fa-fw"></i>Account Management</a>
                         </li>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                            <a href="rentaltransactions"><i class="fa fa-table fa-fw"></i>Rental Transactions</a>
+                        </li>
+						<li>
+                            <a href="lockerstatus"><i class="fa fa-edit fa-fw"></i>Status of Lockers</a>
+                        </li>
+						<li>
+                            <a href="userreport"><i class="fa fa-edit fa-fw"></i>Report Misuse</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                          <!--  <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="panels-wells.html">Panels and Wells</a>
@@ -322,7 +331,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                       <!--     <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="#">Second Level Item</a>
@@ -352,7 +361,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                          <!--  <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="blank.html">Blank Page</a>
@@ -362,9 +371,6 @@
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="AdminNotifications"><i class="fa fa-bell fa-fw"></i> User Notifications</a>
                         </li>
                     </ul>
                 </div>
@@ -376,274 +382,82 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">Rental Transactions</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
-            <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"></div>
-                                    <div>Locker Status</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="tables.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"></div>
-                                    <div>Manage Accounts</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="tables.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Messages</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">4</div>
-                                    <div>Reports</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- /.panel -->
+                <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Quick View
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">View all in use</a>
-                                        </li>
-                                        <li><a href="#">View all not in use</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Export..</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            DataTables Advanced Tables
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Locker #</th>
-                                                    <th>In Use</th>
-                                                    <th>User</th>
-                                                    <th>Time Elapsed</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Yes</td>
-                                                    <td>A18A1234A</td>
-                                                    <td>1 Hour 30 Minutes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Yes</td>
-                                                    <td>A18A1234B</td>
-                                                    <td>35 Minutes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Yes</td>
-                                                    <td>A18A1234C</td>
-                                                    <td>14 Minutes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>No</td>
-                                                    <td>A18A1234D</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td>No</td>
-                                                    <td>A18A1234E</td>
-                                                    <td>-</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
+                            <table width="100%" class="table table-striped" id="dataTables-example">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+										<th>Rent From Date</th>
+										<th>Rent To Date</th>
+										<th>Rented By</th>
+										<th>Rental Type</th>
+										<th>Creation Date</th>
+										<th>Active</th>
+										<th>Points Obtained</th>
+										
+										<tbody>
+										<?php for ($i = 0; $i < count($translist); ++$i) { ?>
+										<tr>
+										<td><?php echo ($i+1); ?></td>
+										<td><?php echo $translist[$i]->Rent_From_Date; ?></td>
+										<td><?php echo $translist[$i]->Rent_To_Date; ?></td>
+										<td><?php echo $translist[$i]->Rented_By; ?></td>
+										<td><?php echo $translist[$i]->Rental_Type; ?></td>
+										<td><?php echo $translist[$i]->Creation_Date; ?></td>
+										<td><?php echo $translist[$i]->Is_Active; ?></td>
+										<td><?php echo $translist[$i]->Points_Obtained; ?></td>
+										</tr>
+										<?php } ?>
+										
+                                    </tr>
+                                </thead>
+                         
+                            </table>
                         </div>
-                        <!-- /.panel-body -->
                     </div>
                 </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-<!--                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a> -->
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> New Messages
-                                    <span class="pull-right text-muted small"><em>26 Unread</em>
-                                    </span>
-<!--                                 </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a> -->
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Reports
-                                    <span class="pull-right text-muted small"><em>4 Unread</em>
-                                    </span>
-                                </a>
-<!--                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a> -->
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-4 -->
             </div>
-            <!-- /.row -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
+       </div>
+ </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="<?php echo base_url()?>assets/Admin-BS/vendor/jquery/jquery.min.js"></script>
+    <script src="<?=base_url()?>assets/admin-bs/vendor/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="<?php echo base_url()?>assets/Admin-BS/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?=base_url()?>assets/admin-bs/vendor/bootstrap/js/bootstrap.min.js"></script>
 
     <!-- Metis Menu Plugin JavaScript -->
-    <script src="<?php echo base_url()?>assets/Admin-BS/vendor/metisMenu/metisMenu.min.js"></script>
+    <script src="<?=base_url()?>assets/admin-bs/vendor/metisMenu/metisMenu.min.js"></script>
 
-    <!-- Morris Charts JavaScript -->
-    <script src="<?php echo base_url()?>assets/Admin-BS/vendor/raphael/raphael.min.js"></script>
-    <script src="<?php echo base_url()?>assets/Admin-BS/vendor/morrisjs/morris.min.js"></script>
-    <script src="<?php echo base_url()?>assets/Admin-BS/data/morris-data.js"></script>
+    <!-- DataTables JavaScript -->
+    <script src="<?=base_url()?>assets/admin-bs/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?=base_url()?>assets/admin-bs/vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+    <script src="<?=base_url()?>assets/admin-bs/vendor/datatables-responsive/dataTables.responsive.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="<?php echo base_url()?>assets/Admin-BS/dist/js/sb-admin-2.js"></script>
+    <script src="<?=base_url()?>assets/admin-bs/dist/js/sb-admin-2.js"></script>
+
+    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-example').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 
 </body>
 

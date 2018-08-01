@@ -1,0 +1,39 @@
+table,
+th,
+td {
+  font-family: 'Open Sans', sans-serif;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.cc-selector input{
+    margin:0;padding:0;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
+}
+
+.image-padding {
+  padding: 30px;
+}
+.image-padding img {
+	width: 100%;
+}
+
+.lockerboxunavailable{
+  text-align: left;
+  background: #f44b42;
+  width: 100%;
+  padding-top: 50%;
+  margin: 15px 0;
+  /*display: none; <-- uncomment this rule for use with MixItUp */
+}
+
+.lockerboxavailable{
+  text-align: left;
+  background: #50f441;
+  width: 100%;
+  padding-top: 50%;
+  margin: 15px 0;
+  /*display: none; <-- uncomment this rule for use with MixItUp */
+}

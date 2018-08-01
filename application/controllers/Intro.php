@@ -14,6 +14,9 @@
 
 			$this->load->helper('html');
 			
+			//Load model
+			$this->load->model('UserModel');
+
 			$this->check_session();
 		}
 		 
@@ -25,10 +28,8 @@
 		
 		public function processlogin()
 		{
-			//Load model
-			$this->load->model('LoginModel');
 			//Validate credentials
-			$result = $this->LoginModel->validate();
+			$result = $this->UserModel->validate();
 			if (! $result) {
 				//Validation fail
 				if (! $this->session->userdata('Is_Active')) {
@@ -66,6 +67,73 @@
 		public function adminlogin() 
 		{
 			redirect('AdminLogin');
+		}
+		
+		// Register Guests
+		public function register() // This method initializes the validation class and loads the form helper and URL helper used by view files
+        {
+            $this->load->helper(array('form', 'url'));
+
+            $this->load->library('form_validation');
+			
+			$this->form_validation->set_rules('username', 'Username', 'callback_username_check|is_unique[tbl_users.username]');
+			$this->form_validation->set_rules('name', 'Name');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
+			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
+			$this->form_validation->set_rules('nric', 'Nric', 'required');
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+			$this->form_validation->set_rules('phone', 'Phone', 'required');
+
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->index();
+            }
+            else
+            {
+				// Encrypt password
+				$enc_password = md5($this->input->post('password'));
+                //$this->UserModel->register($enc_password);
+                $this->UserModel->register($this->input->post('password'));
+					
+				redirect('Intro');
+            }
+        }
+		
+		public function username_check($str)
+        {
+            if ($str == 'test')
+            {
+                    $this->form_validation->set_message('username_check', 'The {field} field can not be the word "test"');
+                    return FALSE;
+            }
+            else
+            {
+                    return TRUE;
+            }
+        }
+		
+				// Check if username exists
+		public function check_nric_exists($nric)
+		{
+			$this->form_validation->set_message('check_nric_exists', 'That NRIC already exists. Please choose a different one');
+			if($this->UserModel->check_nric_exists($nric))
+			{
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		// Check if email exists
+		public function check_email_exists($email)
+		{
+			$this->form_validation->set_message('check_email_exists', 'That email is taken. Please choose a different one');
+			if($this->UserModel->check_email_exists($email))
+			{
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 ?>

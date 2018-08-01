@@ -14,7 +14,7 @@
 		public function index($msg = NULL)
 		{
 			$data['msg'] = $msg;
-			$this->load->view('Admin-Login', $data);
+			$this->load->view('Admin/Admin-Login', $data);
 		}
 		
 		public function processlogin()

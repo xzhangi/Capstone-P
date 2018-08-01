@@ -64,6 +64,7 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="#intro">Login</a></li>
+            <li><a href="#SignUp">Sign Up</a></li>
             <li><a href="#AboutUs">About Us</a></li>
             <li><a href="#Lockers">Lockers</a></li>
             <li><a href="#locations">Locations</a></li>
@@ -139,7 +140,7 @@
                           </div>
                         </div>
                         <input type="submit" value="Login" class="btn btn-skin btn-block btn-lg">
-                        <p class="lead-footer" style="padding-top: 15px;">NYP students can login with your Admin No and portal password!<br>Not a student? <a href="#SignUp">Sign up below!</a></p>
+                        <p class="lead-footer" style="padding-top: 7px;">NYP students can login with your Admin No and portal password!<br>Not a student? <a href="#SignUp">Sign up below!</a></p>
                       </form>
                     </div>
                   </div>
@@ -152,7 +153,7 @@
 			<div>
 			<section id="SignUp">
               <div class="form-wrapper" style="padding-top: 100px">
-                <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
+                <div class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
 
                   <div class="panel panel-skin">
                     <div class="panel-heading">
@@ -161,21 +162,24 @@
                     <div class="panel-body">
                       <div id="sendmessage">Your message has been sent. Thank you!</div>
                       <div id="errormessage"></div>
-
-                      <form action="" method="post" role="form" class="contactForm lead">
+					  
+					<?php echo validation_errors(); ?>
+					<?php echo form_open('Intro/register'); ?>
+					  
+                      <!-- <form action="" method="post" role="form" class="contactForm lead"> -->
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username*</label>
-                              <input type="text" name="user_name" id="user_name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
-                              <div class="validation"></div>
+							  <input type="text" class="form-control" name="username" placeholder="Username" min="7" required>
+							  <?php ?>
+                              <!-- <div class="validation"></div> -->
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Password*</label>
-                              <input type="password" name="Password" id="Password" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter at least 6 chars">
-                              <div class="validation"></div>
+                              <label>Name*</label>
+							  <input type="text" class="form-control" name="name" placeholder="Name" required>
                             </div>
                           </div>
                         </div>
@@ -184,15 +188,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>NRIC*</label>
-                              <input type="text" name="NRIC" id="NRIC" class="form-control input-md" data-rule="minlen:9" data-msg="Please enter at least 9 chars">
-                              <div class="validation"></div>
+							  <input type="text" class="form-control" name="nric" pattern="^[SFTG]\d{7}[A-Z]$" placeholder="NRIC" required>	
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Name*</label>
-                              <input type="text" name="Name" id="Name" class="form-control input-md" data-rule="minlen:3" data-msg="Please enter at least 3 chars">
-                              <div class="validation"></div>
+                              <label>Email*</label>
+							  <input type="text" class="form-control" name="email" placeholder="Email" required>
                             </div>
                           </div>
                         </div>
@@ -200,21 +202,28 @@
                         <div class="row">
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Email*</label>
-                              <input type="email" name="email" id="email" class="form-control input-md" data-rule="email" data-msg="Please enter a valid email">
-                              <div class="validation"></div>
+                              <label>Phone*</label>
+							  <input type="text" class="form-control" name="phone" pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number" required>  
+                            </div>
+                          </div>
+                        </div>
+						
+						   <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                              <label>Password*</label>
+							  <input type="password" class="form-control" name="password" placeholder="Password" min="8" required>   
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
-                              <label>Phone number*</label>
-                              <input type="text" name="phone" id="phone" class="form-control input-md" data-rule="required" data-msg="The phone number is required">
-                              <div class="validation"></div>
+                              <label>Confirm Password*</label>
+							  <input type="password" class="form-control" name="passconf" placeholder="Confirm Password" min="8" required>
                             </div>
                           </div>
                         </div>
 
-                        <input type="submit" value="signup" class="btn btn-skin btn-block btn-lg">
+                        <div><input type="submit" value="signup" class="btn btn-skin btn-block btn-lg"></div>
 
                         <p class="lead-footer" style="color: red">*Compulsory Fields</p>
 
@@ -426,7 +435,7 @@
     <!-- /Section: services -->
 
 
-    <!-- Section: team -->
+    <!-- Section: Lockers -->
     <section id="Lockers" class="home-section bg-gray paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
@@ -446,27 +455,19 @@
         <div class="row">
           <div class="col-lg-12">
 
-            <!--<div id="filters-container" class="cbp-l-filters-alignLeft">
-              <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All (
-                <div class="cbp-filter-counter"></div>)</div>
-              <div data-filter=".cardiologist" class="cbp-filter-item">Cardiologist (
-                <div class="cbp-filter-counter"></div>)</div>
-              <div data-filter=".psychiatrist" class="cbp-filter-item">Psychiatrist (
-                <div class="cbp-filter-counter"></div>)</div>
-              <div data-filter=".neurologist" class="cbp-filter-item">Neurologist (
-                <div class="cbp-filter-counter"></div>)</div>
-            </div>-->
+            <div id="filters-container" class="cbp-l-filters-alignLeft">
+              <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">All (<div class="cbp-filter-counter"></div>)</div>
+              <div data-filter=".smalllocker" class="cbp-filter-item">Small Locker (<div class="cbp-filter-counter"></div>)</div>
+              <div data-filter=".mediumlocker" class="cbp-filter-item">Medium Locker (<div class="cbp-filter-counter"></div>)</div>
+              <div data-filter=".biglocker" class="cbp-filter-item">Large Locker (<div class="cbp-filter-counter"></div>)</div>
+            </div>
 
             <div id="grid-container" class="cbp-l-grid-team">
               <ul>
-                <li class="cbp-item psychiatrist ">
+                <li class="cbp-item smalllocker ">
                   <a href="assets/default-BS/lockers/small.php" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-<<<<<<< HEAD:CodeIgniter/application/views/Intro.php
-                      <img src="<?php base_url()?>assets/Default-BS/img/lockers/small.png" alt="" width="100%">
-=======
                       <img src="<?php echo base_url()?>assets/Default-BS/img/team/small.png" alt="" width="100%">
->>>>>>> master:application/views/Intro.php
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -477,16 +478,11 @@
                     </div>
                   </a>
                   <a href="assets/default-BS/lockers/small.php" class="cbp-singlePage cbp-l-grid-team-name">Small</a>
-                  <!--<div class="cbp-l-grid-team-position">Psychiatrist</div>-->
                 </li>
-                <li class="cbp-item cardiologist">
+                <li class="cbp-item mediumlocker">
                   <a href="assets/default-BS/lockers/medium.php" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-<<<<<<< HEAD:CodeIgniter/application/views/Intro.php
-                      <img src="<?php base_url()?>assets/Default-BS/img/lockers/medium.png" alt="" width="100%">
-=======
                       <img src="<?php echo base_url()?>assets/Default-BS/img/team/medium.png" alt="" width="100%">
->>>>>>> master:application/views/Intro.php
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -497,16 +493,11 @@
                     </div>
                   </a>
                   <a href="assets/default-BS/lockers/medium.php" class="cbp-singlePage cbp-l-grid-team-name">Medium</a>
-                  <!--<div class="cbp-l-grid-team-position">Cardiologist</div>-->
                 </li>
-                <li class="cbp-item cardiologist">
+                <li class="cbp-item biglocker">
                   <a href="assets/default-BS/lockers/big.php" class="cbp-caption cbp-singlePage">
                     <div class="cbp-caption-defaultWrap">
-<<<<<<< HEAD:CodeIgniter/application/views/Intro.php
-                     <img src="<?php base_url()?>assets/Default-BS/img/lockers/big.png" alt="" width="100%">
-=======
                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/big.png" alt="" width="100%">
->>>>>>> master:application/views/Intro.php
                     </div>
                     <div class="cbp-caption-activeWrap">
                       <div class="cbp-l-caption-alignCenter">
@@ -517,25 +508,7 @@
                     </div>
                   </a>
                   <a href="assets/default-BS/lockers/big.php" class="cbp-singlePage cbp-l-grid-team-name">Large</a>
-                  <!--<div class="cbp-l-grid-team-position">Cardiologist</div>-->
                 </li>
-                <!--<li class="cbp-item neurologist">
-                  <a href="doctors/member4.html" class="cbp-caption cbp-singlePage">
-                    <div class="cbp-caption-defaultWrap">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/team/4.jpg" alt="" width="100%">
-                    </div>
-                    <div class="cbp-caption-activeWrap">
-                      <div class="cbp-l-caption-alignCenter">
-                        <div class="cbp-l-caption-body">
-                          <div class="cbp-l-caption-text">VIEW PROFILE</div>
-                        </div>
-                      </div>
-                    </div>
-                  </a>
-                  <a href="doctors/member4.html" class="cbp-singlePage cbp-l-grid-team-name">Adam Taylor</a>
-                  <div class="cbp-l-grid-team-position">Neurologist</div>
-                </li>-->
-
               </ul>
             </div>
           </div>
@@ -543,7 +516,7 @@
       </div>
 
     </section>
-    <!-- /Section: team -->
+    <!-- /Section: Lockers -->
 
 
 
