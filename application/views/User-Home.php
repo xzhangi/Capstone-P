@@ -147,9 +147,13 @@
                       } ?>
                     </select>
           
-                    <select name="rentaltype" id="rentaltype" style="padding: 5px; margin: 10px;">
-                      <option value="1">Per Minute Rental</option>
-                      <option value="2">1 Month Rental</option>
+                    <select name="rentaltypeselected" id="rentaltypeselected" style="padding: 5px; margin: 10px;" required>
+                      <option value="" disabled selected>Select a Rental Type</option>
+                      <?php foreach($availablerentaltype as $rentalItem)
+                      { ?>
+                          <option value="<?php echo $rentalItem->Rental_Type_ID; ?>" ><?php echo $rentalItem->Name; ?></option>
+                  <?php 
+                      } ?>
                     </select>
           
                     <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin">Automatically Generate PIN</label></input>
@@ -199,9 +203,10 @@
             </div>
 			<div class="divider-short"></div>
 			<?php if ($bookingdetails['Rented']) { ?>
-			<table style="width:100%; border: 1px solid black;">
-				<tr style="border: 1px solid black;">
-					<th>Rented</th>
+    <div class="table-responsive">
+			<table class="table table-hover">
+        <thead class="thead-light">
+				<tr>
 					<th>Locker ID</th>
 					<th>Rental Type</th>
 					<th>Rent Start Date/Time</th>
@@ -209,8 +214,8 @@
 					<th>Rented By</th>
 					<th>Pin Code</th>
 				</tr>
+      </thead>
 				<tr>
-					<td><?php echo $bookingdetails['Rented'] ?></td>
 					<td><?php echo $bookingdetails['Locker_ID'] ?></td>
           <td><?php echo $bookingdetails['Rental_Type'] ?></td>
 					<td><?php echo $bookingdetails['Rent_From_Date'] ?></td>
@@ -223,6 +228,7 @@
 					<td><?php echo $bookingdetails['Pin_Code'] ?></td>
 				</tr>
 			</table>
+    </div>
 
       <form action="<?php echo base_url();?>Home/change_pin" method="post">
         <div class="col-md-3" style="margin-top: 10px;">

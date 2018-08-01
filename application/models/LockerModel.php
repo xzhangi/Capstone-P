@@ -84,6 +84,26 @@
 			
 			return $list;
 		}
+
+		function get_locker_rental_type()
+		{
+			$this->db->select('*');
+			$this->db->from('tbl_locker_rental_type');
+			$query = $this->db->get();
+			$result = $query->result();
+			$list = Array();
+			
+			for ($i = 0; $i < count($result); $i++)
+			{
+				$list[$i] = (object)NULL;
+				$list[$i]->Rental_Type_ID = $result[$i]->Rental_Type_ID;
+				$list[$i]->Locker_Size_ID = $result[$i]->Locker_Size_ID;
+				$list[$i]->Name = $result[$i]->Name;
+				$list[$i]->Price = $result[$i]->Price;
+			}
+			
+			return $list;
+		}
 		
 		function Book_Locker()
 		{
@@ -160,7 +180,9 @@
 							'Rent_To_Date' => $row->Rent_To_Date,
 							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
-							'Pin_Code' => $row->Pin_Code
+							'Pin_Code' => $row->Pin_Code,
+							'Paid' => $row->Paid,
+							'Locker_Unlocked' => $row->Locker_Unlocked
 							
 						);
 				}
@@ -173,7 +195,9 @@
 							'Rent_To_Date' => $row->Rent_To_Date,
 							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
-							'Pin_Code' => '******'
+							'Pin_Code' => '******',
+							'Paid' => $row->Paid,
+							'Locker_Unlocked' => $row->Locker_Unlocked
 							
 						);
 				}
