@@ -376,250 +376,83 @@
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Dashboard</h1>
+                    <h1 class="page-header">User Notifications</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-            <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                    <legend>Edit Notification</legend>
+                        
+                        <?php
+                        $attributes = array("class" => "form-horizontal", "id" => "notificationform", "name" => "notificationform");
+                        echo form_open("updateNotifications/updateNotification/".$notificationrecord->notification_id, $attributes);?>
+
+                        <fieldset>
+                        <div class="form-group">
+                            <div class="row colbox">
+                                <div class="col-lg-4 col-sm-4">
+                                    <label for="notificationname" class="control-label">Notification Name</label>
                                 </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"></div>
-                                    <div>Locker Status</div>
+                                <div class="col-lg-8 col-sm-8">
+                                    <input id="notificationname" name="notificationname" type="text" class="form-control" value="<?php echo $notificationrecord->notification_name; ?>"/>
                                 </div>
                             </div>
                         </div>
-                        <a href="tables.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
+
+                        <div class="form-group">
+                            <div class="row colbox">
+                                <div class="col-lg-4 col-sm-4">
+                                    <label for="notificationdescription" class="control-label">Notification Description</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-8">
+                                    <textarea id="notificationdescription" name="notificationdescription" type="text" class="form-control"><?php echo $notificationrecord->notification_description; ?></textarea>
+                                </div>
                             </div>
-                        </a>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row colbox">
+                                <div class="col-lg-4 col-sm-4">
+                                    <label for="notificationdate" class="control-label">Notification Date</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-8">
+                                    <input id="notificationdate" name="notificationdate" type="date" class="form-control" value="<?php echo $notificationrecord->notification_date; ?>"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row colbox">
+                                <div class="col-lg-4 col-sm-4">
+                                    <label for="notificationuser" class="control-label">Notification User</label>
+                                </div>
+                                <div class="col-lg-8 col-sm-8">
+                                <select id="notificationuser" name="notificationuser" class="form-control">
+                                <?php foreach ($userrlist as $row)
+                                  { ?>
+                                    <option value="<?php echo $row['username'] ?>"> <?php echo $row['username'] ?></option>";
+                                  <?php } 
+                                    ?>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-lg-8 col-sm-8 text-left">
+                                <input id="btn_submit" name="btn_submit" type="submit" class="btn btn-primary" value="Submit"/>
+                                <input id="btn_reset" name="btn_reset" type="reset" class="btn btn-danger" value="Reset" />
+                            </div>
+                        </div>
+                        </fieldset>
+                        </form>
+                        <?php echo form_close(); ?>
+                        <?php echo $this->session->flashdata('msg'); ?>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge"></div>
-                                    <div>Manage Accounts</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="tables.html">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Messages</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">4</div>
-                                    <div>Reports</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-8">
-                    <!-- /.panel -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Quick View
-                            <div class="pull-right">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                        Actions
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">View all in use</a>
-                                        </li>
-                                        <li><a href="#">View all not in use</a>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li><a href="#">Export..</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Locker #</th>
-                                                    <th>In Use</th>
-                                                    <th>User</th>
-                                                    <th>Time Elapsed</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Yes</td>
-                                                    <td>A18A1234A</td>
-                                                    <td>1 Hour 30 Minutes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2</td>
-                                                    <td>Yes</td>
-                                                    <td>A18A1234B</td>
-                                                    <td>35 Minutes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3</td>
-                                                    <td>Yes</td>
-                                                    <td>A18A1234C</td>
-                                                    <td>14 Minutes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>No</td>
-                                                    <td>A18A1234D</td>
-                                                    <td>-</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td>No</td>
-                                                    <td>A18A1234E</td>
-                                                    <td>-</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.col-lg-4 (nested) -->
-                                <div class="col-lg-8">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.col-lg-8 (nested) -->
-                            </div>
-                            <!-- /.row -->
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                </div>
-                <!-- /.col-lg-8 -->
-                <div class="col-lg-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <i class="fa fa-bell fa-fw"></i> Notifications Panel
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <div class="list-group">
-<!--                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
-                                    </span>
-                                </a> -->
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-envelope fa-fw"></i> New Messages
-                                    <span class="pull-right text-muted small"><em>26 Unread</em>
-                                    </span>
-<!--                                 </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
-                                    </span>
-                                </a> -->
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-warning fa-fw"></i> Reports
-                                    <span class="pull-right text-muted small"><em>4 Unread</em>
-                                    </span>
-                                </a>
-<!--                                 <a href="#" class="list-group-item">
-                                    <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
-                                    </span>
-                                </a>
-                                <a href="#" class="list-group-item">
-                                    <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
-                                    </span>
-                                </a> -->
-                            </div>
-                            <!-- /.list-group -->
-                            <a href="#" class="btn btn-default btn-block">View All Alerts</a>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-4 -->
+                                    
             </div>
             <!-- /.row -->
         </div>
