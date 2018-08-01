@@ -292,15 +292,6 @@
                             <a href="userreport"><i class="fa fa-edit fa-fw"></i>Report Misuse</a>
                         </li>                     
                             </ul>
-<<<<<<< HEAD:application/views/Admin-Home.php
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="AdminNotifications"><i class="fa fa-bell fa-fw"></i> User Notifications</a>
-                        </li>
-                    </ul>
-=======
->>>>>>> c0d6696e37543c7b59384f5be48d5b670fa94b2b:application/views/Admin/Admin-Home.php
                 </div>
                 <!-- /.sidebar-collapse -->
             </div>
