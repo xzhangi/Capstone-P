@@ -129,7 +129,7 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username</label>
-                              <input type="text" name="username" id="username" class="form-control input-md" pattern="[A-Za-z0-9]+" min="7" max="12" required>
+                              <input type="text" name="username" id="username" class="form-control input-md" pattern="[a-zA-Z0-9-]+.{6,12}" min="7" max="12" required>
                               <div class="validation"></div>
                             </div>
                           </div>
@@ -172,13 +172,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username*</label>
-              							  <input type="text" class="form-control" name="newUser" id="newUser" pattern="[a-zA-Z0-9]+{7,15}" placeholder="Username" min="7" max="12" required>
+              							  <input type="text" class="form-control" name="newUser" id="newUser" pattern="[a-zA-Z0-9-]+.{6,12}" placeholder="Username" min="7" max="12" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>NRIC*</label>
-                              <input type="text" class="form-control" name="newNRIC" id="newNRIC" pattern="^[SFTG]\d{7}[A-Z]$" placeholder="NRIC" required> 
+                              <input type="text" class="form-control" name="newNRIC" id="newNRIC" pattern="^[SFTGstfg]\d{7}[A-Za-z]$" placeholder="NRIC" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required> 
                             </div>
                           </div> 
                         </div>
@@ -187,13 +187,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Password*</label>
-                              <input type="password" class="form-control" name="newPass" id="newPass" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="Password" min="8" required>   
+                              <input type="password" class="form-control" name="newPass" id="newPass" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="Password" min="8" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>   
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Confirm Password*</label>
-                              <input type="password" class="form-control" name="newPassConfirm" id="newPassConfirm" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="Confirm Password" min="8" oninput="check(this)" required>
+                              <input type="password" class="form-control" name="newPassConfirm" id="newPassConfirm" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" placeholder="Confirm Password" min="8" onkeyup="check(this)" oninput="setCustomValidity('')" required>
                             </div>
                           </div>
                         </div>
@@ -202,13 +202,13 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Name*</label>
-                              <input type="text" class="form-control" name="newName" id="newName" placeholder="Name" required>
+                              <input type="text" class="form-control" name="newName" id="newName" placeholder="Name" pattern="^[A-Za-z -]+$" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Email*</label>
-						                  <input type="text" class="form-control" name="newEmail" id="newEmail" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" required>
+						                  <input type="text" class="form-control" name="newEmail" id="newEmail" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                             </div>
                           </div>
                         </div>
@@ -217,7 +217,7 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Phone*</label>
-							                <input type="text" class="form-control" name="newPhone" id="newPhone" pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number" required>  
+							                <input type="text" class="form-control" name="newPhone" id="newPhone" pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>  
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
@@ -226,7 +226,7 @@
                             </div>
                           </div>
                         </div>
-                        <div><button type="submit" id="signUpBtn" class="btn btn-skin btn-block btn-lg" disabled>Sign Up</button></div>
+                        <div><button type="submit" id="signUpBtn" onclick="newSignUp()" class="btn btn-skin btn-block btn-lg">Sign Up</button></div>
                         <p class="lead-footer" style="color: red">*Compulsory Fields</p>
 
                       </form>

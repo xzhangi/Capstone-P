@@ -29,7 +29,7 @@
 
 			// Create eWallet for user
 			$walletdata = array(
-				'Username' => $this->input->post('username'),
+				'Username' => $this->input->post('newUser'),
 				'Balance' => '0',
 			);
 
@@ -64,10 +64,11 @@
 			$password = $this->security->xss_clean($this->input->post('password'));
 			
 			// SQL Query
+			$md5pass = md5($password);
 			$this->db->select('*');
 			$this->db->from('tbl_users');
 			$this->db->where('Username', $username);
-			$this->db->where('Password', $password);
+			$this->db->where('Password', $md5pass);
 			$query = $this->db->get();
 			
 			// Check for results

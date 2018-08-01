@@ -31,23 +31,24 @@ loginUser.oninvalid = function(event) {
 loginPassword.oninvalid = function(event) {
     event.target.setCustomValidity('Please enter a valid password.');
 }
+function newSignUp() {  
 //---Signup---
-signUpUser.oninvalid = function(event) {
-    event.target.setCustomValidity('Please enter a valid username consisting of 7 to 12 characters.');
+    signUpUser.oninvalid = function(event) {
+        event.target.setCustomValidity('Please enter a valid username consisting of 7 to 12 characters.');
+    }
+    signUpNRIC.oninvalid = function(event) {
+        event.target.setCustomValidity('Please enter a valid NRIC.');
+    }
+    signUpPW.oninvalid = function(event) {
+        event.target.setCustomValidity('Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.');
+    }
+    signUpName.oninvalid = function(event) {
+        event.target.setCustomValidity('Please enter a valid name.');
+    }
+    signUpEmail.oninvalid = function(event) {
+        event.target.setCustomValidity('Please enter a valid email address.');
+    }
+    signUpPhone.oninvalid = function(event) {
+        event.target.setCustomValidity('Please enter a valid phone number.');
+    }
 }
-signUpNRIC.oninvalid = function(event) {
-    event.target.setCustomValidity('Please enter a valid NRIC.');
-}
-signUpPW.oninvalid = function(event) {
-    event.target.setCustomValidity('Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters.');
-}
-signUpName.oninvalid = function(event) {
-    event.target.setCustomValidity('Please enter a valid name.');
-}
-signUpEmail.oninvalid = function(event) {
-    event.target.setCustomValidity('Please enter a valid email address.');
-}
-signUpPhone.oninvalid = function(event) {
-    event.target.setCustomValidity('Please enter a valid phone number.');
-}
-
