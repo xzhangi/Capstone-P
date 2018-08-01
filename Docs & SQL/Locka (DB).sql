@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 31, 2018 at 02:15 PM
+-- Generation Time: Aug 01, 2018 at 04:17 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -40,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `tbl_ewallet` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`),
   KEY `Username_idx` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_ewallet`
@@ -138,31 +138,29 @@ CREATE TABLE IF NOT EXISTS `tbl_locker_rental` (
   `Rent_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Locker_ID` int(11) NOT NULL,
   `Rent_From_Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Rent_To_Date` datetime NOT NULL,
+  `Rent_To_Date` datetime DEFAULT NULL,
   `Username` varchar(45) NOT NULL,
   `Rental_Type` int(11) NOT NULL,
   `Creation_Date` datetime NOT NULL,
   `Is_Active` tinyint(4) NOT NULL,
-  `Pin_Code` int(11) NOT NULL,
+  `Pin_Code` varchar(512) NOT NULL,
   `Points_Obtained` int(11) NOT NULL,
   `Paid` tinyint(4) NOT NULL,
   PRIMARY KEY (`Rent_ID`),
   KEY `Username_idx` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_locker_rental`
 --
 
 INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent_To_Date`, `Username`, `Rental_Type`, `Creation_Date`, `Is_Active`, `Pin_Code`, `Points_Obtained`, `Paid`) VALUES
-(54, 16, '2018-07-31 16:11:00', '2018-07-31 16:34:00', '18A123A', 1, '2018-07-31 16:11:00', 0, 406742, 0, 0),
-(55, 18, '2018-07-31 16:35:00', '2018-07-31 16:39:00', '18A123A', 1, '2018-07-31 16:35:00', 0, 637683, 0, 0),
-(56, 17, '2018-07-31 16:39:00', '2018-07-31 16:40:00', '18A123A', 1, '2018-07-31 16:39:00', 0, 610883, 0, 0),
-(57, 17, '2018-07-31 16:42:00', '2018-07-31 16:43:00', '18A123A', 1, '2018-07-31 16:42:00', 0, 502396, 0, 0),
-(58, 16, '2018-07-31 20:19:00', '2018-07-31 20:20:00', '18A123A', 1, '2018-07-31 20:19:00', 0, 195251, 0, 0),
-(59, 3, '2018-07-31 21:09:00', '0000-00-00 00:00:00', '18A123A', 1, '2018-07-31 21:09:00', 0, 662545, 0, 0),
-(60, 2, '2018-07-31 21:43:00', '0000-00-00 00:00:00', '18A123A', 1, '2018-07-31 21:43:00', 0, 677168, 0, 0),
-(61, 20, '2018-07-31 21:55:00', '0000-00-00 00:00:00', '18A123A', 1, '2018-07-31 21:55:00', 0, 107927, 0, 0);
+(54, 16, '2018-07-31 16:11:00', '2018-07-31 16:34:00', '18A123A', 1, '2018-07-31 16:11:00', 0, '406742', 0, 0),
+(55, 18, '2018-07-31 16:35:00', '2018-07-31 16:39:00', '18A123A', 1, '2018-07-31 16:35:00', 0, '637683', 0, 0),
+(56, 17, '2018-07-31 16:39:00', '2018-07-31 16:40:00', '18A123A', 1, '2018-07-31 16:39:00', 0, '610883', 0, 0),
+(57, 17, '2018-07-31 16:42:00', '2018-07-31 16:43:00', '18A123A', 1, '2018-07-31 16:42:00', 0, '502396', 0, 0),
+(58, 16, '2018-07-31 20:19:00', '2018-07-31 20:20:00', '18A123A', 1, '2018-07-31 20:19:00', 0, '195251', 0, 0),
+(64, 19, '2018-08-01 11:02:00', NULL, '18A123A', 1, '2018-08-01 11:02:00', 0, '476029cdd37d4c7b50e51ae7b6ff9c2b', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -223,10 +221,11 @@ DROP TABLE IF EXISTS `tbl_notifications`;
 CREATE TABLE IF NOT EXISTS `tbl_notifications` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(12) NOT NULL,
+  `Title` varchar(255) NOT NULL,
   `Content` varchar(255) NOT NULL,
   `Is_Read` tinyint(4) NOT NULL DEFAULT '0',
   `Create_By` varchar(12) NOT NULL DEFAULT 'SYS_ADMIN',
-  `Create_Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Create_Date` date NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -234,9 +233,9 @@ CREATE TABLE IF NOT EXISTS `tbl_notifications` (
 -- Dumping data for table `tbl_notifications`
 --
 
-INSERT INTO `tbl_notifications` (`ID`, `Username`, `Content`, `Is_Read`, `Create_By`, `Create_Date`) VALUES
-(1, '18A123A', 'This is a test notification for debugging purposes.', 0, 'SYS_ADMIN', '2017-06-20 00:00:00'),
-(4, '18A123A', '12321', 0, 'SYS_ADMIN', '2018-07-31 20:05:21');
+INSERT INTO `tbl_notifications` (`ID`, `Username`, `Title`, `Content`, `Is_Read`, `Create_By`, `Create_Date`) VALUES
+(1, '18A123A', 'Test', 'This is a test notification for debugging purposes.', 0, 'SYS_ADMIN', '2017-06-20'),
+(4, '18A123A', 'TEST', '12321', 0, 'SYS_ADMIN', '2018-07-31');
 
 -- --------------------------------------------------------
 
@@ -259,18 +258,18 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `Is_Admin` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`ID`, `Username`, `NRIC`, `Display_Name`, `Email`, `Mobile_No`, `Password`, `Create_Time`, `Points`, `Is_Active`, `Is_Admin`) VALUES
-(1, '18A123A', 'S1234555A', 'Tom', 'tom@fakeemail.com', '12345678', '123456', '2018-06-11 08:43:54', 33, 1, 0),
-(2, '18B123B', 'S1234567B', 'Jane', 'jane@fakeemail.com', '87654321', '123456', '2018-06-11 08:43:54', 11, 1, 0),
-(3, '18C123C', 'S1234567C', 'God', 'god@fakeemail.com', '12348765', '123456', '2018-06-11 08:43:54', 0, 1, 0),
-(4, '18D123D', 'S1234567D', 'Hacker', 'hacker@fakeemail.com', '12344321', '123456', '2018-06-11 08:45:23', 9999, 0, 0),
-(5, 'Admin', 'AdminIC', 'Administrator', 'administrator@fakeemail.com', '12341234', '123456', '2018-06-11 08:56:43', 0, 1, 1);
+(1, '18A123A', 'S1234555A', 'Tom', 'tom@fakeemail.com', '12345678', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 33, 1, 0),
+(2, '18B123B', 'S1234567B', 'Jane', 'jane@fakeemail.com', '87654321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 11, 1, 0),
+(3, '18C123C', 'S1234567C', 'God', 'god@fakeemail.com', '12348765', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 0, 1, 0),
+(4, '18D123D', 'S1234567D', 'Hacker', 'hacker@fakeemail.com', '12344321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:45:23', 9999, 0, 0),
+(5, 'Admin', 'AdminIC', 'Administrator', 'administrator@fakeemail.com', '12341234', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:56:43', 0, 1, 1);
 
 --
 -- Constraints for dumped tables
