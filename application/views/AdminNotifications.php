@@ -449,12 +449,13 @@
                                             <tbody>
                                             <?php for ($i = 0; $i < count($notificationlist); ++$i) { ?>
                                             <tr>
-                                                <td><?php echo $notificationlist[$i]->notification_id; ?></td>
-                                                <td><?php echo $notificationlist[$i]->notification_name; ?></td>
-                                                <td><?php echo $notificationlist[$i]->notification_description; ?></td>
-                                                <td><?php echo $notificationlist[$i]->notification_date; ?></td>
-                                                <td><?php echo $notificationlist[$i]->notification_user; ?></td>
-                                                <td><p><a href="<?php echo base_url();?>updateNotifications/getNotification/<?php echo ($notificationlist[$i]->notification_id)?>"><button type="button" class="btn btn-primary">Edit</button></a></p> </td>
+                                                <td><?php echo $notificationlist[$i]->ID; ?></td>
+                                                <td><?php echo $notificationlist[$i]->Title; ?></td>
+                                                <td><?php echo $notificationlist[$i]->Content; ?></td>
+                                                <td><?php echo $notificationlist[$i]->Create_Date; ?></td>
+                                                <td><?php echo $notificationlist[$i]->Username; ?></td>
+                                                <td><a href="<?php echo base_url();?>updateNotifications/getNotification/<?php echo ($notificationlist[$i]->ID)?>"><button type="button" class="btn btn-primary">Edit</button></a>
+                                                <br><br><a href="<?php echo base_url();?>deleteNotifications/delete_notification/<?php echo ($notificationlist[$i]->ID)?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
                                             </tr>
                                         <?php } ?>
                                             </tbody>

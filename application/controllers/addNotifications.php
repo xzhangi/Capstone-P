@@ -29,17 +29,17 @@ if (! defined('BASEPATH')) exit('No direct script access allowed');
                 $this->load->library('form_validation');
 
                     $data = array(
-                    'notification_name' => $this->input->post('notificationname'),
-                    'notification_description' => $this->input->post('notificationdescription'),
-                    'notification_date' => $this->input->post('notificationdate'),
-                    'notification_user' => $this->input->post('notificationuser'),
+                    'Title' => $this->input->post('Title'),
+                    'Content' => $this->input->post('Content'),
+                    'Create_Date' => $this->input->post('Create_Date'),
+                    'Username' => $this->input->post('Username'),
                     );
                     //insert the form data into database
                     $this->db->insert('tbl_notifications', $data);
 
                     //display success message
                     $this->session->set_flashdata('msg', '<div class="alert alert-success textcenter">Notification Added Successfully.</div>');
-                    redirect('addNotifications','refresh');
+                    redirect('AdminNotifications','refresh');
 
             }
                 

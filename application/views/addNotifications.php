@@ -393,10 +393,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="notificationname" class="control-label">Notification Name</label>
+                                    <label for="Title" class="control-label">Notification Name</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <input id="notificationname" name="notificationname" type="text" class="form-control"/>
+                                    <input id="Title" name="Title" type="text" class="form-control"/>
                                 </div>
                             </div>
                         </div>
@@ -404,10 +404,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="notificationdescription" class="control-label">Notification Description</label>
+                                    <label for="Content" class="control-label">Notification Description</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <textarea id="notificationdescription" name="notificationdescription" type="text" class="form-control"></textarea>
+                                    <textarea id="Content" name="Content" type="text" class="form-control"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -415,10 +415,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="notificationdate" class="control-label">Notification Date</label>
+                                    <label for="Create_Date" class="control-label">Notification Date</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <input id="notificationdate" name="notificationdate" type="date" class="form-control"/>
+                                    <input id="Create_Date" name="Create_Date" type="date" class="form-control"/>
                                 </div>
                             </div>
                         </div>
@@ -426,10 +426,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="notificationuser" class="control-label">Notification User</label>
+                                    <label for="Username" class="control-label">Notification User</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                <select id="notificationuser" name="notificationuser" class="form-control">
+                                <select id="Username" name="Username" class="form-control">
                                 <?php foreach ($userlist as $row)
                                   { ?>
                                     <option value="<?php echo $row['username'] ?>"> <?php echo $row['username'] ?></option>";

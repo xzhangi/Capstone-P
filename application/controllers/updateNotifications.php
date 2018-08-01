@@ -23,7 +23,7 @@
             $this->load->view('updateNotifications', $data);
         }
 
-        function getNotification($notificationid){
+        function getNotification($ID){
 
             // $data['notification_id'] = $notificationid;
 
@@ -33,7 +33,7 @@
             $this->load->model('updatenotificationmodel');
 
             //fetch notification record for the given notification id.
-            $data['notificationrecord'] = $this->updatenotificationmodel->get_notification($notificationid);
+            $data['notificationrecord'] = $this->updatenotificationmodel->get_notification($ID);
             $data['notificationuser'] = $this->updatenotificationmodel->get_user();
             $data['userrlist'] = $this->updatenotificationmodel->get_user();
 
@@ -41,18 +41,18 @@
 
         }
 
-        function updateNotification($notificationid){
+        function updateNotification($ID){
             $this->load->library('form_validation');
 
                 $data = array(
-                'notification_name' => $this->input->post('notificationname'),
-                'notification_description' => $this->input->post('notificationdescription'),
-                'notification_date' => $this->input->post('notificationdate'),
-                'notification_user' => $this->input->post('notificationuser'),
+                'Title' => $this->input->post('Title'),
+                'Content' => $this->input->post('Content'),
+                'Create_Date' => $this->input->post('Create_Date'),
+                'Username' => $this->input->post('Username'),
                 );
 
                 //update notification record
-                $this->db->where('notification_id', $notificationid);
+                $this->db->where('ID', $ID);
                 $this->db->update('tbl_notifications', $data);
                 
                 //display success message

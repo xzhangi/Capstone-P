@@ -10,9 +10,9 @@
                 }
 
                 //fetch notification record by notification id
-                function get_notification($notificationid)
+                function get_notification($ID)
                 {
-                    $this->db->where('notification_id', $notificationid);
+                    $this->db->where('ID', $ID);
                     $this->db->from('tbl_notifications');
                     $query = $this->db->get();
                     return $query->row();
