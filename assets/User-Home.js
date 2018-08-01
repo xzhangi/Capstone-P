@@ -50,3 +50,17 @@ $(function() {
     $categoryContent.filter(':contains(' + $.trim(lbl) + ')').show();
   });
 });
+
+//Disable show pin button (after user shows pin)
+function disableShowPinBtn() {
+    var rows = document.getElementsByTagName("table")[0].rows;
+    var last = rows[rows.length - 1];
+    var cell = last.cells[0];
+    var value = cell.innerHTML;
+    if (value != "******")
+        document.getElementById("showPinBtn").disabled = true;
+};
+
+function alertme() {
+    alert('hello');
+};

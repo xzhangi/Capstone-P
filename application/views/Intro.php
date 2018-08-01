@@ -121,7 +121,6 @@
                     </div>
                     <div class="panel-body">
 					<?php if(!is_null($msg)) echo $msg; ?>
-                      <!--<div id="sendmessage">Your message has been sent. Thank you!</div>-->
                       <div id="errormessage"></div>
 
                       <form action="<?php echo base_url();?>Intro/processlogin" method="post" role="form">
@@ -129,19 +128,19 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username</label>
-                              <input type="text" name="username" id="username" class="form-control input-md" pattern="[a-zA-Z0-9-]+.{6,12}" min="7" max="12" required>
+                              <input type="text" name="username" id="username" class="form-control input-md" pattern="[a-zA-Z0-9-]+.{6,12}" min="7" max="12" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                               <div class="validation"></div>
                             </div>
                           </div>
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Password</label>
-                              <input type="password" name="password" id="password" class="form-control input-md" placeholder="Password" min="8" required>
+                              <input type="password" name="password" id="password" class="form-control input-md" placeholder="Password" min="8" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                               <div class="validation"></div>
                             </div>
                           </div>
                         </div>
-                        <input type="submit" value="Login" class="btn btn-skin btn-block btn-lg">
+                        <input type="submit" value="Login" class="btn btn-skin btn-block btn-lg" onclick="currLogIn()">
                         <p class="lead-footer" style="padding-top: 7px;">NYP students can login with your Admin No and portal password!<br>Not a student? <a href="#SignUp">Sign up below!</a></p>
                       </form>
                     </div>
@@ -149,7 +148,6 @@
                 </div>
               </div>
             </div>
-			
 			</div>
 <!--------- sign up section ----------->
 			<div>
@@ -226,7 +224,7 @@
                             </div>
                           </div>
                         </div>
-                        <div><button type="submit" id="signUpBtn" onclick="newSignUp()" class="btn btn-skin btn-block btn-lg">Sign Up</button></div>
+                        <div><button type="submit" id="signUpBtn" onclick="newSignUp()" class="btn btn-skin btn-block btn-lg" disabled>Sign Up</button></div>
                         <p class="lead-footer" style="color: red">*Compulsory Fields</p>
 
                       </form>

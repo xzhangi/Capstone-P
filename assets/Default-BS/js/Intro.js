@@ -25,11 +25,13 @@ function check(input) {
 
 //JS Validations
 //---Login---
-loginUser.oninvalid = function(event) {
-    event.target.setCustomValidity('Please enter a valid username consisting of 7 to 12 characters.');
-}
-loginPassword.oninvalid = function(event) {
-    event.target.setCustomValidity('Please enter a valid password.');
+function currLogIn() {
+    loginUser.oninvalid = function(event) {
+        event.target.setCustomValidity('Please enter a valid username consisting of 7 to 12 characters.');
+    }
+    loginPassword.oninvalid = function(event) {
+        event.target.setCustomValidity('Please enter a valid password.');
+    }
 }
 function newSignUp() {  
 //---Signup---
