@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 01, 2018 at 04:17 AM
+-- Generation Time: Aug 01, 2018 at 03:43 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -146,21 +146,26 @@ CREATE TABLE IF NOT EXISTS `tbl_locker_rental` (
   `Pin_Code` varchar(512) NOT NULL,
   `Points_Obtained` int(11) NOT NULL,
   `Paid` tinyint(4) NOT NULL,
+  `Locker_Unlocked` tinyint(4) NOT NULL DEFAULT '0',
+  `Show_Pin` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Rent_ID`),
   KEY `Username_idx` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_locker_rental`
 --
 
-INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent_To_Date`, `Username`, `Rental_Type`, `Creation_Date`, `Is_Active`, `Pin_Code`, `Points_Obtained`, `Paid`) VALUES
-(54, 16, '2018-07-31 16:11:00', '2018-07-31 16:34:00', '18A123A', 1, '2018-07-31 16:11:00', 0, '406742', 0, 0),
-(55, 18, '2018-07-31 16:35:00', '2018-07-31 16:39:00', '18A123A', 1, '2018-07-31 16:35:00', 0, '637683', 0, 0),
-(56, 17, '2018-07-31 16:39:00', '2018-07-31 16:40:00', '18A123A', 1, '2018-07-31 16:39:00', 0, '610883', 0, 0),
-(57, 17, '2018-07-31 16:42:00', '2018-07-31 16:43:00', '18A123A', 1, '2018-07-31 16:42:00', 0, '502396', 0, 0),
-(58, 16, '2018-07-31 20:19:00', '2018-07-31 20:20:00', '18A123A', 1, '2018-07-31 20:19:00', 0, '195251', 0, 0),
-(64, 19, '2018-08-01 11:02:00', NULL, '18A123A', 1, '2018-08-01 11:02:00', 0, '476029cdd37d4c7b50e51ae7b6ff9c2b', 0, 0);
+INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent_To_Date`, `Username`, `Rental_Type`, `Creation_Date`, `Is_Active`, `Pin_Code`, `Points_Obtained`, `Paid`, `Locker_Unlocked`, `Show_Pin`) VALUES
+(54, 16, '2018-07-31 16:11:00', '2018-07-31 16:34:00', '18A123A', 1, '2018-07-31 16:11:00', 0, '406742', 0, 0, 0, 0),
+(55, 18, '2018-07-31 16:35:00', '2018-07-31 16:39:00', '18A123A', 1, '2018-07-31 16:35:00', 0, '637683', 0, 0, 0, 0),
+(56, 17, '2018-07-31 16:39:00', '2018-07-31 16:40:00', '18A123A', 1, '2018-07-31 16:39:00', 0, '610883', 0, 0, 0, 0),
+(57, 17, '2018-07-31 16:42:00', '2018-07-31 16:43:00', '18A123A', 1, '2018-07-31 16:42:00', 0, '502396', 0, 0, 0, 0),
+(58, 16, '2018-07-31 20:19:00', '2018-07-31 20:20:00', '18A123A', 1, '2018-07-31 20:19:00', 0, '195251', 0, 0, 0, 0),
+(64, 19, '2018-08-01 11:02:00', NULL, '18A123A', 1, '2018-08-01 11:02:00', 0, '476029cdd37d4c7b50e51ae7b6ff9c2b', 0, 0, 0, 0),
+(65, 1, '2018-08-01 13:18:00', NULL, '18A123A', 1, '2018-08-01 13:18:00', 0, '75f972e52a32a1a77be7f80d145e16c1', 0, 0, 0, 0),
+(66, 2, '2018-08-01 13:29:00', NULL, '18A123A', 1, '2018-08-01 13:29:00', 0, '123456', 0, 0, 0, 0),
+(67, 1, '2018-08-01 13:53:00', NULL, '18A123A', 1, '2018-08-01 13:53:00', 0, '123456', 0, 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -224,6 +229,7 @@ CREATE TABLE IF NOT EXISTS `tbl_notifications` (
   `Title` varchar(255) NOT NULL,
   `Content` varchar(255) NOT NULL,
   `Is_Read` tinyint(4) NOT NULL DEFAULT '0',
+  `Is_Deleted` varchar(45) NOT NULL DEFAULT '0',
   `Create_By` varchar(12) NOT NULL DEFAULT 'SYS_ADMIN',
   `Create_Date` date NOT NULL,
   PRIMARY KEY (`ID`)
@@ -233,9 +239,26 @@ CREATE TABLE IF NOT EXISTS `tbl_notifications` (
 -- Dumping data for table `tbl_notifications`
 --
 
-INSERT INTO `tbl_notifications` (`ID`, `Username`, `Title`, `Content`, `Is_Read`, `Create_By`, `Create_Date`) VALUES
-(1, '18A123A', 'Test', 'This is a test notification for debugging purposes.', 0, 'SYS_ADMIN', '2017-06-20'),
-(4, '18A123A', 'TEST', '12321', 0, 'SYS_ADMIN', '2018-07-31');
+INSERT INTO `tbl_notifications` (`ID`, `Username`, `Title`, `Content`, `Is_Read`, `Is_Deleted`, `Create_By`, `Create_Date`) VALUES
+(1, '18A123A', 'Test', 'This is a test notification for debugging purposes.', 0, '0', 'SYS_ADMIN', '2017-06-20'),
+(4, '18A123A', 'TEST', '12321', 0, '0', 'SYS_ADMIN', '2018-07-31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_reports`
+--
+
+DROP TABLE IF EXISTS `tbl_reports`;
+CREATE TABLE IF NOT EXISTS `tbl_reports` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Report_Title` varchar(255) NOT NULL,
+  `Report_Details` varchar(255) NOT NULL,
+  `Username` varchar(45) NOT NULL,
+  `Created_Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Is_Deleted` tinyint(4) NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
