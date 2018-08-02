@@ -128,7 +128,7 @@
                           <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                               <label>Username</label>
-                              <input type="text" name="username" id="username" class="form-control input-md" placeholder="Username" pattern="[a-zA-Z0-9-]+.{6,12}" min="7" max="12" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
+                              <input type="text" name="username" id="username" class="form-control input-md" placeholder="Username" pattern="[a-zA-Z0-9-]+.{4,12}" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
                               <div class="validation"></div>
                             </div>
                           </div>
