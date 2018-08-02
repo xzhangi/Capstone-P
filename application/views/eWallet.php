@@ -108,7 +108,7 @@
                 </div>		
     </div>
 	
-	<a href="<?php echo base_url();?>Home" class="btn btn-skin btn-block btn-lg">Back to Home</a>
+	<a href="<?php echo base_url()?>Home" class="btn btn-skin btn-block btn-lg">Back to Home</a>
 
   </div>
 

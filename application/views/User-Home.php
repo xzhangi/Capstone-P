@@ -70,7 +70,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
-                <li><a href="index.html">FAQ</a></li>
+                <li><a href="#pastTransactions">Past Transactions</a></li>
                 <li><a href="index-form.html">Contact Us</a></li>
 				<li><a href="<?php echo base_url();?>cardDetails_conc/cardDetails">Payment</a></li>
                 <li><a href="<?php echo base_url();?>Home/do_logout">Log Out</a></li>
@@ -82,7 +82,6 @@
       </div>
       <!-- /.container -->
     </nav>
-
 
     <!-- Section: Book Locker -->
     <section id="BookLocker" class="intro">
@@ -176,17 +175,6 @@
       </div>
 	  </div>
     </section>
-
-    <!-- /Section: intro -->
-
-				        
-			         </div>
-        </div>
-      </div>
-
-    </section>
-    <!-- /Section: boxes -->
-
     <!-- /Section: Book Locker -->
 
     <!-- Section: Locker Status -->
@@ -211,21 +199,29 @@
 					<th>Rental Type</th>
 					<th>Rent Start Date/Time</th>
 					<th>Rent End Date/Time</th>
-					<th>Rented By</th>
 					<th>Pin Code</th>
+					<th>Unlocked</th>
 				</tr>
       </thead>
 				<tr>
 					<td><?php echo $bookingdetails['Locker_ID'] ?></td>
-          <td><?php echo $bookingdetails['Rental_Type'] ?></td>
+          <?php if($bookingdetails['Rental_Type'] == 1 || $bookingdetails['Rental_Type'] == 2 || $bookingdetails['Rental_Type'] == 3) { ?>
+            <td>Per Minute Rental</td>
+          <?php } else { ?>
+            <td>Month Rental</td>
+          <?php } ?>
 					<td><?php echo $bookingdetails['Rent_From_Date'] ?></td>
           <?php if(empty($bookingdetails['Rent_To_Date'])) { ?> <!-- echo - if no end date-->
             <td><?php echo '----' ?></td>
           <?php } else { ?>
           <td><?php echo $bookingdetails['Rent_To_Date'] ?></td>
 					<?php } ?>
-					<td><?php echo $bookingdetails['Rented_By'] ?></td>
 					<td><?php echo $bookingdetails['Pin_Code'] ?></td>
+          <?php if ($bookingdetails['Locker_Unlocked']) { ?>
+					  <td>Unlocked</td>
+          <?php } else { ?>
+            <td>Locked</td>
+          <?php } ?>
 				</tr>
 			</table>
     </div>
@@ -243,25 +239,22 @@
       </form>
 
       <form action="<?php echo base_url();?>Home/show_pin" method="post">
-       <div class="col-md-6">
+       <div class="col-md-9">
         <div style="margin-top: 5px; margin-bottom: 5px;">
           <?php if(!is_null($lockerUnlockMsg)) echo $lockerUnlockMsg; ?>
           
           </div>
-          <input type="password" name="userPass" id="userPass" style="margin-bottom: 10px;" placeholder="Enter your password" class="form-control input-md" Title="Please enter your password" required>
-          <input type="submit" id="showPinBtn" name="showPinBtn" value="Show Pin" class="btn btn-skin btn-block btn-lg">
-       </div>
+          <input type="password" name="userPass" id="userPass" style="margin-top: -5px; margin-bottom: 5px;" placeholder="Enter your password" class="form-control input-md" Title="Please enter your password" required>
+          <input type="submit" id="showPinBtn" name="showPinBtn" style="margin-bottom: 3px;" value="Show Pin" class="btn btn-skin btn-block btn-lg">
      </form>
 
-       <div class="col-md-3">
       <form  action="<?php echo base_url();?>Home/unlock_locker" method="post">
-        <?php if(!is_null($showPinMsg)) echo $showPinMsg; ?>
         <input type="submit" value="Unlock Locker" class="btn btn-skin btn-block btn-lg">
       </form>
       <form action="<?php echo base_url();?>Home/complete_booking" method="post">
         <!-- Workaround to get Locker_ID rented > sending the booking detail's locker_id through post -->
         <input type="hidden" name="lockerselected" value="<?php echo $bookingdetails['Locker_ID'] ?>">
-        <input type="submit" value="Complete Booking!" class="btn btn-skin btn-block btn-lg">
+        <input type="submit" value="Complete Booking!" style="margin-top: -13px;" class="btn btn-skin btn-block btn-lg">
       </form>
     </div>
 
@@ -295,10 +288,12 @@
 					<?php if ($lockerItem->Is_Available) { ?>
 						<div class="col-xs-12 col-sm-6 col-md-3">
 							<div class="lockerboxavailable"></div>
+              <div style="text-align: center;"><?php echo $lockerItem->Name ?></div>
 						</div>
 					<?php } else { ?>
 						<div class="col-xs-12 col-sm-6 col-md-3">
 							<div class="lockerboxunavailable"></div>
+              <div><?php echo $lockerItem->Name ?></div>
 						</div>
 					<?php } ?>
 				<?php } ?>
@@ -372,11 +367,19 @@
                 <?php foreach($pastlockertransactionslist as $trans) { ?>
                 <tr>
                   <td><?php echo $trans->Locker_ID ?></td>
-                  <td><?php echo $trans->Rental_Type ?></td>
+                  <?php if($trans->Rental_Type == 1 || $trans->Rental_Type == 2 || $trans->Rental_Type == 3) { ?>
+                  <td>Per Minute Rental</td>
+                <?php } else { ?>
+                  <td>Month Rental</td>
+                <?php } ?>
                   <td><?php echo $trans->Rent_From_Date ?></td>
                   <td><?php echo $trans->Rent_To_Date ?></td>
                   <td><?php echo $trans->Rented_By ?></td>
-                  <td><?php echo $trans->Paid ?></td>
+                  <?php if($trans->Paid) { ?>
+                    <td>Yes</td>
+                    <?php } else { ?>
+                    <td>No</td>
+                  <?php } ?>
                 </tr>
                 <?php } ?>
               </table>
@@ -390,47 +393,6 @@
     </section>
     <!-- /Section: Past Rental Transactions -->
 
-    <section id="partner" class="home-section paddingbot-60">
-      <div class="container marginbot-50">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
-            <div class="wow lightSpeedIn" data-wow-delay="0.1s">
-              <div class="section-heading text-center">
-                <h2 class="h-bold">Our partner</h2>
-                <p>Take charge of your health today with our specially designed health packages</p>
-              </div>
-            </div>
-            <div class="divider-short"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-1.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-2.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-3.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-4.jpg" alt="" /></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <footer>
 
       <div class="container">
@@ -438,9 +400,9 @@
           <div class="col-sm-6 col-md-4">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
-                <h5>About Medicio</h5>
+                <h5>About Locka</h5>
                 <p>
-                  Lorem ipsum dolor sit amet, ne nam purto nihil impetus, an facilisi accommodare sea
+                  A locker booking web application created by a group of students.
                 </p>
               </div>
             </div>
@@ -448,10 +410,7 @@
               <div class="widget">
                 <h5>Information</h5>
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Laboratory</a></li>
-                  <li><a href="#">Medical treatment</a></li>
-                  <li><a href="#">Terms & conditions</a></li>
+                  <li><a href="<?php echo base_url();?>Home">Home</a></li>
                 </ul>
               </div>
             </div>
@@ -468,19 +427,19 @@
                     <span class="fa-stack fa-lg">
 									<i class="fa fa-circle fa-stack-2x"></i>
 									<i class="fa fa-calendar-o fa-stack-1x fa-inverse"></i>
-								</span> Monday - Saturday, 8am to 10pm
+								</span> 24/7
                   </li>
                   <li>
                     <span class="fa-stack fa-lg">
 									<i class="fa fa-circle fa-stack-2x"></i>
 									<i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-								</span> +62 0888 904 711
+								</span> +65 6451 5115
                   </li>
                   <li>
                     <span class="fa-stack fa-lg">
 									<i class="fa fa-circle fa-stack-2x"></i>
 									<i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-								</span> hello@medicio.com
+								</span> contactus@locka.com
                   </li>
 
                 </ul>
@@ -491,7 +450,7 @@
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
                 <h5>Our location</h5>
-                <p>The Suithouse V303, Kuningan City, Jakarta Indonesia 12940</p>
+                <p>180 Ang Mo Kio Avenue 8, 569830</p>
 
               </div>
             </div>
@@ -516,7 +475,7 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
               <div class="wow fadeInLeft" data-wow-delay="0.1s">
                 <div class="text-left">
-                  <p>&copy;Copyright - Medicio Theme. All rights reserved.</p>
+                  <p>&copy;Copyright - Locka. All rights reserved.</p>
                 </div>
               </div>
             </div>
@@ -530,7 +489,6 @@
                       Licensing information: https://bootstrapmade.com/license/
                       Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Medicio
                     -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                   </div>
                 </div>
               </div>

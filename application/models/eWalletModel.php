@@ -38,5 +38,41 @@
 			$this->db->update('tbl_ewallet', $topUpArray); //Select what
 			return true;
 		}
+
+		public function deduct_balance($username, $deductamount)
+		{
+			$currBalance = $this->retrieve_balance($username);
+			$final_amount = $currBalance - $deductamount;
+			$data = array('Balance' => $final_amount);
+			$this->db->where('Username', $username);
+			$this->db->update('tbl_ewallet', $data);
+		}
+
+		public function calculate_charges($fromdate, $todate, $rentaltype)
+		{
+			//Get price based on rental type (size and duration)
+			$this->db->select('Price');
+			$this->db->from('tbl_locker_rental_type');
+			$this->db->where('Rental_Type_ID', $rentaltype);
+			$query = $this->db->get();
+			$result = $query->result();
+
+			$finalcharge = 0;
+
+			//Per minute rental
+			if($rentaltype == 1 || $rentaltype == 2 || $rentaltype == 3)
+			{
+				//Calculate total time
+
+			}
+			else
+			{
+				//Flat charge, no need to calulate
+				if ($rentaltype == 4 || $rentaltype == 5 || $rentaltype == 6)
+			}
+
+		}
+
+		public function 
 	}
 ?>

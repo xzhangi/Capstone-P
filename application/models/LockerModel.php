@@ -175,8 +175,8 @@
 					$data = array(
 							'Rented' => true,
 							'Locker_ID' => $row->Locker_ID,
-							'Rent_From_Date' => $row->Rent_From_Date,
-							'Rent_To_Date' => $row->Rent_To_Date,
+							'Rent_From_Date' => substr($row->Rent_From_Date, 0, -3), 
+							'Rent_To_Date' => substr($row->Rent_To_Date, 0, -3),
 							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
 							'Pin_Code' => $row->Pin_Code,
@@ -190,8 +190,8 @@
 					$data = array(
 							'Rented' => true,
 							'Locker_ID' => $row->Locker_ID,
-							'Rent_From_Date' => $row->Rent_From_Date,
-							'Rent_To_Date' => $row->Rent_To_Date,
+							'Rent_From_Date' => substr($row->Rent_From_Date, 0, -3), 
+							'Rent_To_Date' => substr($row->Rent_To_Date, 0, -3),
 							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
 							'Pin_Code' => '******',
@@ -226,8 +226,8 @@
 				{
 					$list[$i] = (object)NULL;
 					$list[$i]->Locker_ID = $result[$i]->Locker_ID;
-					$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
-					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
+					$list[$i]->Rent_From_Date = substr($result[$i]->Rent_From_Date, 0, -3);
+					$list[$i]->Rent_To_Date = substr($result[$i]->Rent_To_Date, 0, -3);
 					$list[$i]->Rented_By = $result[$i]->Username;
 					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
 					$list[$i]->Paid = $result[$i]->Paid;
@@ -256,8 +256,8 @@
 				{
 					$list[$i] = (object)NULL;
 					$list[$i]->Locker_ID = $result[$i]->Locker_ID;
-					$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
-					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
+					$list[$i]->Rent_From_Date = substr($result[$i]->Rent_From_Date, 0, -3);
+					$list[$i]->Rent_To_Date = substr($result[$i]->Rent_To_Date, 0, -3);
 					$list[$i]->Rented_By = $result[$i]->Username;
 					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
 					$list[$i]->Paid = $result[$i]->Paid;

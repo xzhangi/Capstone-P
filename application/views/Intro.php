@@ -103,7 +103,7 @@
               <div class="well well-trans">
                 <div class="wow fadeInRight" data-wow-delay="0.1s">
                   <ul class="lead-list">
-                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br />Choose from per-minute or monthly packages!</span></li>
+                    <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Affordable Rental Rates</strong><br />Choose from different packages!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Variety of Locker Sizes</strong><br />For your ever-changing needs!</span></li>
                     <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Lockers At Your Convenience</strong><br />Anywhere in campus!</span></li>
 					          <li><span class="fa fa-check fa-2x icon-success"></span> <span class="list"><strong>Simplicity</strong><br />Easy to book and pay!</span></li>
@@ -624,7 +624,7 @@
           <div class="col-sm-4 pricing-box">
             <div class="wow bounceInUp" data-wow-delay="0.1s">
               <div class="pricing-content general">
-                <h2>Basic Fit 1 Package</h2>
+                <h2>Small Locker</h2>
                 <h3>$33<sup>.99</sup> <span>/ one time</span></h3>
                 <ul>
                   <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
@@ -643,7 +643,7 @@
           <div class="col-sm-4 pricing-box featured-price">
             <div class="wow bounceInUp" data-wow-delay="0.3s">
               <div class="pricing-content featured">
-                <h2>Golden Glow Package</h2>
+                <h2>Medium Locker</h2>
                 <h3>$65<sup>.99</sup> <span>/ one time</span></h3>
                 <ul>
                   <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
@@ -663,7 +663,7 @@
           <div class="col-sm-4 pricing-box">
             <div class="wow bounceInUp" data-wow-delay="0.2s">
               <div class="pricing-content general last">
-                <h2>Basic Fit 2 Package</h2>
+                <h2>Large Locker</h2>
                 <h3>$47<sup>.99</sup> <span>/ one time</span></h3>
                 <ul>
                   <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
@@ -685,47 +685,6 @@
     </section>
     <!-- /Section: pricing -->
 
-    <section id="partner" class="home-section paddingbot-60">
-      <div class="container marginbot-50">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
-            <div class="wow lightSpeedIn" data-wow-delay="0.1s">
-              <div class="section-heading text-center">
-                <h2 class="h-bold">Our partner</h2>
-                <p>Take charge of your health today with our specially designed health packages</p>
-              </div>
-            </div>
-            <div class="divider-short"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-1.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-2.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-3.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-4.jpg" alt="" /></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <footer>
 
       <div class="container">
@@ -733,9 +692,9 @@
           <div class="col-sm-6 col-md-4">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
-                <h5>About Medicio</h5>
+                <h5>About Locka</h5>
                 <p>
-                  Lorem ipsum dolor sit amet, ne nam purto nihil impetus, an facilisi accommodare sea
+                  A locker booking web application created by a group of students.
                 </p>
               </div>
             </div>
@@ -743,10 +702,7 @@
               <div class="widget">
                 <h5>Information</h5>
                 <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Laboratory</a></li>
-                  <li><a href="#">Medical treatment</a></li>
-                  <li><a href="#">Terms & conditions</a></li>
+                  <li><a href="<?php echo base_url();?>Home">Home</a></li>
                 </ul>
               </div>
             </div>
@@ -761,21 +717,21 @@
                 <ul>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-calendar-o fa-stack-1x fa-inverse"></i>
-								</span> Monday - Saturday, 8am to 10pm
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-calendar-o fa-stack-1x fa-inverse"></i>
+                </span> 24/7
                   </li>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-								</span> +62 0888 904 711
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                </span> +65 6451 5115
                   </li>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-								</span> hello@medicio.com
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                </span> contactus@locka.com
                   </li>
 
                 </ul>
@@ -786,7 +742,7 @@
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
                 <h5>Our location</h5>
-                <p>The Suithouse V303, Kuningan City, Jakarta Indonesia 12940</p>
+                <p>180 Ang Mo Kio Avenue 8, 569830</p>
 
               </div>
             </div>
@@ -811,7 +767,7 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
               <div class="wow fadeInLeft" data-wow-delay="0.1s">
                 <div class="text-left">
-                  <p>&copy;Copyright - Medicio Theme. All rights reserved.</p>
+                  <p>&copy;Copyright - Locka. All rights reserved.</p>
                 </div>
               </div>
             </div>
@@ -825,7 +781,6 @@
                       Licensing information: https://bootstrapmade.com/license/
                       Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Medicio
                     -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                   </div>
                 </div>
               </div>

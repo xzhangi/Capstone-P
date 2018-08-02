@@ -192,9 +192,9 @@
 
       </div>
       <div class="button-master-container">
-        <div class="button-container"><a href="/CodeIgniter_v1/application/views/booking.php">Return to Booking</a>
+        <div class="button-container"><a href="<?php echo base_url() ?>Home">Return Home</a>
         </div>
-        <div class="button-container button-finish"><a href="/CodeIgniter_v1/application/views/balance.php">Finish Order</a>
+        <div class="button-container button-finish"><a href="<?php echo base_url() ?>EWallet">Choose top up amount</a>
         </div>
       </div>
     </form>
