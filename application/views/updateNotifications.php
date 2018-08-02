@@ -393,10 +393,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="Title" class="control-label">Notification Name</label>
+                                    <label for="Title" class="control-label">Title</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <input id="Title" name="Title" type="text" class="form-control" value="<?php echo $notificationrecord->Title; ?>"/>
+                                    <input id="Title" name="Title" type="text" class="form-control" value="<?php echo $notificationrecord->Title; ?>" required/>
                                 </div>
                             </div>
                         </div>
@@ -404,10 +404,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="Content" class="control-label">Notification Description</label>
+                                    <label for="Content" class="control-label">Content</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <textarea id="Content" name="Content" type="text" class="form-control"><?php echo $notificationrecord->Content; ?></textarea>
+                                    <textarea id="Content" name="Content" type="text" class="form-control" required><?php echo $notificationrecord->Content; ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -415,10 +415,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="Create_Date" class="control-label">Notification Date</label>
+                                    <label for="Create_Date" class="control-label">Date</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <input id="Create_Date" name="Create_Date" type="date" class="form-control" value="<?php echo $notificationrecord->Create_Date; ?>"/>
+                                    <input id="Create_Date" name="Create_Date" type="date" class="form-control" value="<?php echo $notificationrecord->Create_Date; ?>" required/>
                                 </div>
                             </div>
                         </div>
@@ -426,10 +426,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="Username" class="control-label">Notification User</label>
+                                    <label for="Username" class="control-label">Username</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                <select id="Username" name="Username" class="form-control" value="<?php echo $notificationuser->Username; ?>">
+                                <select id="Username" name="Username" class="form-control" value="<?php echo $notificationuser->Username; ?>" required>
                                 <?php foreach ($userrlist as $row)
                                   { ?>
                                     <option value="<?php echo $row['username'] ?>"> <?php echo $row['username'] ?></option>";
