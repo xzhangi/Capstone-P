@@ -38,7 +38,8 @@ class eWallet extends CI_Controller {
 		public function top_up() {
 			if ($this->eWalletModel->add_balance($this->session->Userdata('Username'), $this->input->post('topupRadio')))
 			{
-				redirect('eWallet_3');
+				$msg = "<font size=4 color=Green>Top up successful!</font> <br \>";
+				$this->retrieve($msg);
 				//$msg = "Top up successful!";
 			}
 			//$this->retrieve($msg); //Get balance and load view

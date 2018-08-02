@@ -66,16 +66,76 @@
             <li><a href="#LockerStatus">Locker Booking Status</a></li>
             <li><a href="#Lockers">Lockers</a></li>
             <li><a href="#locations">Locations</a></li>
-            <li><a href="<?php echo base_url();?>eWallet">eWallet</a></li>
+            <li><a href="#pastTransactions">Past Transactions</a></li>
+           
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
-                <li><a href="#pastTransactions">Past Transactions</a></li>
-                <li><a href="<?php echo base_url();?>cardDetails_conc/cardDetails">Payment</a></li>
+                
+                <li><a href="<?php echo base_url();?>eWallet">eWallet</a></li>
                 <li><a href="#footer">Contact Us</a></li>
                 <li><a href="<?php echo base_url();?>Home/do_logout">Log Out</a></li>
               </ul>
             </li>
+            <!-- /.dropdown -->
+             <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                <span class="pull-right text-muted small">12 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            <!-- /.dropdown-alerts -->
           </ul>
         </div>
         <!-- /.navbar-collapse -->
@@ -226,22 +286,18 @@
 
       <form action="<?php echo base_url();?>Home/change_pin" method="post">
         <div class="col-md-3" style="margin-top: 10px;">
-          <div style="margin-top: 5px; margin-bottom: 5px;">
-          <?php if(!is_null($pinErrMsg)) echo $pinErrMsg; ?>
-          </div>
           <input type="password" name="pincode_old" id="pincode_old" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your old pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
         <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 digit pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
         <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" Title="Please enter 6 digits" required>
         <input type="submit" value="Change pin" class="btn btn-skin btn-block btn-lg">
+        <div style="margin-top: 5px; margin-bottom: 5px;">
+          <?php if(!is_null($pinErrMsg)) echo $pinErrMsg; ?>
+          </div>
         </div>
       </form>
 
       <form action="<?php echo base_url();?>Home/show_pin" method="post">
        <div class="col-md-9">
-        <div style="margin-top: 5px; margin-bottom: 5px;">
-          <?php if(!is_null($lockerUnlockMsg)) echo $lockerUnlockMsg; ?>
-          
-          </div>
           <input type="password" name="userPass" id="userPass" style="margin-top: -5px; margin-bottom: 5px;" placeholder="Enter your password" class="form-control input-md" Title="Please enter your password" required>
           <input type="submit" id="showPinBtn" name="showPinBtn" style="margin-bottom: 3px;" value="Show Pin" class="btn btn-skin btn-block btn-lg">
      </form>
@@ -253,6 +309,9 @@
         <!-- Workaround to get Locker_ID rented > sending the booking detail's locker_id through post -->
         <input type="hidden" name="lockerselected" value="<?php echo $bookingdetails['Locker_ID'] ?>">
         <input type="submit" value="Complete Booking!" style="margin-top: -13px;" class="btn btn-skin btn-block btn-lg">
+        <div style="margin-top: 5px; margin-bottom: 5px;">
+          <?php if(!is_null($msg2)) echo $msg2; ?>
+          </div>
       </form>
     </div>
 
@@ -266,7 +325,7 @@
     <!-- /Section: Locker Status -->
 
 
-    <!-- Section: team -->
+    <!-- Section: locker availability list -->
     <section id="Lockers" class="home-section bg-gray paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
@@ -274,35 +333,50 @@
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="section-heading text-center">
                 <h3 class="h-bold">Lockers</h2>
-                <p>Locker Availability</p>
+                <p>Check for available lockers around the campus here!</p>
+                <p>Occupied lockers are greyed out.</p>
               </div>
             </div>
             <div class="divider-short"></div>
           </div>
 		  
 		  <div class="col-lg-12"> 
-			<div class="row">
-				<?php foreach($availablelockerlist as $lockerItem) { ?>
-					<?php if ($lockerItem->Is_Available) { ?>
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="lockerboxavailable"></div>
+      <div class="row">
+        <?php foreach($availablelockerlist as $lockerItem) { ?>
+          <?php if ($lockerItem->Is_Available) { ?>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="lockerboxavailable"></div>
+                <?php if ($lockerItem->Locker_Size_ID == '1') { ?>
+                  <div class="smallavailable"></div>
+                <?php } else if ($lockerItem->Locker_Size_ID == '2'){ ?>
+                  <div class="mediumavailable"></div>
+                <?php } else { ?>
+                  <div class="largeavailable"></div>
+                <?php } ?>
+
               <div style="text-align: center;"><?php echo $lockerItem->Name ?></div>
-						</div>
-					<?php } else { ?>
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="lockerboxunavailable"></div>
+            </div>
+          <?php } else { ?>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <?php if ($lockerItem->Locker_Size_ID == '1') { ?>
+                  <div class="smallunavailable"></div>
+                <?php } else if ($lockerItem->Locker_Size_ID == '2'){ ?>
+                  <div class="mediumunavailable"></div>
+                <?php } else { ?>
+                  <div class="largeunavailable"></div>
+                <?php } ?>
               <div><?php echo $lockerItem->Name ?></div>
-						</div>
-					<?php } ?>
-				<?php } ?>
-			</div>
-		  
-		  </div>
+            </div>
+          <?php } ?>
+        <?php } ?>
+      </div>
+      
+        </div>
 		  
         </div>
       </div>
     </section>
-    <!-- /Section: team -->
+    <!-- /Section: locker availability list -->
 
 
 

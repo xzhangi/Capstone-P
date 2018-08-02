@@ -6,23 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
+
+  <!-- css -->
+  <link href="<?php echo base_url()?>assets/Default-BS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="<?php echo base_url()?>assets/Default-BS/css/eWallet.css" rel="stylesheet" type="text/css">
+  <link href="<?php echo base_url()?>assets/Default-BS/css/style.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <link href="<?php echo base_url()?>assets/Default-BS/css/cardDetails.css" rel="stylesheet" type="text/css">
   
   <!-- boxed bg -->
     <link id="bodybg" href="<?php echo base_url()?>assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
   <!-- template skin -->
     <link id="t-colors" href="<?php echo base_url()?>assets/Default-BS/color/default.css" rel="stylesheet">
-
-  <!-- css -->
-	<link href="<?php echo base_url()?>assets/Default-BS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url()?>assets/Default-BS/css/eWallet.css" rel="stylesheet" type="text/css">
-	<link href="<?php echo base_url()?>assets/Default-BS/css/style.css" rel="stylesheet" type="text/css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<link href="/Capstone-P-yuxuan/assets/Default-BS/css/style.css" rel="stylesheet" type="text/css">
-	<script src="https://codepen.io/andytran/pen/vLmRVp.js"></script>
-	
 </head>
 
-<body>
+<body background="Locka/assets/Default-BS/img/dummy/lockers.png">
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <!--<div class="top-area">
         <div class="container">
@@ -51,9 +49,10 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="<?php echo base_url();?>Home">Book a Locker</a></li>
-			<li><a href="<?php echo base_url();?>Home#LockerStatus">Locker Booking Status</a></li>
+      <li><a href="<?php echo base_url();?>Home#LockerStatus">Locker Booking Status</a></li>
             <li><a href="<?php echo base_url();?>Home#Lockers">Lockers</a></li>
             <li><a href="<?php echo base_url();?>Home#locations">Locations</a></li>
+            <li><a href="<?php echo base_url();?>Home#pastTransactions">Past Transactions</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
@@ -68,30 +67,27 @@
       </div>
       <!-- /.container -->
     </nav>
-	
-<div id ="balance_yx">
 
-<!-- Transaction Item-->
-<div class="wallet">
-  <div class="activity active" data-id="1234">
-    <header>
-      <h2>Balance</h2><span> <input type="number" name="balance" id="balance" class="form-control input-md" style="font-size: 20px" value="<?php echo $userWallet ?>" readonly></span>
-    </header>
-	<div class="form-wrapper" style="padding-top: 70px;">
-                <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
-                  <div class="panel panel-skin">
-					
-					<a href="<?php echo base_url();?>cardDetails_conc/cardDetails" class="btn btn-primary btn-block btn-lg">Top Up</a>
-                    <a href="<?php echo base_url();?>Home" class="btn btn-primary btn-block btn-lg">Back to Home</a>
-                  </div>
-                </div>		
-    </div>
-	
-
-  </div>
-
-</div>
-</div>
+    <section id="BookLocker" class="intro">
+      <div class="intro-content">
+        <div class="container">
+          <div class="row">
+            <div class="well well-trans">
+              <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+                <div class="section-heading text-center">
+                  <h3 class="h-bold" style="text-align: center;"><?php echo $this->session->userdata('DName'); ?>'s eWallet</h3>
+                  <!-- Show and hide this p accordingly -->
+                  <p>Top up your wallet!</p>
+                </div>
+              </div>
+              <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 <!-- Yu Xuan's JavaScripts -->
 <script src="<?php echo base_url()?>assets/Default-BS/js/jquery.min.js"></script>

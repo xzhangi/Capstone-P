@@ -53,6 +53,7 @@
 			<li><a href="<?php echo base_url();?>Home#LockerStatus">Locker Booking Status</a></li>
             <li><a href="<?php echo base_url();?>Home#Lockers">Lockers</a></li>
             <li><a href="<?php echo base_url();?>Home#locations">Locations</a></li>
+            <li><a href="<?php echo base_url();?>Home#pastTransactions">Past Transactions</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
@@ -67,30 +68,30 @@
       </div>
       <!-- /.container -->
     </nav>
-	
-<div id ="balance_yx">
 
-<!-- Transaction Item-->
-<div class="wallet">
-  <div class="activity active" data-id="1234">
-    <header>
-      <h2>Balance</h2><span> <input type="number" name="balance" id="balance" class="form-control input-md" style="font-size: 20px" value="<?php echo $userWallet ?>" readonly></span>
-    </header>
-	<div class="form-wrapper" style="padding-top: 70px;">
-                <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
-                  <div class="panel panel-skin">
-					
-                    <a href="<?php echo base_url();?>cardDetails_conc/cardDetails" class="btn btn-primary btn-block btn-lg">Top Up</a>
-					<!-- <input type="submit" value="Top Up" class="btn btn-primary btn-block btn-lg" form="topupform">-->
-                  </div>
-                </div>		
-    </div>
-	
-
-  </div>
-
-</div>
-</div>
+    <section id="eWallet" class="intro">
+      <div class="intro-content">
+        <div class="container">
+          <div class="row">
+            <div class="well well-trans">
+              <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
+                <div class="section-heading text-center">
+                  <h3 class="h-bold" style="text-align: center;"><?php echo $this->session->userdata('DName'); ?>'s eWallet</h3>
+                  <!-- Show and hide this p accordingly -->
+                  <p>Use this eWallet to pay for locker rentals instantly!</p>
+                </div>
+                <?php if(!is_null($MsgtoDisplay)) echo $MsgtoDisplay; ?>
+              </div>
+              <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
+                <h2>Balance</h2><span> <input type="number" name="balance" id="balance" class="form-control input-md" style="font-size: 20px" value="<?php echo $userWallet ?>" disabled></span>
+                <a href="<?php echo base_url();?>cardDetails_conc/cardDetails" class="btn btn-primary btn-block btn-lg" style="margin-top: 15px;">Top up</a>
+                <a href="<?php echo base_url();?>Home" class="btn btn-primary btn-block btn-lg" style="margin-top: 15px; margin-bottom: 15px;">Back to home</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
 <!-- Yu Xuan's JavaScripts -->
 <script src="<?php echo base_url()?>assets/Default-BS/js/jquery.min.js"></script>

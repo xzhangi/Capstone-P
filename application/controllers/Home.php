@@ -11,7 +11,7 @@
 			//Load locker model
 			$this->load->model('LockerModel');
 			
-			$this->output->enable_profiler(TRUE);
+			//$this->output->enable_profiler(TRUE);
 		}
 		 
 		public function index($pinErrMsg = NULL, $showPinMsg = NULL , $unlockMsg = NULL)
@@ -31,8 +31,15 @@
 			}
 			//Load message to display
 			$data['pinErrMsg'] = $pinErrMsg;
-			$data['showPinMsg'] = $showPinMsg;
-			$data['lockerUnlockMsg'] = $unlockMsg;
+			if ($showPinMsg != NULL) {
+				$data['msg2'] = $showPinMsg;
+			}
+			else if ($unlockMsg != NULL) {
+				$data['msg2'] = $unlockMsg;
+			}
+			else {
+				$data['msg2'] = NULL;
+			}
 
 			//Load the view
 			$this->load->view('User-Home', $data);
