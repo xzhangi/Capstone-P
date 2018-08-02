@@ -71,8 +71,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
                 <li><a href="#pastTransactions">Past Transactions</a></li>
-                <li><a href="index-form.html">Contact Us</a></li>
-				<li><a href="<?php echo base_url();?>cardDetails_conc/cardDetails">Payment</a></li>
+                <li><a href="<?php echo base_url();?>cardDetails_conc/cardDetails">Payment</a></li>
+                <li><a href="#footer">Contact Us</a></li>
                 <li><a href="<?php echo base_url();?>Home/do_logout">Log Out</a></li>
               </ul>
             </li>
@@ -91,15 +91,14 @@
             <div class="well well-trans">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
         				<div class="section-heading text-center">
-        					<h3 class="h-bold" style="text-align: center;">Book a Locker</h3>
+        					<h3 class="h-bold" style="text-align: center;">Welcome <?php echo $this->session->userdata('DName'); ?>!</h3>
                   <!-- Show and hide this p accordingly -->
                   <?php if(!$bookingdetails['Rented']) { ?>
         					   <p>Select and book a locker here!</p>
                   <?php } else { ?>
-
+                  <p>You can book a locker, check booking status, lockers, locations, eWallet... The world is your oyster!</p>
                   <?php } ?>
                 </div>
-        			  <div class="divider-short" style="margin-bottom: 20px;"></div>
               </div>
 			   <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
                 <!-- If user has not rented any lockers, show locker rental portion -->
@@ -166,7 +165,6 @@
                 </form>
                 <!-- User already rented locker, hide locker booking portion -->
                 <?php } else { ?>
-                  <h3 class="section-heading text-center">You are currently renting a locker!</h3>
                 <?php } ?>
 
               </div>
@@ -183,7 +181,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
+            <div class="wow fadeInUp" data-wow-delay="0.2s" style="margin-top: 50px; margin-bottom: 5px;">
 			        <div class="section-heading text-center">
                 <h3 class="h-bold">Locker Booking Status</h3>
                 <p>Check the status of your locker booking here!</p>
@@ -393,65 +391,43 @@
     </section>
     <!-- /Section: Past Rental Transactions -->
 
-    <footer>
-
-      <div class="container">
+        <footer id="footer">
+      <div class="container" style="padding: 50px;">
         <div class="row">
           <div class="col-sm-6 col-md-4">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
                 <h5>About Locka</h5>
                 <p>
-                  A locker booking web application created by a group of students.
+                  NYP's Locker Rental Application designed for every student's needs!
                 </p>
-              </div>
-            </div>
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-              <div class="widget">
-                <h5>Information</h5>
-                <ul>
-                  <li><a href="<?php echo base_url();?>Home">Home</a></li>
-                </ul>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
-                <h5>Medicio center</h5>
-                <p>
-                  Nam leo lorem, tincidunt id risus ut, ornare tincidunt naqunc sit amet.
-                </p>
+                <h5>Contact Us</h5>
                 <ul>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-calendar-o fa-stack-1x fa-inverse"></i>
-								</span> 24/7
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-calendar-o fa-stack-1x fa-inverse"></i>
+                </span> 24/7
                   </li>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-								</span> +65 6451 5115
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                </span> +65 6451 5115
                   </li>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-								</span> contactus@locka.com
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                </span>contact@locka.com
                   </li>
-
                 </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-              <div class="widget">
-                <h5>Our location</h5>
-                <p>180 Ang Mo Kio Avenue 8, 569830</p>
-
               </div>
             </div>
             <div class="wow fadeInDown" data-wow-delay="0.1s">
@@ -464,6 +440,15 @@
                   <li class="social-vimeo"><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
                   <li class="social-dribble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
                 </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="wow fadeInDown" data-wow-delay="0.1s">
+              <div class="widget">
+                <h5>Our location</h5>
+                <p>180 Ang Mo Kio Avenue 8, 569830</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.660983819964!2d103.84683261484682!3d1.3800708989934878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16eb64b0249d%3A0xe5f10ff680eed942!2sNanyang+Polytechnic!5e0!3m2!1sen!2ssg!4v1533220202597" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
               </div>
             </div>
           </div>

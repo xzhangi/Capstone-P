@@ -74,8 +74,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
-                <li><a href="index.html">FAQ</a></li>
-                <li><a href="index-form.html">Contact Us</a></li>
+                <li><a href="#footer">Contact Us</a></li>
                 <li><a href="adminlogin">Admin Login</a></li>
               </ul>
             </li>
@@ -391,14 +390,14 @@
                   <div class="wow fadeInUp" data-wow-delay="0.1s">
                     <div class="cta-text">
                       <h3>Any Questions? Any Issues?</h3>
-                      <p>Check out our FAQ (Frequently Asked Questions).</p>
+                      <p>Contact Us!</p>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4">
                   <div class="wow lightSpeedIn" data-wow-delay="0.1s">
                     <div class="cta-btn">
-                      <a href="#" class="btn btn-skin btn-lg">Frequently Asked Questions</a>
+                      <a href="#footer" class="btn btn-skin btn-lg">Contact Us</a>
                     </div>
                   </div>
                 </div>
@@ -411,7 +410,7 @@
 
 
     <!-- Section: AboutUs -->
-    <section id="AboutUs" class="home-section nopadding paddingtop-60">
+    <section id="AboutUs" class="home-section nopadding paddingtop-100">
 
       <div class="container">
 
@@ -704,57 +703,56 @@
 
           <div class="col-sm-4 pricing-box">
             <div class="wow bounceInUp" data-wow-delay="0.1s">
-              <div class="pricing-content general">
+              <div class="pricing-content featured" >
                 <h2>Small Locker</h2>
-                <h3>$33<sup>.99</sup> <span>/ one time</span></h3>
+                <h3>$30<span> / month</span><br><span>$0.03 / minute</span></h3>
                 <ul>
-                  <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
-                  <li>Post Examination Review <i class="fa fa-check icon-success"></i></li>
-                  <li>General Screening – Basic <i class="fa fa-check icon-success"></i></li>
-                  <li><del>Health Screening Report</del> <i class="fa fa-times icon-danger"></i></li>
+                  <li>Laptop<i class="fa fa-check icon-success"></i></li>
+                  <li>Lab Coat<i class="fa fa-check icon-success"></i></li>
+                  <li><del>Lab Boots</del><i class="fa fa-times icon-danger"></i></li>
+                  <li><del>Bike Helmet</del> <i class="fa fa-times icon-danger"></i></li>
                 </ul>
 
                 <div class="price-bottom">
-                  <a href="#" class="btn btn-skin btn-lg">Purchase</a>
+                  <a href="#SignUp" class="btn btn-skin btn-lg">Purchase</a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="col-sm-4 pricing-box featured-price">
-            <div class="wow bounceInUp" data-wow-delay="0.3s">
+            <div class="wow bounceInUp" data-wow-delay="0.1s">
               <div class="pricing-content featured">
                 <h2>Medium Locker</h2>
-                <h3>$65<sup>.99</sup> <span>/ one time</span></h3>
+                <h3>$40<span> / month</span><br><span>$0.04 / minute</span></h3>
                 <ul>
-                  <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
-                  <li>Post Examination Review <i class="fa fa-check icon-success"></i></li>
-                  <li>General Screening – Basic <i class="fa fa-check icon-success"></i></li>
-                  <li>Body Composition Analysis <i class="fa fa-check icon-success"></i></li>
-                  <li>GR Assessment & Scoring <i class="fa fa-check icon-success"></i></li>
+                  <li>Laptop <i class="fa fa-check icon-success"></i></li>
+                  <li>Lab Coat <i class="fa fa-check icon-success"></i></li>
+                  <li>Lab Boots <i class="fa fa-check icon-success"></i></li>
+                  <li><del>Bike Helmet</del> <i class="fa fa-times icon-danger"></i></li>
                 </ul>
 
                 <div class="price-bottom">
-                  <a href="#" class="btn btn-skin btn-lg">Purchase</a>
+                  <a href="#SignUp" class="btn btn-skin btn-lg">Purchase</a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="col-sm-4 pricing-box">
-            <div class="wow bounceInUp" data-wow-delay="0.2s">
-              <div class="pricing-content general last">
+            <div class="wow bounceInUp" data-wow-delay="0.1s">
+              <div class="pricing-content featured">
                 <h2>Large Locker</h2>
-                <h3>$47<sup>.99</sup> <span>/ one time</span></h3>
+                <h3>$50<span>/ month</span><br><span>$0.05 / minute</span></h3>
                 <ul>
-                  <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
-                  <li>Post Examination Review <i class="fa fa-check icon-success"></i></li>
-                  <li>General Screening – Regular <i class="fa fa-check icon-success"></i></li>
-                  <li><del>Health Screening Report</del> <i class="fa fa-times icon-danger"></i></li>
+                  <li>Laptop <i class="fa fa-check icon-success"></i></li>
+                  <li>Lab Coat <i class="fa fa-check icon-success"></i></li>
+                  <li>Lab Boots <i class="fa fa-check icon-success"></i></li>
+                  <li>Bike Helmet <i class="fa fa-check icon-success"></i></li>
                 </ul>
 
                 <div class="price-bottom">
-                  <a href="#" class="btn btn-skin btn-lg">Purchase</a>
+                  <a href="#SignUp" class="btn btn-skin btn-lg">Purchase</a>
                 </div>
               </div>
             </div>
@@ -766,8 +764,7 @@
     </section>
     <!-- /Section: pricing -->
 
-    <footer>
-
+    <footer id="footer">
       <div class="container">
         <div class="row">
           <div class="col-sm-6 col-md-4">
@@ -775,26 +772,15 @@
               <div class="widget">
                 <h5>About Locka</h5>
                 <p>
-                  A locker booking web application created by a group of students.
+                  NYP's Locker Rental Application designed for every student's needs!
                 </p>
-              </div>
-            </div>
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-              <div class="widget">
-                <h5>Information</h5>
-                <ul>
-                  <li><a href="<?php echo base_url();?>Home">Home</a></li>
-                </ul>
               </div>
             </div>
           </div>
           <div class="col-sm-6 col-md-4">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
-                <h5>Medicio center</h5>
-                <p>
-                  Nam leo lorem, tincidunt id risus ut, ornare tincidunt naqunc sit amet.
-                </p>
+                <h5>Contact Us</h5>
                 <ul>
                   <li>
                     <span class="fa-stack fa-lg">
@@ -812,19 +798,9 @@
                     <span class="fa-stack fa-lg">
                   <i class="fa fa-circle fa-stack-2x"></i>
                   <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-                </span> contactus@locka.com
+                </span>contact@locka.com
                   </li>
-
                 </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-              <div class="widget">
-                <h5>Our location</h5>
-                <p>180 Ang Mo Kio Avenue 8, 569830</p>
-
               </div>
             </div>
             <div class="wow fadeInDown" data-wow-delay="0.1s">
@@ -837,6 +813,15 @@
                   <li class="social-vimeo"><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
                   <li class="social-dribble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
                 </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="wow fadeInDown" data-wow-delay="0.1s">
+              <div class="widget">
+                <h5>Our location</h5>
+                <p>180 Ang Mo Kio Avenue 8, 569830</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.660983819964!2d103.84683261484682!3d1.3800708989934878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16eb64b0249d%3A0xe5f10ff680eed942!2sNanyang+Polytechnic!5e0!3m2!1sen!2ssg!4v1533220202597" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
               </div>
             </div>
           </div>
