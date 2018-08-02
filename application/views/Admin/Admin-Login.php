@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Locka (Admin)</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url()?>assets/Admin-BS/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,13 +32,13 @@
 
 </head>
 
-<body>
+<body background="assets/Default-BS/img/dummy/lockers.jpg">
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">Please Sign In</h3>
+                        <h3 class="panel-title">Admin Login</h3>
                     </div>
                     <div class="panel-body">
 						<?php if(!is_null($msg)) echo $msg; ?>
