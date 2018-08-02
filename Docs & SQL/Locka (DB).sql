@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 01, 2018 at 03:43 PM
+-- Generation Time: Aug 01, 2018 at 07:19 PM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `tbl_locker` (
 --
 
 INSERT INTO `tbl_locker` (`ID`, `Location_ID`, `Locker_Size_ID`, `Name`, `Desc`, `Remarks`, `Is_Available`, `Is_Active`, `Created_By`, `Created_Date`) VALUES
-(1, 1, 1, 'SEG - Small 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
+(1, 1, 1, 'SEG - Small 01', NULL, NULL, 0, 1, 'SYS_ADMIN', '2017-06-15'),
 (2, 1, 2, 'SEG - Medium 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (3, 1, 3, 'SEG - Large 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (4, 2, 1, 'SIT - Small 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
@@ -150,7 +150,7 @@ CREATE TABLE IF NOT EXISTS `tbl_locker_rental` (
   `Show_Pin` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`Rent_ID`),
   KEY `Username_idx` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_locker_rental`
@@ -165,7 +165,9 @@ INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent
 (64, 19, '2018-08-01 11:02:00', NULL, '18A123A', 1, '2018-08-01 11:02:00', 0, '476029cdd37d4c7b50e51ae7b6ff9c2b', 0, 0, 0, 0),
 (65, 1, '2018-08-01 13:18:00', NULL, '18A123A', 1, '2018-08-01 13:18:00', 0, '75f972e52a32a1a77be7f80d145e16c1', 0, 0, 0, 0),
 (66, 2, '2018-08-01 13:29:00', NULL, '18A123A', 1, '2018-08-01 13:29:00', 0, '123456', 0, 0, 0, 0),
-(67, 1, '2018-08-01 13:53:00', NULL, '18A123A', 1, '2018-08-01 13:53:00', 0, '123456', 0, 0, 0, 1);
+(67, 1, '2018-08-01 13:53:00', NULL, '18A123A', 1, '2018-08-01 13:53:00', 0, '123456', 0, 0, 0, 1),
+(68, 1, '2018-08-02 01:20:00', NULL, '18A123A', 1, '2018-08-02 01:20:00', 0, '589222', 0, 0, 0, 1),
+(69, 1, '2018-08-02 02:48:00', NULL, '18A123A', 1, '2018-08-02 02:48:00', 1, '666602', 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -176,23 +178,25 @@ INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent
 DROP TABLE IF EXISTS `tbl_locker_rental_type`;
 CREATE TABLE IF NOT EXISTS `tbl_locker_rental_type` (
   `Rental_Type_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `Locker_Size_ID` int(11) NOT NULL,
   `Name` varchar(45) DEFAULT NULL,
   `Price` double NOT NULL,
   `Remarks` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`Rental_Type_ID`)
+  PRIMARY KEY (`Rental_Type_ID`),
+  KEY `Locker_Size_ID_idx` (`Locker_Size_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_locker_rental_type`
 --
 
-INSERT INTO `tbl_locker_rental_type` (`Rental_Type_ID`, `Name`, `Price`, `Remarks`) VALUES
-(1, 'Per Minute Rental - Small', 0.01, NULL),
-(2, 'Per Minute Rental - Medium', 0.02, NULL),
-(3, 'Per Minute Rental - Big', 0.03, NULL),
-(4, 'Monthly Rental - Small', 30, NULL),
-(5, 'Monthly Rental - Medium', 40, NULL),
-(6, 'Monthly Rental - Big', 50, NULL);
+INSERT INTO `tbl_locker_rental_type` (`Rental_Type_ID`, `Locker_Size_ID`, `Name`, `Price`, `Remarks`) VALUES
+(1, 1, 'Per Minute Rental - Small', 0.01, NULL),
+(2, 2, 'Per Minute Rental - Medium', 0.02, NULL),
+(3, 3, 'Per Minute Rental - Big', 0.03, NULL),
+(4, 1, 'Monthly Rental - Small', 30, NULL),
+(5, 2, 'Monthly Rental - Medium', 40, NULL),
+(6, 3, 'Monthly Rental - Big', 50, NULL);
 
 -- --------------------------------------------------------
 
@@ -303,6 +307,12 @@ INSERT INTO `tbl_users` (`ID`, `Username`, `NRIC`, `Display_Name`, `Email`, `Mob
 --
 ALTER TABLE `tbl_ewallet`
   ADD CONSTRAINT `Username` FOREIGN KEY (`Username`) REFERENCES `tbl_users` (`Username`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `tbl_locker_rental_type`
+--
+ALTER TABLE `tbl_locker_rental_type`
+  ADD CONSTRAINT `Locker_Size_ID` FOREIGN KEY (`Locker_Size_ID`) REFERENCES `tbl_locker_size` (`Locker_Size_ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

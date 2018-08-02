@@ -146,10 +146,14 @@
                   <?php 
                       } ?>
                     </select>
-          
-                    <select name="rentaltype" id="rentaltype" style="padding: 5px; margin: 10px;">
-                      <option value="1">Per Minute Rental</option>
-                      <option value="2">1 Month Rental</option>
+                    
+                    <select name="rentaltypeselected" id="rentaltypeselected" style="padding: 5px; margin: 10px;" required>
+                      <option value="" selected>Select a Rental Type</option>
+                      <?php foreach($availablerentaltype as $rentalItem)
+                      { ?>
+                          <option value="<?php echo $rentalItem->Rental_Type_ID; ?>" ><?php echo $rentalItem->Name; ?></option>
+                  <?php 
+                      } ?>
                     </select>
           
                     <input type="checkbox" onclick="javascript:generatePinCheck();" name="autogeneratepin" id="autogeneratepin" style="margin: 10px;"><label for="generatepin">Automatically Generate PIN</label></input>
@@ -199,9 +203,10 @@
             </div>
 			<div class="divider-short"></div>
 			<?php if ($bookingdetails['Rented']) { ?>
-			<table style="width:100%; border: 1px solid black;">
-				<tr style="border: 1px solid black;">
-					<th>Rented</th>
+    <div class="table-responsive">
+			<table class="table table-hover">
+        <thead class="thead-light">
+				<tr>
 					<th>Locker ID</th>
 					<th>Rental Type</th>
 					<th>Rent Start Date/Time</th>
@@ -209,8 +214,8 @@
 					<th>Rented By</th>
 					<th>Pin Code</th>
 				</tr>
+      </thead>
 				<tr>
-					<td><?php echo $bookingdetails['Rented'] ?></td>
 					<td><?php echo $bookingdetails['Locker_ID'] ?></td>
           <td><?php echo $bookingdetails['Rental_Type'] ?></td>
 					<td><?php echo $bookingdetails['Rent_From_Date'] ?></td>
@@ -223,6 +228,7 @@
 					<td><?php echo $bookingdetails['Pin_Code'] ?></td>
 				</tr>
 			</table>
+    </div>
 
       <form action="<?php echo base_url();?>Home/change_pin" method="post">
         <div class="col-md-3" style="margin-top: 10px;">
@@ -338,212 +344,51 @@
     <!-- /Section: works -->
 
 
-    <!-- Section: testimonial -->
-    <section id="testimonial" class="home-section paddingbot-60 parallax" data-stellar-background-ratio="0.5">
-
-      <div class="carousel-reviews broun-block">
-        <div class="container">
-          <div class="row">
-            <div id="carousel-reviews" class="carousel slide" data-ride="carousel">
-
-              <div class="carousel-inner">
-                <div class="item active">
-                  <div class="col-md-4 col-sm-6">
-                    <div class="block-text rel zmin">
-                      <a title="" href="#">Love it!</a>
-                      <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3"
-                          class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span>
-                      </div>
-                      <p>Love the convenience! Booked a locker for an hour for such an affordable rate.</p>
-                      <ins class="ab zmin sprite sprite-i-triangle block"></ins>
-                    </div>
-                    <div class="person-text rel text-light">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
-                      <a title="" href="#">Anna Tan</a>
-                      <span>SIT</span>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 hidden-xs">
-                    <div class="block-text rel zmin">
-                      <a title="" href="#">Website is awesome :)</a>
-                      <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span>
-                        <span
-                          data-value="3" class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span>
-                      </div>
-                      <p>Would be great if there was a mobile application specifically for this... but still great!</p>
-                      <ins class="ab zmin sprite sprite-i-triangle block"></ins>
-                    </div>
-                    <div class="person-text rel text-light">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
-                      <a title="" href="#">Ben Wong</a>
-                      <span>SEG</span>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
-                    <div class="block-text rel zmin">
-                      <a title="" href="#">This is the best.</a>
-                      <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3"
-                          class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span> </span>
-                      </div>
-                      <p>This has made my life so much easier! No longer have to bring my lab coat home everyday!!</p>
-                      <ins class="ab zmin sprite sprite-i-triangle block"></ins>
-                    </div>
-                    <div class="person-text rel text-light">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
-                      <a title="" href="#">Angel Lim</a>
-                      <span>SHS</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="col-md-4 col-sm-6">
-                    <div class="block-text rel zmin">
-                      <a title="" href="#">Pleasant experience!</a>
-                      <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3"
-                          class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span>
-                      </div>
-                      <p>Forgot my pin and was able to change it easily! Thumbs up</p>
-                      <ins class="ab zmin sprite sprite-i-triangle block"></ins>
-                    </div>
-                    <div class="person-text rel text-light">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
-                      <a title="" href="#">Ahmad Ibrahim</a>
-                      <span>SBM</span>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 hidden-xs">
-                    <div class="block-text rel zmin">
-                      <a title="" href="#">Well designed..</a>
-                      <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span>
-                        <span
-                          data-value="3" class="glyphicon glyphicon-star-empty"></span><span data-value="4" class="glyphicon glyphicon-star-empty"></span><span data-value="5" class="glyphicon glyphicon-star-empty"></span> </span>
-                      </div>
-                      <p>Like that i can choose from different kinds of packages instead of renting for a semester! :)</p>
-                      <ins class="ab zmin sprite sprite-i-triangle block"></ins>
-                    </div>
-                    <div class="person-text rel text-light">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/testimonials/girl.png" alt="" class="person img-circle" />
-                      <a title="" href="#">Siti Aishah</a>
-                      <span>SDN</span>
-                    </div>
-                  </div>
-                  <div class="col-md-4 col-sm-6 hidden-sm hidden-xs">
-                    <div class="block-text rel zmin">
-                      <a title="" href="#">So much convenience</a>
-                      <div class="mark">My rating: <span class="rating-input"><span data-value="0" class="glyphicon glyphicon-star"></span><span data-value="1" class="glyphicon glyphicon-star"></span><span data-value="2" class="glyphicon glyphicon-star"></span><span data-value="3"
-                          class="glyphicon glyphicon-star"></span><span data-value="4" class="glyphicon glyphicon-star"></span><span data-value="5" class="glyphicon glyphicon-star"></span> </span>
-                      </div>
-                      <p>Never knew having a locker was so much convenience!! I can even put my bag in it and go out for lunch.. This is awesome :)</p>
-                      <ins class="ab zmin sprite sprite-i-triangle block"></ins>
-                    </div>
-                    <div class="person-text rel text-light">
-                      <img src="<?php echo base_url()?>assets/Default-BS/img/testimonials/guy.png" alt="" class="person img-circle" />
-                      <a title="" href="#">Adam Tan</a>
-                      <span>SIDM</span>
-                    </div>
-                  </div>
-                </div>
-
-
-              </div>
-
-              <a class="left carousel-control" href="#carousel-reviews" role="button" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-              <a class="right carousel-control" href="#carousel-reviews" role="button" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- /Section: testimonial -->
-
-
-    <!-- Section: pricing -->
-    <section id="pricing" class="home-section bg-gray paddingbot-60">
-      <div class="container marginbot-50">
+    <!-- Section: Past Rental Transactions -->
+    <section id="pastTransactions" class="home-section paddingbot-60 parallax" data-stellar-background-ratio="0.5">
+      <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
-            <div class="wow lightSpeedIn" data-wow-delay="0.1s">
+          <div class="col-lg-12">
+            <div class="wow fadeInUp" data-wow-delay="0.2s">
               <div class="section-heading text-center">
-                <h3 class="h-bold">Pricing</h3>
-                <p>Choose from a variety of pricing packages!</p>
+                <h3 class="h-bold">Past Transactions</h3>
+                <p>View your past locker bookings here!</p>
               </div>
             </div>
             <div class="divider-short"></div>
+            <?php if ($pastlockertransactionslist != false) { ?>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="thead-light">
+                <tr>
+                  <th>Locker ID</th>
+                  <th>Rental Type</th>
+                  <th>Rent Start Date/Time</th>
+                  <th>Rent End Date/Time</th>
+                  <th>Rented By</th>
+                  <th>Paid</th>
+                </tr>
+              </thead>
+                <?php foreach($pastlockertransactionslist as $trans) { ?>
+                <tr>
+                  <td><?php echo $trans->Locker_ID ?></td>
+                  <td><?php echo $trans->Rental_Type ?></td>
+                  <td><?php echo $trans->Rent_From_Date ?></td>
+                  <td><?php echo $trans->Rent_To_Date ?></td>
+                  <td><?php echo $trans->Rented_By ?></td>
+                  <td><?php echo $trans->Paid ?></td>
+                </tr>
+                <?php } ?>
+              </table>
+              <?php } else { ?>
+              <h3 class="section-heading text-center">You do not have any past transactions.</h3>
+              <?php } ?>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-sm-4 pricing-box">
-            <div class="wow bounceInUp" data-wow-delay="0.1s">
-              <div class="pricing-content general">
-                <h2>Basic Fit 1 Package</h2>
-                <h3>$33<sup>.99</sup> <span>/ one time</span></h3>
-                <ul>
-                  <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
-                  <li>Post Examination Review <i class="fa fa-check icon-success"></i></li>
-                  <li>General Screening – Basic <i class="fa fa-check icon-success"></i></li>
-                  <li><del>Health Screening Report</del> <i class="fa fa-times icon-danger"></i></li>
-                </ul>
-
-                <div class="price-bottom">
-                  <a href="#" class="btn btn-skin btn-lg">Purchase</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 pricing-box featured-price">
-            <div class="wow bounceInUp" data-wow-delay="0.3s">
-              <div class="pricing-content featured">
-                <h2>Golden Glow Package</h2>
-                <h3>$65<sup>.99</sup> <span>/ one time</span></h3>
-                <ul>
-                  <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
-                  <li>Post Examination Review <i class="fa fa-check icon-success"></i></li>
-                  <li>General Screening – Basic <i class="fa fa-check icon-success"></i></li>
-                  <li>Body Composition Analysis <i class="fa fa-check icon-success"></i></li>
-                  <li>GR Assessment & Scoring <i class="fa fa-check icon-success"></i></li>
-                </ul>
-
-                <div class="price-bottom">
-                  <a href="#" class="btn btn-skin btn-lg">Purchase</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-sm-4 pricing-box">
-            <div class="wow bounceInUp" data-wow-delay="0.2s">
-              <div class="pricing-content general last">
-                <h2>Basic Fit 2 Package</h2>
-                <h3>$47<sup>.99</sup> <span>/ one time</span></h3>
-                <ul>
-                  <li>Anthropometry (BMI, WH Ratio) <i class="fa fa-check icon-success"></i></li>
-                  <li>Post Examination Review <i class="fa fa-check icon-success"></i></li>
-                  <li>General Screening – Regular <i class="fa fa-check icon-success"></i></li>
-                  <li><del>Health Screening Report</del> <i class="fa fa-times icon-danger"></i></li>
-                </ul>
-
-                <div class="price-bottom">
-                  <a href="#" class="btn btn-skin btn-lg">Purchase</a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </section>
-    <!-- /Section: pricing -->
+    <!-- /Section: Past Rental Transactions -->
 
     <section id="partner" class="home-section paddingbot-60">
       <div class="container marginbot-50">
