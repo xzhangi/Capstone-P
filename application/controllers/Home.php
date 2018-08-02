@@ -18,8 +18,9 @@
 		{
 			// Load model
 			//Call any required model functions
-			$data['availablelockerlist'] = $this->LockerModel->get_locker_list_all();
-			$data['availablerentaltype'] = $this->LockerModel->get_locker_rental_type();
+			$data['availablelockerlist'] = $this->LockerModel->Get_Locker_List_All();
+			$data['availablerentaltype'] = $this->LockerModel->Get_Locker_Rental_Type();
+			$data['pastlockertransactionslist'] = $this->LockerModel->GetPastLockerTransactions();
 			if ($this->check_current_booking())
 			{
 				$data['bookingdetails'] = $this->check_current_booking();

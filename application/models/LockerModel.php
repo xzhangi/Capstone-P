@@ -14,7 +14,7 @@
 		}
 		
 		//Get all lockers (whether available or not)
-		function get_locker_list_all()
+		function Get_Locker_List_All()
 		{
 			$this->db->select('ID');
 			$this->db->select('Locker_Size_ID');
@@ -39,7 +39,7 @@
 		}
 		
 		//Get only lockers that are available
-		function get_locker_list_available_all()
+		function Get_Locker_List_Available_All()
 		{
 			$this->db->select('ID');
 			$this->db->select('Locker_Size_ID');
@@ -64,7 +64,7 @@
 			return $list;
 		}
 		
-		function get_locker_available($size)
+		function Get_Locker_Available($size)
 		{
 			$this->db->select('ID', 'Name');
 			$this->db->from('tbl_locker');
@@ -85,7 +85,7 @@
 			return $list;
 		}
 
-		function get_locker_rental_type()
+		function Get_Locker_Rental_Type()
 		{
 			$this->db->select('*');
 			$this->db->from('tbl_locker_rental_type');
@@ -120,11 +120,10 @@
 
 			// Get Post
 			$rentaldata = array(
-                //'Rent_From_Date' => @date('Y-m-d H:i', @strtotime($this->input->post('registeredDate'))), //need to change to date time
 				'Rent_From_Date' => @date('Y-m-d H:i'),
+				'Rental_Type' => $this->input->post('rentaltypeselected'),
 				'Locker_ID' => $this->input->post('lockerselected'),
                 'Username' => $this->session->userdata('Username'),
-                'Rental_Type' => $this->input->post('rentaltype'),
                 'Creation_Date' => @date('Y-m-d H:i'),
 				'Is_Active' => true,
 				'Pin_Code' => $pincode,
@@ -231,11 +230,42 @@
 					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
 					$list[$i]->Rented_By = $result[$i]->Username;
 					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
-					$list[$i]->Pin_Code = $result[$i]->Pin_Code;
+					$list[$i]->Paid = $result[$i]->Paid;
 				}
 				return $list;
 			}
 			
+			return false;
+		}
+
+		//Get all details regarding locker booking
+		public function GetPastLockerTransactions() 
+		{
+			$this->db->select('*');
+			$this->db->from('tbl_locker_rental');
+			$this->db->where('Username', $this->session->userdata('Username'));
+			$this->db->where('Is_Active', false); // Not active transaction
+			$query = $this->db->get();
+			// Record exists
+			$result = $query->result();
+			$list = Array();
+			
+			// There are past transactions
+			if ($query->num_rows() > 0) {
+				for ($i = 0; $i < count($result); $i++)
+				{
+					$list[$i] = (object)NULL;
+					$list[$i]->Locker_ID = $result[$i]->Locker_ID;
+					$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
+					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
+					$list[$i]->Rented_By = $result[$i]->Username;
+					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
+					$list[$i]->Paid = $result[$i]->Paid;
+					$list[$i]->Has_Trans = true;
+				}
+				return $list;
+			}
+			// No past transactions
 			return false;
 		}
 		
@@ -253,9 +283,11 @@
 			if($query->num_rows() == 1)
 			{
 				$data = array(
+					'Rent_To_Date' => @date('Y-m-d H:i'),
 			        'Is_Active' => false
 				);
 				$this->db->where('Username', $this->session->userdata('Username'));
+				$this->db->where('Is_Active', true);
 				$this->db->update('tbl_locker_rental', $data);
 
 				//return true;
