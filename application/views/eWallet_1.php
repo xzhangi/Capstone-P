@@ -19,9 +19,10 @@
     <link id="bodybg" href="<?php echo base_url()?>assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
   <!-- template skin -->
     <link id="t-colors" href="<?php echo base_url()?>assets/Default-BS/color/default.css" rel="stylesheet">
+	
 </head>
 
-<body background="Locka/assets/Default-BS/img/dummy/lockers.png">
+<body>
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <!--<div class="top-area">
         <div class="container">
@@ -72,6 +73,33 @@
 
 <!-- Transaction Item-->
 <div class="wallet">
+  <div class="cards">
+    <header>
+      <h2>My Wallet</h2><!--<a id="add" href="#"></a>-->
+    </header>
+    <div class="content">
+	<form action="<?php echo base_url();?>eWallet/top_up" method="post" role="form" id="topupform"> 
+      <div class="card active" data-id="#{id}">
+        <div class="row">
+			<input type="radio" id="topUp10" name="topupRadio" value="10" checked="checked"  />
+			<label style="font-size: 20px"> Top up :$10 </label>
+		</div>
+      </div>
+      <div class="card active" data-id="#{id}">
+        <div class="row">
+			<input type="radio" id="topUp20" name="topupRadio" value="20"  />
+			<label style="font-size: 20px"> Top up: $20 </label>
+		</div>
+      </div>
+      <div class="card active" data-id="#{id}">
+		<div class="row">
+			<input type="radio" id="topUp30" name="topupRadio" value="30"  />
+			<label style="font-size: 20px"> Top up: $30</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  </form>
   <div class="activity active" data-id="1234">
     <header>
       <h2>Balance</h2><span> <input type="number" name="balance" id="balance" class="form-control input-md" style="font-size: 20px" value="<?php echo $userWallet ?>" readonly></span>
@@ -80,11 +108,12 @@
                 <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
                   <div class="panel panel-skin">
 					
-                    <a href="<?php echo base_url();?>cardDetails_conc/cardDetails" class="btn btn-primary btn-block btn-lg">Top Up</a>
-					<!-- <input type="submit" value="Top Up" class="btn btn-primary btn-block btn-lg" form="topupform">-->
+                    <input type="submit" value="Top Up" class="btn btn-primary btn-block btn-lg" form="topupform">
+
                   </div>
                 </div>		
     </div>
+	
 	
 
   </div>

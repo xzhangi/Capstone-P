@@ -117,11 +117,10 @@ body {
 }
 
 .activity {
-  flex-basis: 60%;
-  width: 60%;
+  width: 100%;
   padding: 60px;
   box-sizing: border-box;
-  background-color: #fecb6e;
+  background-color: #E8E8E8;
 }
 .activity header {
   display: flex;
