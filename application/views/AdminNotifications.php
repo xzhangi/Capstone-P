@@ -435,11 +435,12 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="table-responsive">
+                                    <?php echo validation_errors(); ?>
                                         <table class="table table-bordered table-hover table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Notification Title</th>
+                                                    <th>Title</th>
                                                     <th>Notification Description</th>
                                                     <th>Notification Date</th>
                                                     <th>Notification User</th>
@@ -455,7 +456,7 @@
                                                 <td><?php echo $notificationlist[$i]->Create_Date; ?></td>
                                                 <td><?php echo $notificationlist[$i]->Username; ?></td>
                                                 <td><a href="<?php echo base_url();?>updateNotifications/getNotification/<?php echo ($notificationlist[$i]->ID)?>"><button type="button" class="btn btn-primary">Edit</button></a>
-                                                <br><br><a href="<?php echo base_url();?>deleteNotifications/delete_notification/<?php echo ($notificationlist[$i]->ID)?>"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                                                <br><br><a href="<?php echo base_url();?>deleteNotifications/delete_notification/<?php echo ($notificationlist[$i]->ID)?>"><button type="button" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');">Delete</button></a></td>
                                             </tr>
                                         <?php } ?>
                                             </tbody>
