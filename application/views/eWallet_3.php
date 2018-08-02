@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
+  
+  <!-- boxed bg -->
+    <link id="bodybg" href="<?php echo base_url()?>assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
+  <!-- template skin -->
+    <link id="t-colors" href="<?php echo base_url()?>assets/Default-BS/color/default.css" rel="stylesheet">
 
   <!-- css -->
 	<link href="<?php echo base_url()?>assets/Default-BS/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -15,13 +20,9 @@
 	<link href="/Capstone-P-yuxuan/assets/Default-BS/css/style.css" rel="stylesheet" type="text/css">
 	<script src="https://codepen.io/andytran/pen/vLmRVp.js"></script>
 	
-	<!-- boxed bg -->
-    <link id="bodybg" href="<?php echo base_url()?>assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
-  <!-- template skin -->
-    <link id="t-colors" href="<?php echo base_url()?>assets/Default-BS/color/default.css" rel="stylesheet">
 </head>
 
-<body background="Locka/assets/Default-BS/img/dummy/lockers.png">
+<body>
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <!--<div class="top-area">
         <div class="container">
@@ -80,8 +81,8 @@
                 <div class="wow fadeInRight" data-wow-duration="2s" data-wow-delay="0.2s">
                   <div class="panel panel-skin">
 					
-                    <a href="<?php echo base_url();?>cardDetails_conc/cardDetails" class="btn btn-primary btn-block btn-lg">Top Up</a>
-					<!-- <input type="submit" value="Top Up" class="btn btn-primary btn-block btn-lg" form="topupform">-->
+					<a href="<?php echo base_url();?>cardDetails_conc/cardDetails" class="btn btn-primary btn-block btn-lg">Top Up</a>
+                    <a href="<?php echo base_url();?>Home" class="btn btn-primary btn-block btn-lg">Back to Home</a>
                   </div>
                 </div>		
     </div>
