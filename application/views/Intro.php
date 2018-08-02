@@ -163,7 +163,6 @@
                       <div id="sendmessage">Your message has been sent. Thank you!</div>
                       <div id="errormessage"></div>
 					  
-            					<?php echo validation_errors(); ?>
             					<?php echo form_open('Intro/register'); ?>
 
                         <div class="row">
@@ -229,12 +228,94 @@
 
                       </form>
                     </div>
+					
+					
+					
+                  </div>
+				  
+				  <div>
+			<section id="SignUp">
+              <div class="form-wrapper" style="padding-top: 100px">
+                <div class="wow fadeInUp" data-wow-duration="2s" data-wow-delay="0.2s">
+
+                  <div class="panel panel-skin">
+                    <div class="panel-heading">
+                      <h3 class="panel-title"><span class="fa fa-pencil-square-o"></span>Sign Up As NYP student <small>(It's free!)</small></h3>
+                    </div>
+                    <div class="panel-body">
+                      <div id="sendmessage">Your message has been sent. Thank you!</div>
+                      <div id="errormessage"></div>
+					  
+					  
+            				<?php echo validation_errors(); ?>
+            				<?php echo form_open('StudReg/register'); ?>
+
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+							<label>AdminNo</label>
+							<input type="text" class="form-control" id = "adminNo" name="adminNo" placeholder="AdminNo">
+						</div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                           <div class="form-group">
+							<label>PhoneNo</label>
+							<input type="text" class="form-control" id = "phoneNo" name="phoneNo" placeholder="phoneNo" id="newPhone"  pattern="[0-9]{4}[0-9]{4}" placeholder="Phone Number" onkeyup="this.setCustomValidity('')" oninput="setCustomValidity('')" required>
+						</div>
+                          </div> 
+                        </div>
+
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+							<label>Password</label>
+							<input type="password" class="form-control" id = "password" name="password" placeholder="Password">
+						</div>
+                          </div>
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+							<label>Confirm Password</label>
+							<input type="password" class="form-control" id = "password2" name="password2" placeholder="Confirm Password">
+						</div>
+                          </div>
+                        </div>
+						
+
+                        <div class="row">
+                          <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                            </div>
+                          </div>
+                          </div>
+                        </div>
+                   <!---     <div><button type="submit" id="signUpBtn" onclick="newSignUp()" class="btn btn-skin btn-block btn-lg" disabled>Sign Up</button></div> -->
+				   <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        <p class="lead-footer" style="color: red">*Compulsory Fields</p>
+
+                      <?php echo form_close(); ?>
+
+                    </div>
                   </div>
 
               </div>
 			  </section>
 			</div>
           </div>
+
+              </div>
+			  </section>
+			</div>
+          </div>
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+		  
+
         </div>
       </div>
     </section>
