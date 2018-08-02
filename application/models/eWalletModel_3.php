@@ -2,7 +2,7 @@
 	if (!defined('BASEPATH'))
 		exit ('No direct script access allowed!');
 	
-	class eWalletModel extends CI_Model
+	class eWalletModel_3 extends CI_Model
 	{
 		function __construct() 
 		{

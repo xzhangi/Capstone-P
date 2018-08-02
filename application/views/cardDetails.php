@@ -13,6 +13,11 @@
 	<link href="<?php echo base_url()?>assets/Default-BS/css/eWallet.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url()?>assets/Default-BS/css/style.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url()?>assets/Default-BS/css/cardDetails.css" rel="stylesheet" type="text/css">
+	
+	<!-- boxed bg -->
+    <link id="bodybg" href="<?php echo base_url()?>assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
+  <!-- template skin -->
+    <link id="t-colors" href="<?php echo base_url()?>assets/Default-BS/color/default.css" rel="stylesheet">
 </head>
 
 <body style="background-color: #ffffff;">
@@ -78,21 +83,6 @@
     <h4 class="payment-title">Choose your payment method</h4>
     <form action="" method="post">
       <div class="pymt-radio">
-
-        <div class="row-payment-method payment-row">
-          <div class="select-icon">
-            <input type="radio" id="radio1" name="radios" value="pp">
-            <label for="radio1"></label>
-          </div>
-          <div class="select-txt">
-            <p class="pymt-type-name">Paypal</p>
-            <p class="pymt-type-desc">Safe payment online. Credit card needed. PayPal account is not necessary.</p>
-          </div>
-          <div class="select-logo">
-            <img src="https://www.dropbox.com/s/pycofx0gngss4ef/logo-paypal.png?raw=1" alt="PayPal" />
-          </div>
-
-        </div>
 
       </div>
       <div class="pymt-radio">
@@ -192,9 +182,10 @@
 
       </div>
       <div class="button-master-container">
-        <div class="button-container"><a href="<?php echo base_url() ?>Home">Return Home</a>
+        <div class="button-container"><a href="<?php echo base_url();?>eWallet">Return to Booking</a>
         </div>
-        <div class="button-container button-finish"><a href="<?php echo base_url() ?>EWallet">Choose top up amount</a>
+        <!--<div class="button-container button-finish"><a href="/CodeIgniter_v1/application/views/balance.php">Top Up</a>-->
+		<a href="<?php echo base_url();?>eWallet_1" class="button-container button-finish">Top Up</a>
         </div>
       </div>
     </form>
