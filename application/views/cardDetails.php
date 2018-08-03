@@ -50,9 +50,8 @@
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="<?php echo base_url();?>Home">Book a Locker</a></li>
-      <li><a href="<?php echo base_url();?>Home#LockerStatus">Locker Booking Status</a></li>
+            <li><a href="<?php echo base_url();?>Home#LockerStatus">Locker Booking Status</a></li>
             <li><a href="<?php echo base_url();?>Home#Lockers">Lockers</a></li>
-            <li><a href="<?php echo base_url();?>Home#locations">Locations</a></li>
             <li><a href="<?php echo base_url();?>Home#pastTransactions">Past Transactions</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
@@ -167,7 +166,7 @@
           <div class="cc-field">
             <div class="cc-title">CVV Code<span class="numberCircle">?</span>
             </div>
-            <input type="password" />
+            <input type="password" pattern="^[0-9]{3}$"/>
           </div>
         </div>
         <div class="row-cc">

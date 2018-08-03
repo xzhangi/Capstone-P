@@ -37,6 +37,13 @@ $(document).ready(function() {
 
 });
 
+function UpdateData() {
+    if ()
+    {
+        
+    }
+}
+
 function generatePinCheck() {
     if (document.getElementById('autogeneratepin').checked)
     {

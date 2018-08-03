@@ -86,7 +86,7 @@
                   <?php if (!empty($notifications)) {
                           foreach($notifications as $item) { ?>
                     <li>
-                        <a href="<?php echo base_url() ?>Home/delete_notification/<?php echo $item->ID ?>">
+                        <a href="<?php echo base_url() ?>Home/delete_notification/<?php echo $item->ID ?>" onclick="return confirm('Remove this notification?');">
                             <div>
                                 <i class="fa fa-comment fa-fw"></i><?php echo $item->Title ?>
                                 <span class="pull-right text-muted small"><?php echo $item->Content ?></span>
@@ -163,11 +163,17 @@
 				      
                 <form action="<?php echo base_url();?>Home/book_locker" method="post" role="form">
                   <div style="text-align: center">
-                    <select name="lockerselected" id="lockerselected" style="padding: 5px; margin: 10px;" required>
+                    <select name="lockerselected" id="lockerselected" onchange="UpdateData()" style="padding: 5px; margin: 10px;" required>
                       <option value="" disabled selected>Select a Locker</option>
                       <?php foreach($availablelockerlist as $lockerItem)
                       { ?>
-                          <option value="<?php echo $lockerItem->LockerID; ?>" ><?php echo $lockerItem->Name; ?></option>
+                        <?php if($lockerItem->Locker_Size_ID == 1) { ?>
+                          <option value="<?php echo $lockerItem->LockerID; ?>" data-size="Small" ><?php echo $lockerItem->Name; ?></option>
+                        <?php } else if($lockerItem->Locker_Size_ID == 2) { ?>
+                          <option value="<?php echo $lockerItem->LockerID; ?>" data-size="Medium" ><?php echo $lockerItem->Name; ?></option>
+                        <?php } else { ?>
+                          <option value="<?php echo $lockerItem->LockerID; ?>" data-size="Large" ><?php echo $lockerItem->Name; ?></option>
+                        <?php } ?>
                   <?php 
                       } ?>
                     </select>
@@ -295,7 +301,7 @@
       <form action="<?php echo base_url();?>Home/complete_booking" method="post">
         <!-- Workaround to get Locker_ID rented > sending the booking detail's locker_id through post -->
         <input type="hidden" name="lockerselected" value="<?php echo $bookingdetails['Locker_ID'] ?>">
-        <input type="submit" value="Complete Booking!" style="margin-top: -13px;" class="btn btn-skin btn-block btn-lg">
+        <input type="submit" value="Complete Booking!" style="margin-top: -13px;" onclick="return confirm('Are you sure you want to end the rental?');" class="btn btn-skin btn-block btn-lg">
         <div style="margin-top: 5px; margin-bottom: 5px;">
           <?php if(!is_null($msg2)) echo $msg2; ?>
           </div>
