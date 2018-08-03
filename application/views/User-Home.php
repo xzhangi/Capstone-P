@@ -86,7 +86,7 @@
                   <?php if (!empty($notifications)) {
                           foreach($notifications as $item) { ?>
                     <li>
-                        <a href="#">
+                        <a href="<?php echo base_url() ?>Home/delete_notification/<?php echo $item->ID ?>">
                             <div>
                                 <i class="fa fa-comment fa-fw"></i><?php echo $item->Title ?>
                                 <span class="pull-right text-muted small"><?php echo $item->Content ?></span>
@@ -278,7 +278,7 @@
        <form  action="<?php echo base_url();?>Home/unlock_locker" method="post">
        <div class="col-md-6">
         <?php if ($bookingdetails['Locker_Unlocked']) { ?>
-        <input type="input" name="pincode" id="pincode" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your pin" class="form-control input-md" data-rule="minlen:6" value="-" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" readonly>
+        <input type="password" name="pincode" id="pincode" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your pin" class="form-control input-md" data-rule="minlen:6" value="-" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" readonly>
         <?php } else { ?>
         <input type="password" name="pincode" id="pincode" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
         <?php } ?>

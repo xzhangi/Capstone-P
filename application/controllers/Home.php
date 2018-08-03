@@ -124,5 +124,11 @@
 			$result = $this->LockerModel->Show_Pin(true);
 			$this->index(null, null, $result);
 		}
+
+		public function delete_notification($id)
+		{
+			$this->updatenotificationmodel->delete_notification($id);
+			$this->index();
+		}
 	}
 ?>

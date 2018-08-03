@@ -34,6 +34,18 @@
                     return $result;
                 }
 
+                function delete_notification($id)
+                {
+                    // Hide the pin by setting Show_Pin to false
+                    $data = array(
+                        'Is_Deleted' => true
+                    );
+
+                    $this->db->where('Username', $this->session->userdata('Username'));
+                    $this->db->where('ID', $id);
+                    $this->db->update('tbl_notifications', $data);
+                }
+
                 function get_notification_for_user()
                 {
                     $this->db->select('*');
