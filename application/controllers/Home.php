@@ -11,6 +11,7 @@
 			//Load locker model
 			$this->load->model('LockerModel');
 			$this->load->model('updatenotificationmodel');
+			$this->load->model('Retrieve_model');
 			//$this->output->enable_profiler(TRUE);
 		}
 		 
@@ -98,6 +99,9 @@
 		public function complete_booking()
 		{
 			$result = $this->LockerModel->Complete_Booking();
+			//Deduct from ewallet
+			$result = $this->Retrieve_model->updated_price($this->session->userdata('Username'));
+			
 			redirect('Home');
 		}
 

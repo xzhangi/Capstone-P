@@ -421,6 +421,7 @@
                   <th>Rent End Date/Time</th>
                   <th>Rented By</th>
                   <th>Paid</th>
+                  <th>Amount Paid</th>
                 </tr>
               </thead>
                 <?php foreach($pastlockertransactionslist as $trans) { ?>
@@ -439,6 +440,7 @@
                     <?php } else { ?>
                     <td>No</td>
                   <?php } ?>
+                  <td>$ <?php echo $trans->Total_Charge ?></td>
                 </tr>
                 <?php } ?>
               </table>

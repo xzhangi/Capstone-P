@@ -261,6 +261,7 @@
 					$list[$i]->Rented_By = $result[$i]->Username;
 					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
 					$list[$i]->Paid = $result[$i]->Paid;
+					$list[$i]->Total_Charge = $result[$i]->Total_Charge;
 					$list[$i]->Has_Trans = true;
 				}
 				return $list;
@@ -283,8 +284,8 @@
 			if($query->num_rows() == 1)
 			{
 				$data = array(
-					'Rent_To_Date' => @date('Y-m-d H:i'),
-			        'Is_Active' => false
+					'Rent_To_Date' => @date('Y-m-d H:i')
+			        //'Is_Active' => false
 				);
 				$this->db->where('Username', $this->session->userdata('Username'));
 				$this->db->where('Is_Active', true);

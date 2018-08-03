@@ -55,6 +55,7 @@
 	 public function getTimeRented($username) { 
 			$this ->db->select("Time_Rented");
 			$this->db->from('tbl_locker_rental');
+			$this->db->where('Paid', false);
 			$this->db->where('Username', $username);
 			
 			$query = $this->db->get();
@@ -87,7 +88,8 @@
 	 }
 	 
 	  public function price($username) {
-		 $this ->db->select("Price");
+	  	//per minute rental
+		 $this->db->select("Price");
 		 $this->db->from('tbl_locker_rental_type');
 		 $this->db->join('tbl_locker_rental', 'tbl_locker_rental_type.Rental_Type_ID = tbl_locker_rental.Rental_Type', 'inner');
 		 $this->db->where('tbl_locker_rental.Paid', '0');
@@ -95,13 +97,13 @@
 		 $this->db->where('tbl_locker_rental.Username', $username);
 		 $query = $this->db->get();
 		 $result = $query->result();
+
 		 
 		 if(!isset($result[0])) {
 				return false;
 			}
 			else {
 			return $result[0]->Price;
-			//Get the time rented
 			}
 		
 		//Get the price
@@ -113,7 +115,23 @@
 	 {
 		 $timeRented = $this->Retrieve_model->getTimeRented($username);
 		 $price = $this->Retrieve_model->price($username);
-		 $priceToBeDeducted = $timeRented*$price;	
+
+		 $this->db->select("Rental_Type");
+		 $this->db->from('tbl_locker_rental');
+		 $this->db->where('tbl_locker_rental.Is_Active', '1');
+		 $this->db->where('tbl_locker_rental.Username', $username);
+		 $query = $this->db->get();
+		 $result = $query->result();
+
+		 //Check booking type (minute)
+		 if ($result[0]->Rental_Type < 4)
+		 {
+		 	$priceToBeDeducted = $timeRented * $price;
+		 }
+		 else
+		 {
+		 	$priceToBeDeducted = $result[0]->Rental_Type * 10;
+		 }
 		
 		return $priceToBeDeducted;
 	 }
@@ -133,14 +151,29 @@
 		$currentAmount = $this->Retrieve_model->retrieve_amount($username);
 		$priceToDeductNow = $this->Retrieve_model->priceToDeduct($username);
 		$updatedAmt = $currentAmount - $priceToDeductNow;
+		//Update ewallet
 		$this->db->set('Balance', $updatedAmt);
 		$this->db->where('Username', $username);
 		$this->db->update('tbl_ewallet');
 		
-		$this->db->set('Paid', 1);
+		//Update total charge to db
+		$this->db->set('Total_Charge', $priceToDeductNow);
 		$this->db->where('Username', $username);
+		$this->db->where('Is_Active', true);
 		$this->db->update('tbl_locker_rental');
-		
+
+		//Set user paid to true
+		$this->db->set('Paid', true);
+		$this->db->where('Username', $username);
+		$this->db->where('Is_Active', true);
+		$this->db->update('tbl_locker_rental');
+
+		//Close the transaction
+		$this->db->set('Is_Active', false);
+		$this->db->where('Username', $username);
+		$this->db->where('Is_Active', true);
+		$this->db->update('tbl_locker_rental');
+
 		return $updatedAmt;
 		
 		}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 01, 2018 at 07:19 PM
+-- Generation Time: Aug 03, 2018 at 04:49 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -34,7 +34,7 @@ DROP TABLE IF EXISTS `tbl_ewallet`;
 CREATE TABLE IF NOT EXISTS `tbl_ewallet` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Username` varchar(12) NOT NULL,
-  `Balance` int(11) NOT NULL DEFAULT '0',
+  `Balance` double NOT NULL DEFAULT '0',
   `Created_Date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Has_Pending_Payments` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `tbl_ewallet` (
 --
 
 INSERT INTO `tbl_ewallet` (`ID`, `Username`, `Balance`, `Created_Date`, `Has_Pending_Payments`) VALUES
-(1, '18A123A', 60, '2018-07-31 19:53:46', 0);
+(1, '18A123A', 99.88, '2018-07-31 19:53:46', 0);
 
 -- --------------------------------------------------------
 
@@ -75,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `tbl_locker` (
 --
 
 INSERT INTO `tbl_locker` (`ID`, `Location_ID`, `Locker_Size_ID`, `Name`, `Desc`, `Remarks`, `Is_Available`, `Is_Active`, `Created_By`, `Created_Date`) VALUES
-(1, 1, 1, 'SEG - Small 01', NULL, NULL, 0, 1, 'SYS_ADMIN', '2017-06-15'),
+(1, 1, 1, 'SEG - Small 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (2, 1, 2, 'SEG - Medium 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (3, 1, 3, 'SEG - Large 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (4, 2, 1, 'SIT - Small 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
@@ -148,26 +148,26 @@ CREATE TABLE IF NOT EXISTS `tbl_locker_rental` (
   `Paid` tinyint(4) NOT NULL,
   `Locker_Unlocked` tinyint(4) NOT NULL DEFAULT '0',
   `Show_Pin` tinyint(4) NOT NULL DEFAULT '0',
+  `Time_Rented` double GENERATED ALWAYS AS (timestampdiff(MINUTE,`Rent_From_Date`,`Rent_To_Date`)) VIRTUAL,
+  `Total_Charge` double DEFAULT NULL,
   PRIMARY KEY (`Rent_ID`),
   KEY `Username_idx` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_locker_rental`
 --
 
-INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent_To_Date`, `Username`, `Rental_Type`, `Creation_Date`, `Is_Active`, `Pin_Code`, `Points_Obtained`, `Paid`, `Locker_Unlocked`, `Show_Pin`) VALUES
-(54, 16, '2018-07-31 16:11:00', '2018-07-31 16:34:00', '18A123A', 1, '2018-07-31 16:11:00', 0, '406742', 0, 0, 0, 0),
-(55, 18, '2018-07-31 16:35:00', '2018-07-31 16:39:00', '18A123A', 1, '2018-07-31 16:35:00', 0, '637683', 0, 0, 0, 0),
-(56, 17, '2018-07-31 16:39:00', '2018-07-31 16:40:00', '18A123A', 1, '2018-07-31 16:39:00', 0, '610883', 0, 0, 0, 0),
-(57, 17, '2018-07-31 16:42:00', '2018-07-31 16:43:00', '18A123A', 1, '2018-07-31 16:42:00', 0, '502396', 0, 0, 0, 0),
-(58, 16, '2018-07-31 20:19:00', '2018-07-31 20:20:00', '18A123A', 1, '2018-07-31 20:19:00', 0, '195251', 0, 0, 0, 0),
-(64, 19, '2018-08-01 11:02:00', NULL, '18A123A', 1, '2018-08-01 11:02:00', 0, '476029cdd37d4c7b50e51ae7b6ff9c2b', 0, 0, 0, 0),
-(65, 1, '2018-08-01 13:18:00', NULL, '18A123A', 1, '2018-08-01 13:18:00', 0, '75f972e52a32a1a77be7f80d145e16c1', 0, 0, 0, 0),
-(66, 2, '2018-08-01 13:29:00', NULL, '18A123A', 1, '2018-08-01 13:29:00', 0, '123456', 0, 0, 0, 0),
-(67, 1, '2018-08-01 13:53:00', NULL, '18A123A', 1, '2018-08-01 13:53:00', 0, '123456', 0, 0, 0, 1),
-(68, 1, '2018-08-02 01:20:00', NULL, '18A123A', 1, '2018-08-02 01:20:00', 0, '589222', 0, 0, 0, 1),
-(69, 1, '2018-08-02 02:48:00', NULL, '18A123A', 1, '2018-08-02 02:48:00', 1, '666602', 0, 0, 0, 0);
+INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent_To_Date`, `Username`, `Rental_Type`, `Creation_Date`, `Is_Active`, `Pin_Code`, `Points_Obtained`, `Paid`, `Locker_Unlocked`, `Show_Pin`, `Total_Charge`) VALUES
+(91, 19, '2018-08-03 12:22:00', '2018-08-03 12:22:00', '18A123A', 3, '2018-08-03 12:22:00', 0, '308370', 0, 1, 0, 0, NULL),
+(92, 18, '2018-08-03 12:22:00', '2018-08-03 12:22:00', '18A123A', 3, '2018-08-03 12:22:00', 0, '589147', 0, 1, 0, 0, NULL),
+(93, 19, '2018-08-03 12:25:00', '2018-08-03 12:26:00', '18A123A', 1, '2018-08-03 12:25:00', 0, '013211', 0, 1, 0, 0, NULL),
+(94, 14, '2018-08-03 12:27:00', '2018-08-03 12:29:00', '18A123A', 2, '2018-08-03 12:27:00', 0, '196603', 0, 1, 0, 0, NULL),
+(95, 18, '2018-08-03 12:35:00', '2018-08-03 12:39:00', '18A123A', 2, '2018-08-03 12:35:00', 0, '776709', 0, 1, 0, 0, 0.08),
+(96, 19, '2018-08-03 12:41:00', '2018-08-03 12:41:00', '18A123A', 5, '2018-08-03 12:41:00', 0, '468649', 0, 1, 0, 0, 0),
+(97, 18, '2018-08-03 12:42:00', '2018-08-03 12:43:00', '18A123A', 5, '2018-08-03 12:42:00', 0, '118716', 0, 1, 0, 0, 0),
+(98, 18, '2018-08-03 12:46:00', '2018-08-03 12:46:00', '18A123A', 1, '2018-08-03 12:46:00', 0, '730426', 0, 1, 0, 0, 0),
+(99, 18, '2018-08-03 12:46:00', '2018-08-03 12:46:00', '18A123A', 4, '2018-08-03 12:46:00', 0, '114533', 0, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -237,15 +237,15 @@ CREATE TABLE IF NOT EXISTS `tbl_notifications` (
   `Create_By` varchar(12) NOT NULL DEFAULT 'SYS_ADMIN',
   `Create_Date` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_notifications`
 --
 
 INSERT INTO `tbl_notifications` (`ID`, `Username`, `Title`, `Content`, `Is_Read`, `Is_Deleted`, `Create_By`, `Create_Date`) VALUES
-(1, '18A123A', 'Test', 'This is a test notification for debugging purposes.', 0, '0', 'SYS_ADMIN', '2017-06-20'),
-(4, '18A123A', 'TEST', '12321', 0, '0', 'SYS_ADMIN', '2018-07-31');
+(1, '18A123A', 'Test', 'This is a test notification for debugging purposes.', 0, '1', 'SYS_ADMIN', '2017-06-20'),
+(7, '18A123A', 'Test notification 3', 'Hello world', 0, '1', 'SYS_ADMIN', '2018-08-03');
 
 -- --------------------------------------------------------
 
