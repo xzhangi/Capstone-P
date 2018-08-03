@@ -22,7 +22,7 @@ class CreateAdmin extends CI_Controller {
 			//$this->load->helper(array('form', 'url'));
 
 			$this->load->library('form_validation');
-			$this->form_validation->set_rules('username', 'Username', 'required|is_unique[tbl_users.username]');
+			$this->form_validation->set_rules('username', 'Username', 'required|callback_check_username_exists');
 			$this->form_validation->set_rules('name', 'Name');
 			$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[8]');
 			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'trim|required|matches[password]');
@@ -40,7 +40,7 @@ class CreateAdmin extends CI_Controller {
 				$enc_password = md5($this->input->post('password'));
 				$this->AdminModel->register($enc_password);
 					
-				redirect('AdminHome');
+				redirect('accountmanagement');
 			}
         }
 		
@@ -75,6 +75,14 @@ class CreateAdmin extends CI_Controller {
 			$this->form_validation->set_message('check_email_exists', 'That email is taken. Please choose a different one');
 			if($this->AdminModel->check_email_exists($email))
 			{
+				return true;
+			} else {
+				return false;
+			}
+		}
+		public function check_username_exists($username){
+			$this->form_validation->set_message('check_username_exists', 'The Username already exists.');
+			if($this->AdminModel->check_username_exists($username)){
 				return true;
 			} else {
 				return false;

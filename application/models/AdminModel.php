@@ -37,6 +37,30 @@
 			return $list;
 		}
 		
+		// Get all reports from report table
+		function get_report_list()
+		{
+			$this->db->select('*');
+			$this->db->from('tbl_reports');			
+			$query = $this->db->get();
+			$result = $query->result();
+			$list = Array();
+			
+			for ($i = 0; $i < count($result); $i++)
+			{
+				$list[$i] = (object)NULL;
+				$list[$i]->ID = $result[$i]->ID;
+				$list[$i]->Report_Title = $result[$i]->Report_Title;
+				$list[$i]->Report_Details = $result[$i]->Report_Details;
+				$list[$i]->Username = $result[$i]->Username;
+				$list[$i]->Created_Date = $result[$i]->Created_Date;
+				$list[$i]->Is_Deleted = $result[$i]->Is_Deleted;
+
+			}
+			
+			return $list;
+		}
+		
 		// Get all lockers from locker location table
 		function get_lockerlocation_list()
 		{
@@ -114,6 +138,7 @@
 			for ($i = 0; $i < count($result); $i++)
 			{
 				$list[$i] = (object)NULL;
+				$list[$i]->Locker_ID = $result[$i]->ID;
 				$list[$i]->Location_ID = $result[$i]->Location_ID;
 				$list[$i]->Locker_Size_ID = $result[$i]->Locker_Size_ID;
 				$list[$i]->Name = $result[$i]->Name;
@@ -143,6 +168,18 @@
 
 			// Insert user
 			return $this->db->insert('tbl_users', $data);
+		}
+		
+			// Check if username exists in DB
+		public function check_username_exists($username)
+		{
+			$query = $this->db->get_where('tbl_users', array('username' => $username));
+			if(empty($query->row_array()))
+			{
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 		// Check if nric exists in DB
@@ -194,6 +231,21 @@
 			return $data;
 		}
 		
+		public function update_locker_status($lockerid)
+		{
+			$this->db->select('Is_Active');
+			$this->db->from('tbl_locker');
+			$this->db->where('ID', $lockerid);
+			$query = $this->db->get();
+			$result = $query->result();
+			
+			$result[0]->Is_Active = !$result[0]->Is_Active;
+			
+			$data = array('Is_Active' => $result[0]->Is_Active);
+			$this->db->where('ID', $lockerid);
+			return $this->db->update('tbl_locker', $data);
+		}
+		
 		//update user record
 		public function update_user_record($username, $name, $email, $nric, $mobile){
 			// User data array
@@ -209,6 +261,30 @@
 
 			// Insert user
 			return $this->db->update('tbl_users', $data);
+		
+		
+			$query = $this->db->get_where('tbl_users', array('Username' => $username));
+			if(empty($query->row_array())) {
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+			
+		}
+		
+		public function get_other_tables($username) {
+			//$user = $this->AdminModel->get_user_record($Username);
+			$this->db->select('Name');
+			$this->db->from('tbl_locker_rental');
+			$this->db->join('tbl_locker', 'tbl_locker_rental.Locker_ID = tbl_locker.ID', 'inner');
+			$this->db->where('tbl_locker_rental.Username', 'Admin');
+			$query = $this->db->get();
+			$result = $query->result();
+			
+			return $result;
+			
 		}
 	}
 ?>

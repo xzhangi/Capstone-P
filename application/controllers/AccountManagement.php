@@ -23,10 +23,25 @@
 			//delete user record from db
 		function delete_user($username)
 		{
+			$this->load->model('AdminModel');
+			$data['userlist'] = $this->AdminModel->Get_User_List();
 			$this->db->where('username', $username);
 			$this->db->delete('tbl_users');
-			redirect('AdminHome');
+			redirect('accountmanagement');
 		}
+		
+		function locker()
+		{
+			$username = $this -> session ->userdata('username');
+			$this->load->model('AdminModel');
+			$data['lockerName'] = $this->AdminModel->get_other_tables($username);
+			$this->load->view('Admin/AccountManagement',$data);
+		}
+		
+		
+		
 
-	}
+    }
+
+
 ?>

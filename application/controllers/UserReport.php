@@ -14,8 +14,11 @@
 			$this->load->model('AdminModel');
 			//Call any required model functions
 			//$data[''] = $this->UserReportModel->;
+			$data['reportlist'] = $this->AdminModel->get_report_list();
 			//Load the view
 			$this->load->view('Admin/UserReport', $data);
+			//$this->load->view('Admin/UserReport');
+
 		}
 	}
 ?>
