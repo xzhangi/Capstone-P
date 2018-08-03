@@ -96,7 +96,7 @@ function googleMap() {
 		};
 
 		infoWindow.setPosition(pos);
-		infoWindow.setContent('Location found.');
+		infoWindow.setContent('Current Location');
 		infoWindow.open(map);
 		map.setCenter(pos);
 	  }, function() {

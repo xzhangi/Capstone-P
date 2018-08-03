@@ -84,26 +84,26 @@
               <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
                 <h2>Current balance</h2><span> <input type="number" name="balance" id="balance" class="form-control input-md" style="font-size: 20px" value="<?php echo $userWallet ?>" disabled></span>
                 <form action="<?php echo base_url();?>eWallet/top_up" method="post" role="form" id="topupform"> 
-                <div class="card active" data-id="#{id}" style="margin-top: 10px">
+                <div class="card active" style="margin-top: 10px">
                   <div class="row">
                     <input type="radio" id="topUp10" name="topupRadio" value="10" checked="checked"  />
                     <label style="font-size: 20px"> Top up :$10 </label>
                   </div>
                 </div>
-                <div class="card active" data-id="#{id}">
+                <div class="card active"">
                   <div class="row">
                   <input type="radio" id="topUp20" name="topupRadio" value="20"  />
                   <label style="font-size: 20px"> Top up: $20 </label>
                 </div>
               </div>
-              <div class="card active" data-id="#{id}">
+              <div class="card active"">
                 <div class="row">
                   <input type="radio" id="topUp30" name="topupRadio" value="30"  />
                   <label style="font-size: 20px"> Top up: $30</label>
                 </div>
               </div>
             </form>
-                <input type="submit" value="Top Up" class="btn btn-primary btn-block btn-lg" form="topupform" style="margin-top: 15px;">
+                <input type="submit" value="Confirm topup" class="btn btn-primary btn-block btn-lg" form="topupform" style="margin-top: 15px;">
                 <a href="<?php echo base_url();?>eWallet" class="btn btn-primary btn-block btn-lg" style="margin-top: 15px; margin-bottom: 15px;">Cancel</a>
               </div>
             </div>

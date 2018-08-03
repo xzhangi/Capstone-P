@@ -183,7 +183,7 @@
         <div class="button-container"><a href="<?php echo base_url();?>eWallet">Return to Booking</a>
         </div>
         <!--<div class="button-container button-finish"><a href="/CodeIgniter_v1/application/views/balance.php">Top Up</a>-->
-		<a href="<?php echo base_url();?>eWallet_1" class="button-container button-finish">Top Up</a>
+		<a href="<?php echo base_url();?>eWallet_1" class="button-container button-finish">Continue</a>
         </div>
       </div>
     </form>

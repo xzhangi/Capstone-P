@@ -83,57 +83,24 @@
                     <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-alerts">
+                  <?php if (!empty($notifications)) {
+                          foreach($notifications as $item) { ?>
                     <li>
                         <a href="#">
                             <div>
-                                <i class="fa fa-comment fa-fw"></i> New Comment
-                                <span class="pull-right text-muted small">4 minutes ago</span>
+                                <i class="fa fa-comment fa-fw"></i><?php echo $item->Title ?>
+                                <span class="pull-right text-muted small"><?php echo $item->Content ?></span>
                             </div>
                         </a>
                     </li>
                     <li class="divider"></li>
+                  <?php } } else { ?>
                     <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                <span class="pull-right text-muted small">12 minutes ago</span>
-                            </div>
+                        <a class="text-center">
+                            <strong>No notifications</strong>
                         </a>
                     </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-tasks fa-fw"></i> New Task
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                <span class="pull-right text-muted small">4 minutes ago</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Alerts</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
+                  <?php } ?>
                 </ul>
             <!-- /.dropdown-alerts -->
           </ul>
@@ -310,7 +277,11 @@
        
        <form  action="<?php echo base_url();?>Home/unlock_locker" method="post">
        <div class="col-md-6">
+        <?php if ($bookingdetails['Locker_Unlocked']) { ?>
+        <input type="input" name="pincode" id="pincode" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your pin" class="form-control input-md" data-rule="minlen:6" value="-" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" readonly>
+        <?php } else { ?>
         <input type="password" name="pincode" id="pincode" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+        <?php } ?>
        </div>
         <div class="col-md-3" style="margin-top: 2px;">
         <?php if ($bookingdetails['Locker_Unlocked']) { ?>

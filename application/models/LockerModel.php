@@ -326,18 +326,50 @@
 
 		public function Unlock_Locker()
 		{
-			// Verify pincode
-			$this->db->select('Is_Active');
-			$this->db->from('tbl_locker_rental');
-			$this->db->where('Username', $this->session->userdata('Username'));
-			$this->db->where('Is_Active', true);
-			$this->db->where('Pin_Code', $this->input->post('pincode'));
-			$query = $this->db->get();
-			
-			// If record exists and pincode is correct (user currently renting locker)
-			if($query->num_rows() == 1)
+			if ($this->input->post('pincode') != '-') // unlock
 			{
-			// Set locker status
+				// Verify pincode
+				$this->db->select('Is_Active');
+				$this->db->from('tbl_locker_rental');
+				$this->db->where('Username', $this->session->userdata('Username'));
+				$this->db->where('Is_Active', true);
+				$this->db->where('Pin_Code', $this->input->post('pincode'));
+				$query = $this->db->get();
+				
+				// If record exists and pincode is correct (user currently renting locker)
+				if($query->num_rows() == 1)
+				{
+					// Set locker status
+					$this->db->select('Locker_Unlocked');
+					$this->db->from('tbl_locker_rental');
+					$this->db->where('Username', $this->session->userdata('Username'));
+					$this->db->where('Is_Active', true);
+					$query = $this->db->get();
+					$result = $query->result();
+
+					if($query->num_rows() == 1)
+					{
+						//change status
+						$data = array(
+					        'Locker_Unlocked' => true
+						);
+						$this->db->where('Username', $this->session->userdata('Username'));
+						$this->db->where('Is_Active', true);
+						$this->db->update('tbl_locker_rental', $data);
+
+						$msg = '<font size=2 color=red>Your locker is unlocked.</font>';
+						return $msg;
+					}
+				}
+				else //Incorrect pin 
+				{
+					$msg = '<font size=2 color=red>Your pin is incorrect.</font>';
+							return $msg;
+				}
+			}
+			else //lock
+			{
+				// Set locker status
 				$this->db->select('Locker_Unlocked');
 				$this->db->from('tbl_locker_rental');
 				$this->db->where('Username', $this->session->userdata('Username'));
@@ -347,31 +379,17 @@
 
 				if($query->num_rows() == 1)
 				{
-					//Change pin
+					//change status
 					$data = array(
-				        'Locker_Unlocked' => !$result[0]->Locker_Unlocked
+				        'Locker_Unlocked' => false
 					);
 					$this->db->where('Username', $this->session->userdata('Username'));
 					$this->db->where('Is_Active', true);
 					$this->db->update('tbl_locker_rental', $data);
 
-					//locker unlocked
-					if (!$result[0]->Locker_Unlocked)
-					{
-						$msg = '<font size=2 color=red>Your locker is unlocked.</font>';
-						return $msg;
-					}
-					else //locker locked
-					{
-						$msg = '<font size=2 color=red>Your locker is locked.</font>';
-						return $msg;
-					}
+					$msg = '<font size=2 color=red>Your locker is locked.</font>';
+					return $msg;
 				}
-			}
-			else //Incorrect pin 
-			{
-				$msg = '<font size=2 color=red>Your pin is incorrect.</font>';
-						return $msg;
 			}
 		}
 
@@ -380,7 +398,7 @@
 			// Show the pin
 			if ($show)
 			{
-				if ($this->input->post('userPass') == '-') // Trying to show the pin
+				if ($this->input->post('userPass') == '-') // hide pin
 				{
 					// Received ------, Hide pin
 					$this->db->select('Show_Pin');
@@ -458,7 +476,8 @@
 				{
 					// Hide the pin by setting Show_Pin to false
 					$data = array(
-				        'Show_Pin' => false
+				        'Show_Pin' => false,
+				        'Locker_Unlocked' => false //Lock locker too
 					);
 					$this->db->where('Username', $this->session->userdata('Username'));
 					$this->db->where('Is_Active', true);

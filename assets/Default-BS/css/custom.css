@@ -20,33 +20,6 @@ td {
 	width: 100%;
 }
 
-.lockerboxunavailable{
-  text-align: left;
-  background: #fff;
-  width: 100%;
-  padding-top: 50%;
-  margin: 15px 0;
-  /*background-image: url("../../Default-BS/img/lockers/small.png");*/
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  opacity: 0.2;
-  /*display: none; <-- uncomment this rule for use with MixItUp */
-}
-
-.lockerboxavailable{
-  text-align: left;
-  background: #fff;
-  width: 100%;
-  padding-top: 50%;
-  margin: 15px 0;
-  /*background-image: url("../../Default-BS/img/lockers/small.png");*/
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  /*display: none; <-- uncomment this rule for use with MixItUp */
-}
-
 .smallavailable {
   text-align: left;
   background: #fff;

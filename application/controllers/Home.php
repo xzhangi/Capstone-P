@@ -10,7 +10,7 @@
 			$this->check_session();
 			//Load locker model
 			$this->load->model('LockerModel');
-			
+			$this->load->model('updatenotificationmodel');
 			//$this->output->enable_profiler(TRUE);
 		}
 		 
@@ -40,6 +40,9 @@
 			else {
 				$data['msg2'] = NULL;
 			}
+
+			//Get notifications
+			$data['notifications'] = $this->updatenotificationmodel->get_notification_for_user();
 
 			//Load the view
 			$this->load->view('User-Home', $data);
