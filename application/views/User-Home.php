@@ -286,9 +286,9 @@
 
       <form action="<?php echo base_url();?>Home/change_pin" method="post">
         <div class="col-md-3" style="margin-top: 10px;">
-          <input type="password" name="pincode_old" id="pincode_old" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your old pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+          <input type="password" name="pincode_old" id="pincode_old" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your old pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
         <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 digit pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
-        <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" Title="Please enter 6 digits" required>
+        <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 15px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" Title="Please enter 6 digits" required>
         <input type="submit" value="Change pin" class="btn btn-skin btn-block btn-lg">
         <div style="margin-top: 5px; margin-bottom: 5px;">
           <?php if(!is_null($pinErrMsg)) echo $pinErrMsg; ?>
@@ -298,13 +298,29 @@
 
       <form action="<?php echo base_url();?>Home/show_pin" method="post">
        <div class="col-md-9">
+        <?php if ($bookingdetails['Pin_Code'] == '******') { ?>
           <input type="password" name="userPass" id="userPass" style="margin-top: -5px; margin-bottom: 5px;" placeholder="Enter your password" class="form-control input-md" Title="Please enter your password" required>
           <input type="submit" id="showPinBtn" name="showPinBtn" style="margin-bottom: 3px;" value="Show Pin" class="btn btn-skin btn-block btn-lg">
+        <?php } else { ?>
+          <input type="text" name="userPass" id="userPass" style="margin-top: -5px; margin-bottom: 5px;" placeholder="Enter your password" class="form-control input-md" value="-" Title="Please enter your password" readonly>
+          <input type="submit" id="showPinBtn" name="showPinBtn" style="margin-bottom: 3px;" value="Hide Pin" class="btn btn-skin btn-block btn-lg">
+        <?php } ?>
      </form>
-
-      <form  action="<?php echo base_url();?>Home/unlock_locker" method="post">
-        <input type="submit" value="Unlock Locker" class="btn btn-skin btn-block btn-lg">
+       </div>
+       
+       <form  action="<?php echo base_url();?>Home/unlock_locker" method="post">
+       <div class="col-md-6">
+        <input type="password" name="pincode" id="pincode" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+       </div>
+        <div class="col-md-3" style="margin-top: 2px;">
+        <?php if ($bookingdetails['Locker_Unlocked']) { ?>
+          <input type="submit" value="Lock Locker" class="btn btn-skin btn-block btn-lg">
+        <?php } else { ?>
+          <input type="submit" value="Unlock Locker" class="btn btn-skin btn-block btn-lg">
+        <?php } ?>
       </form>
+       </div>
+    <div class="col-md-9" style="margin-top: 15px;">
       <form action="<?php echo base_url();?>Home/complete_booking" method="post">
         <!-- Workaround to get Locker_ID rented > sending the booking detail's locker_id through post -->
         <input type="hidden" name="lockerselected" value="<?php echo $bookingdetails['Locker_ID'] ?>">

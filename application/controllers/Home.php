@@ -113,25 +113,13 @@
 		public function unlock_locker()
 		{
 			$result = $this->LockerModel->Unlock_Locker();
-			if ($result) //Change pin success
-			{
-				$msg = "<font size=2 color=red>Your locker is unlocked.</font> <br \>";
-			} else { //Change pin fail
-				$msg = "<font size=2 color=red>Your locker is locked. </font> <br \>";
-			}
-			$this->index(null, $msg);
+			$this->index(null, $result);
 		}
 
 		public function show_pin()
 		{
 			$result = $this->LockerModel->Show_Pin(true);
-			if ($result) //Change pin success
-			{
-				$msg = "<font size=2 color=red>Your pin is revealed.</font> <br \>";
-			} else { //Change pin fail
-				$msg = "<font size=2 color=red>Your password is incorrect. </font> <br \>";
-			}
-			$this->index(null, null, $msg);
+			$this->index(null, null, $result);
 		}
 	}
 ?>

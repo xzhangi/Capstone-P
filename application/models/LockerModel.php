@@ -326,25 +326,52 @@
 
 		public function Unlock_Locker()
 		{
-			$this->db->select('Locker_Unlocked');
+			// Verify pincode
+			$this->db->select('Is_Active');
 			$this->db->from('tbl_locker_rental');
 			$this->db->where('Username', $this->session->userdata('Username'));
 			$this->db->where('Is_Active', true);
+			$this->db->where('Pin_Code', $this->input->post('pincode'));
 			$query = $this->db->get();
-			$result = $query->result();
-
+			
 			// If record exists and pincode is correct (user currently renting locker)
 			if($query->num_rows() == 1)
 			{
-				//Change pin
-				$data = array(
-			        'Locker_Unlocked' => !$result[0]->Locker_Unlocked
-				);
+			// Set locker status
+				$this->db->select('Locker_Unlocked');
+				$this->db->from('tbl_locker_rental');
 				$this->db->where('Username', $this->session->userdata('Username'));
 				$this->db->where('Is_Active', true);
-				$this->db->update('tbl_locker_rental', $data);
+				$query = $this->db->get();
+				$result = $query->result();
 
-				return !$result[0]->Locker_Unlocked;
+				if($query->num_rows() == 1)
+				{
+					//Change pin
+					$data = array(
+				        'Locker_Unlocked' => !$result[0]->Locker_Unlocked
+					);
+					$this->db->where('Username', $this->session->userdata('Username'));
+					$this->db->where('Is_Active', true);
+					$this->db->update('tbl_locker_rental', $data);
+
+					//locker unlocked
+					if (!$result[0]->Locker_Unlocked)
+					{
+						$msg = '<font size=2 color=red>Your locker is unlocked.</font>';
+						return $msg;
+					}
+					else //locker locked
+					{
+						$msg = '<font size=2 color=red>Your locker is locked.</font>';
+						return $msg;
+					}
+				}
+			}
+			else //Incorrect pin 
+			{
+				$msg = '<font size=2 color=red>Your pin is incorrect.</font>';
+						return $msg;
 			}
 		}
 
@@ -353,17 +380,9 @@
 			// Show the pin
 			if ($show)
 			{
-				// Verify credentials
-				$this->db->select('password');
-				$this->db->from('tbl_users');
-				$this->db->where('Username', $this->session->userdata('Username'));
-				$encryptpass = md5($this->input->post('userPass'));
-				$query = $this->db->get();
-				$result = $query->result();
-
-				// Password verified
-				if ($result[0]->password == $encryptpass)
+				if ($this->input->post('userPass') == '-') // Trying to show the pin
 				{
+					// Received ------, Hide pin
 					$this->db->select('Show_Pin');
 					$this->db->from('tbl_locker_rental');
 					$this->db->where('Username', $this->session->userdata('Username'));
@@ -374,22 +393,59 @@
 					// If record exists (user currently renting locker)
 					if($query->num_rows() == 1)
 					{
-						// Show the pin by setting Show_Pin to true
+						// Hide the pin by setting Show_Pin to false
 						$data = array(
-					        'Show_Pin' => true
+					        'Show_Pin' => false
 						);
 						$this->db->where('Username', $this->session->userdata('Username'));
 						$this->db->where('Is_Active', true);
 						$this->db->update('tbl_locker_rental', $data);
-
-						return true;
 					}
 
+					return '<font size=2 color=red>Your pin has been hidden.</font>';
 				}
-				else { //Wrong password
-					return false;
-				}
-			} else { //Hide the pin (for initial login)
+				else 
+				{
+					// Verify credentials
+					$this->db->select('password');
+					$this->db->from('tbl_users');
+					$this->db->where('Username', $this->session->userdata('Username'));
+					$encryptpass = md5($this->input->post('userPass'));
+					$query = $this->db->get();
+					$result = $query->result();
+
+					// Password verified
+					if ($result[0]->password == $encryptpass)
+					{
+						$this->db->select('Show_Pin');
+						$this->db->from('tbl_locker_rental');
+						$this->db->where('Username', $this->session->userdata('Username'));
+						$this->db->where('Is_Active', true);
+						$query = $this->db->get();
+						$result = $query->result();
+
+						// If record exists (user currently renting locker)
+						if($query->num_rows() == 1)
+						{
+							// Show the pin by setting Show_Pin to true
+							$data = array(
+						        'Show_Pin' => true
+							);
+							$this->db->where('Username', $this->session->userdata('Username'));
+							$this->db->where('Is_Active', true);
+							$this->db->update('tbl_locker_rental', $data);
+
+							return '<font size=2 color=red>Your pin has been revealed.</font>';
+						}
+					}
+					else 
+					{ //Wrong password
+						return '<font size=2 color=red>Your password is incorrect.</font>';
+					}
+				} 
+			}
+			else 
+			{ //Hide the pin (for initial login)
 				$this->db->select('Show_Pin');
 				$this->db->from('tbl_locker_rental');
 				$this->db->where('Username', $this->session->userdata('Username'));
