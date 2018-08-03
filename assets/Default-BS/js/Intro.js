@@ -57,7 +57,7 @@ function newSignUp() {
 
 function scaleCaptcha(elementWidth) {
   // Width of the reCAPTCHA element, in pixels
-  var reCaptchaWidth = 600;
+  var reCaptchaWidth = 800;
   // Get the containing element's width
     var containerWidth = $('.container').width();
   

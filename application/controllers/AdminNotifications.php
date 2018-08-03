@@ -21,5 +21,5 @@
                 //load the notification view
                 $this->load->view('AdminNotifications',$data);
             }
-    }
+        }
 ?>

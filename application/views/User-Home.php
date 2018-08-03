@@ -66,23 +66,49 @@
             <li><a href="#LockerStatus">Locker Booking Status</a></li>
             <li><a href="#Lockers">Lockers</a></li>
             <li><a href="#locations">Locations</a></li>
-            <li><a href="<?php echo base_url();?>eWallet">eWallet</a></li>
+            <li><a href="#pastTransactions">Past Transactions</a></li>
+           
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
-                <li><a href="index.html">FAQ</a></li>
-                <li><a href="index-form.html">Contact Us</a></li>
-				<li><a href="<?php echo base_url();?>cardDetails_conc/cardDetails">Payment</a></li>
+                
+                <li><a href="<?php echo base_url();?>eWallet">eWallet</a></li>
+                <li><a href="#footer">Contact Us</a></li>
                 <li><a href="<?php echo base_url();?>Home/do_logout">Log Out</a></li>
               </ul>
             </li>
+            <!-- /.dropdown -->
+             <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                  <?php if (!empty($notifications)) {
+                          foreach($notifications as $item) { ?>
+                    <li>
+                        <a href="<?php echo base_url() ?>Home/delete_notification/<?php echo $item->ID ?>">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i><?php echo $item->Title ?>
+                                <span class="pull-right text-muted small"><?php echo $item->Content ?></span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                  <?php } } else { ?>
+                    <li>
+                        <a class="text-center">
+                            <strong>No notifications</strong>
+                        </a>
+                    </li>
+                  <?php } ?>
+                </ul>
+            <!-- /.dropdown-alerts -->
           </ul>
         </div>
         <!-- /.navbar-collapse -->
       </div>
       <!-- /.container -->
     </nav>
-
 
     <!-- Section: Book Locker -->
     <section id="BookLocker" class="intro">
@@ -92,15 +118,14 @@
             <div class="well well-trans">
               <div class="wow fadeInDown" data-wow-offset="0" data-wow-delay="0.1s">
         				<div class="section-heading text-center">
-        					<h3 class="h-bold" style="text-align: center;">Book a Locker</h3>
+        					<h3 class="h-bold" style="text-align: center;">Welcome <?php echo $this->session->userdata('DName'); ?>!</h3>
                   <!-- Show and hide this p accordingly -->
                   <?php if(!$bookingdetails['Rented']) { ?>
         					   <p>Select and book a locker here!</p>
                   <?php } else { ?>
-
+                  <p>You can book a locker, check booking status, lockers, locations, eWallet... The world is your oyster!</p>
                   <?php } ?>
                 </div>
-        			  <div class="divider-short" style="margin-bottom: 20px;"></div>
               </div>
 			   <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
                 <!-- If user has not rented any lockers, show locker rental portion -->
@@ -167,7 +192,6 @@
                 </form>
                 <!-- User already rented locker, hide locker booking portion -->
                 <?php } else { ?>
-                  <h3 class="section-heading text-center">You are currently renting a locker!</h3>
                 <?php } ?>
 
               </div>
@@ -176,17 +200,6 @@
       </div>
 	  </div>
     </section>
-
-    <!-- /Section: intro -->
-
-				        
-			         </div>
-        </div>
-      </div>
-
-    </section>
-    <!-- /Section: boxes -->
-
     <!-- /Section: Book Locker -->
 
     <!-- Section: Locker Status -->
@@ -195,7 +208,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <div class="wow fadeInUp" data-wow-delay="0.2s">
+            <div class="wow fadeInUp" data-wow-delay="0.2s" style="margin-top: 50px; margin-bottom: 5px;">
 			        <div class="section-heading text-center">
                 <h3 class="h-bold">Locker Booking Status</h3>
                 <p>Check the status of your locker booking here!</p>
@@ -211,57 +224,81 @@
 					<th>Rental Type</th>
 					<th>Rent Start Date/Time</th>
 					<th>Rent End Date/Time</th>
-					<th>Rented By</th>
 					<th>Pin Code</th>
+					<th>Unlocked</th>
 				</tr>
       </thead>
 				<tr>
 					<td><?php echo $bookingdetails['Locker_ID'] ?></td>
-          <td><?php echo $bookingdetails['Rental_Type'] ?></td>
+          <?php if($bookingdetails['Rental_Type'] == 1 || $bookingdetails['Rental_Type'] == 2 || $bookingdetails['Rental_Type'] == 3) { ?>
+            <td>Per Minute Rental</td>
+          <?php } else { ?>
+            <td>Month Rental</td>
+          <?php } ?>
 					<td><?php echo $bookingdetails['Rent_From_Date'] ?></td>
           <?php if(empty($bookingdetails['Rent_To_Date'])) { ?> <!-- echo - if no end date-->
             <td><?php echo '----' ?></td>
           <?php } else { ?>
           <td><?php echo $bookingdetails['Rent_To_Date'] ?></td>
 					<?php } ?>
-					<td><?php echo $bookingdetails['Rented_By'] ?></td>
 					<td><?php echo $bookingdetails['Pin_Code'] ?></td>
+          <?php if ($bookingdetails['Locker_Unlocked']) { ?>
+					  <td>Unlocked</td>
+          <?php } else { ?>
+            <td>Locked</td>
+          <?php } ?>
 				</tr>
 			</table>
     </div>
 
       <form action="<?php echo base_url();?>Home/change_pin" method="post">
         <div class="col-md-3" style="margin-top: 10px;">
-          <div style="margin-top: 5px; margin-bottom: 5px;">
+          <input type="password" name="pincode_old" id="pincode_old" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your old pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+        <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 digit pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+        <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 15px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" Title="Please enter 6 digits" required>
+        <input type="submit" value="Change pin" class="btn btn-skin btn-block btn-lg">
+        <div style="margin-top: 5px; margin-bottom: 5px;">
           <?php if(!is_null($pinErrMsg)) echo $pinErrMsg; ?>
           </div>
-          <input type="password" name="pincode_old" id="pincode_old" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your old pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
-        <input type="password" name="pincode" id="pincode" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter a 6 digit pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
-        <input type="password" name="pincode_confirm" id="pincode_confirm" style="margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Confirm your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" oninput="check(this)" Title="Please enter 6 digits" required>
-        <input type="submit" value="Change pin" class="btn btn-skin btn-block btn-lg">
         </div>
       </form>
 
       <form action="<?php echo base_url();?>Home/show_pin" method="post">
-       <div class="col-md-6">
-        <div style="margin-top: 5px; margin-bottom: 5px;">
-          <?php if(!is_null($lockerUnlockMsg)) echo $lockerUnlockMsg; ?>
-          
-          </div>
-          <input type="password" name="userPass" id="userPass" style="margin-bottom: 10px;" placeholder="Enter your password" class="form-control input-md" Title="Please enter your password" required>
-          <input type="submit" id="showPinBtn" name="showPinBtn" value="Show Pin" class="btn btn-skin btn-block btn-lg">
-       </div>
+       <div class="col-md-9">
+        <?php if ($bookingdetails['Pin_Code'] == '******') { ?>
+          <input type="password" name="userPass" id="userPass" style="margin-top: -5px; margin-bottom: 5px;" placeholder="Enter your password" class="form-control input-md" Title="Please enter your password" required>
+          <input type="submit" id="showPinBtn" name="showPinBtn" style="margin-bottom: 3px;" value="Show Pin" class="btn btn-skin btn-block btn-lg">
+        <?php } else { ?>
+          <input type="text" name="userPass" id="userPass" style="margin-top: -5px; margin-bottom: 5px;" placeholder="Enter your password" class="form-control input-md" value="-" Title="Please enter your password" readonly>
+          <input type="submit" id="showPinBtn" name="showPinBtn" style="margin-bottom: 3px;" value="Hide Pin" class="btn btn-skin btn-block btn-lg">
+        <?php } ?>
      </form>
-
-       <div class="col-md-3">
-      <form  action="<?php echo base_url();?>Home/unlock_locker" method="post">
-        <?php if(!is_null($showPinMsg)) echo $showPinMsg; ?>
-        <input type="submit" value="Unlock Locker" class="btn btn-skin btn-block btn-lg">
+       </div>
+       
+       <form  action="<?php echo base_url();?>Home/unlock_locker" method="post">
+       <div class="col-md-6">
+        <?php if ($bookingdetails['Locker_Unlocked']) { ?>
+        <input type="password" name="pincode" id="pincode" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your pin" class="form-control input-md" data-rule="minlen:6" value="-" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" readonly>
+        <?php } else { ?>
+        <input type="password" name="pincode" id="pincode" style="margin-top: 5px; margin-bottom: 10px;" maxlength="6" pattern="[0-9]{6}" placeholder="Enter your pin" class="form-control input-md" data-rule="minlen:6" data-msg="Please enter 6 Digits only" Title="Please enter 6 digits" required>
+        <?php } ?>
+       </div>
+        <div class="col-md-3" style="margin-top: 2px;">
+        <?php if ($bookingdetails['Locker_Unlocked']) { ?>
+          <input type="submit" value="Lock Locker" class="btn btn-skin btn-block btn-lg">
+        <?php } else { ?>
+          <input type="submit" value="Unlock Locker" class="btn btn-skin btn-block btn-lg">
+        <?php } ?>
       </form>
+       </div>
+    <div class="col-md-9" style="margin-top: 15px;">
       <form action="<?php echo base_url();?>Home/complete_booking" method="post">
         <!-- Workaround to get Locker_ID rented > sending the booking detail's locker_id through post -->
         <input type="hidden" name="lockerselected" value="<?php echo $bookingdetails['Locker_ID'] ?>">
-        <input type="submit" value="Complete Booking!" class="btn btn-skin btn-block btn-lg">
+        <input type="submit" value="Complete Booking!" style="margin-top: -13px;" class="btn btn-skin btn-block btn-lg">
+        <div style="margin-top: 5px; margin-bottom: 5px;">
+          <?php if(!is_null($msg2)) echo $msg2; ?>
+          </div>
       </form>
     </div>
 
@@ -275,7 +312,7 @@
     <!-- /Section: Locker Status -->
 
 
-    <!-- Section: team -->
+    <!-- Section: locker availability list -->
     <section id="Lockers" class="home-section bg-gray paddingbot-60">
       <div class="container marginbot-50">
         <div class="row">
@@ -283,33 +320,50 @@
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="section-heading text-center">
                 <h3 class="h-bold">Lockers</h2>
-                <p>Locker Availability</p>
+                <p>Check for available lockers around the campus here!</p>
+                <p>Occupied lockers are greyed out.</p>
               </div>
             </div>
             <div class="divider-short"></div>
           </div>
 		  
 		  <div class="col-lg-12"> 
-			<div class="row">
-				<?php foreach($availablelockerlist as $lockerItem) { ?>
-					<?php if ($lockerItem->Is_Available) { ?>
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="lockerboxavailable"></div>
-						</div>
-					<?php } else { ?>
-						<div class="col-xs-12 col-sm-6 col-md-3">
-							<div class="lockerboxunavailable"></div>
-						</div>
-					<?php } ?>
-				<?php } ?>
-			</div>
-		  
-		  </div>
+      <div class="row">
+        <?php foreach($availablelockerlist as $lockerItem) { ?>
+          <?php if ($lockerItem->Is_Available) { ?>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+              <div class="lockerboxavailable"></div>
+                <?php if ($lockerItem->Locker_Size_ID == '1') { ?>
+                  <div class="smallavailable"></div>
+                <?php } else if ($lockerItem->Locker_Size_ID == '2'){ ?>
+                  <div class="mediumavailable"></div>
+                <?php } else { ?>
+                  <div class="largeavailable"></div>
+                <?php } ?>
+
+              <div style="text-align: center;"><?php echo $lockerItem->Name ?></div>
+            </div>
+          <?php } else { ?>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <?php if ($lockerItem->Locker_Size_ID == '1') { ?>
+                  <div class="smallunavailable"></div>
+                <?php } else if ($lockerItem->Locker_Size_ID == '2'){ ?>
+                  <div class="mediumunavailable"></div>
+                <?php } else { ?>
+                  <div class="largeunavailable"></div>
+                <?php } ?>
+              <div><?php echo $lockerItem->Name ?></div>
+            </div>
+          <?php } ?>
+        <?php } ?>
+      </div>
+      
+        </div>
 		  
         </div>
       </div>
     </section>
-    <!-- /Section: team -->
+    <!-- /Section: locker availability list -->
 
 
 
@@ -372,11 +426,19 @@
                 <?php foreach($pastlockertransactionslist as $trans) { ?>
                 <tr>
                   <td><?php echo $trans->Locker_ID ?></td>
-                  <td><?php echo $trans->Rental_Type ?></td>
+                  <?php if($trans->Rental_Type == 1 || $trans->Rental_Type == 2 || $trans->Rental_Type == 3) { ?>
+                  <td>Per Minute Rental</td>
+                <?php } else { ?>
+                  <td>Month Rental</td>
+                <?php } ?>
                   <td><?php echo $trans->Rent_From_Date ?></td>
                   <td><?php echo $trans->Rent_To_Date ?></td>
                   <td><?php echo $trans->Rented_By ?></td>
-                  <td><?php echo $trans->Paid ?></td>
+                  <?php if($trans->Paid) { ?>
+                    <td>Yes</td>
+                    <?php } else { ?>
+                    <td>No</td>
+                  <?php } ?>
                 </tr>
                 <?php } ?>
               </table>
@@ -390,109 +452,43 @@
     </section>
     <!-- /Section: Past Rental Transactions -->
 
-    <section id="partner" class="home-section paddingbot-60">
-      <div class="container marginbot-50">
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
-            <div class="wow lightSpeedIn" data-wow-delay="0.1s">
-              <div class="section-heading text-center">
-                <h2 class="h-bold">Our partner</h2>
-                <p>Take charge of your health today with our specially designed health packages</p>
-              </div>
-            </div>
-            <div class="divider-short"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-1.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-2.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-3.jpg" alt="" /></a>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-3">
-            <div class="partner">
-              <a href="#"><img src="<?php echo base_url()?>assets/Default-BS/img/dummy/partner-4.jpg" alt="" /></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-
-      <div class="container">
+        <footer id="footer">
+      <div class="container" style="padding: 50px;">
         <div class="row">
           <div class="col-sm-6 col-md-4">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
-                <h5>About Medicio</h5>
+                <h5>About Locka</h5>
                 <p>
-                  Lorem ipsum dolor sit amet, ne nam purto nihil impetus, an facilisi accommodare sea
+                  NYP's Locker Rental Application designed for every student's needs!
                 </p>
               </div>
             </div>
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-              <div class="widget">
-                <h5>Information</h5>
-                <ul>
-                  <li><a href="#">Home</a></li>
-                  <li><a href="#">Laboratory</a></li>
-                  <li><a href="#">Medical treatment</a></li>
-                  <li><a href="#">Terms & conditions</a></li>
-                </ul>
-              </div>
-            </div>
           </div>
           <div class="col-sm-6 col-md-4">
             <div class="wow fadeInDown" data-wow-delay="0.1s">
               <div class="widget">
-                <h5>Medicio center</h5>
-                <p>
-                  Nam leo lorem, tincidunt id risus ut, ornare tincidunt naqunc sit amet.
-                </p>
+                <h5>Contact Us</h5>
                 <ul>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-calendar-o fa-stack-1x fa-inverse"></i>
-								</span> Monday - Saturday, 8am to 10pm
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-calendar-o fa-stack-1x fa-inverse"></i>
+                </span> 24/7
                   </li>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-phone fa-stack-1x fa-inverse"></i>
-								</span> +62 0888 904 711
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-phone fa-stack-1x fa-inverse"></i>
+                </span> +65 6451 5115
                   </li>
                   <li>
                     <span class="fa-stack fa-lg">
-									<i class="fa fa-circle fa-stack-2x"></i>
-									<i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-								</span> hello@medicio.com
+                  <i class="fa fa-circle fa-stack-2x"></i>
+                  <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
+                </span>contact@locka.com
                   </li>
-
                 </ul>
-              </div>
-            </div>
-          </div>
-          <div class="col-sm-6 col-md-4">
-            <div class="wow fadeInDown" data-wow-delay="0.1s">
-              <div class="widget">
-                <h5>Our location</h5>
-                <p>The Suithouse V303, Kuningan City, Jakarta Indonesia 12940</p>
-
               </div>
             </div>
             <div class="wow fadeInDown" data-wow-delay="0.1s">
@@ -508,6 +504,15 @@
               </div>
             </div>
           </div>
+          <div class="col-sm-6 col-md-4">
+            <div class="wow fadeInDown" data-wow-delay="0.1s">
+              <div class="widget">
+                <h5>Our location</h5>
+                <p>180 Ang Mo Kio Avenue 8, 569830</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.660983819964!2d103.84683261484682!3d1.3800708989934878!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da16eb64b0249d%3A0xe5f10ff680eed942!2sNanyang+Polytechnic!5e0!3m2!1sen!2ssg!4v1533220202597" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="sub-footer">
@@ -516,7 +521,7 @@
             <div class="col-sm-6 col-md-6 col-lg-6">
               <div class="wow fadeInLeft" data-wow-delay="0.1s">
                 <div class="text-left">
-                  <p>&copy;Copyright - Medicio Theme. All rights reserved.</p>
+                  <p>&copy;Copyright - Locka. All rights reserved.</p>
                 </div>
               </div>
             </div>
@@ -530,7 +535,6 @@
                       Licensing information: https://bootstrapmade.com/license/
                       Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Medicio
                     -->
-                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                   </div>
                 </div>
               </div>

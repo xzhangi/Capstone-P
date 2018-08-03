@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Locka (Admin)</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php echo base_url()?>assets/Admin-BS/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="AdminHome">Locka Admin Panel</a>
+                <a class="navbar-brand" href="AdminHome">Locka (Admin)</a>
             </div>
             <!-- /.navbar-header -->
 

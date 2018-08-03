@@ -10,8 +10,8 @@
 			$this->check_session();
 			//Load locker model
 			$this->load->model('LockerModel');
-			
-			$this->output->enable_profiler(TRUE);
+			$this->load->model('updatenotificationmodel');
+			//$this->output->enable_profiler(TRUE);
 		}
 		 
 		public function index($pinErrMsg = NULL, $showPinMsg = NULL , $unlockMsg = NULL)
@@ -31,8 +31,18 @@
 			}
 			//Load message to display
 			$data['pinErrMsg'] = $pinErrMsg;
-			$data['showPinMsg'] = $showPinMsg;
-			$data['lockerUnlockMsg'] = $unlockMsg;
+			if ($showPinMsg != NULL) {
+				$data['msg2'] = $showPinMsg;
+			}
+			else if ($unlockMsg != NULL) {
+				$data['msg2'] = $unlockMsg;
+			}
+			else {
+				$data['msg2'] = NULL;
+			}
+
+			//Get notifications
+			$data['notifications'] = $this->updatenotificationmodel->get_notification_for_user();
 
 			//Load the view
 			$this->load->view('User-Home', $data);
@@ -106,25 +116,19 @@
 		public function unlock_locker()
 		{
 			$result = $this->LockerModel->Unlock_Locker();
-			if ($result) //Change pin success
-			{
-				$msg = "<font size=2 color=red>Your locker is unlocked.</font> <br \>";
-			} else { //Change pin fail
-				$msg = "<font size=2 color=red>Your locker is locked. </font> <br \>";
-			}
-			$this->index(null, $msg);
+			$this->index(null, $result);
 		}
 
 		public function show_pin()
 		{
 			$result = $this->LockerModel->Show_Pin(true);
-			if ($result) //Change pin success
-			{
-				$msg = "<font size=2 color=red>Your pin is revealed.</font> <br \>";
-			} else { //Change pin fail
-				$msg = "<font size=2 color=red>Your password is incorrect. </font> <br \>";
-			}
-			$this->index(null, null, $msg);
+			$this->index(null, null, $result);
+		}
+
+		public function delete_notification($id)
+		{
+			$this->updatenotificationmodel->delete_notification($id);
+			$this->index();
 		}
 	}
 ?>

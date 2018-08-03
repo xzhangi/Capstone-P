@@ -13,12 +13,16 @@
 	<link href="<?php echo base_url()?>assets/Default-BS/css/eWallet.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url()?>assets/Default-BS/css/style.css" rel="stylesheet" type="text/css">
 	<link href="<?php echo base_url()?>assets/Default-BS/css/cardDetails.css" rel="stylesheet" type="text/css">
+	
+	<!-- boxed bg -->
+    <link id="bodybg" href="<?php echo base_url()?>assets/Default-BS/bodybg/bg1.css" rel="stylesheet" type="text/css" />
+  <!-- template skin -->
+    <link id="t-colors" href="<?php echo base_url()?>assets/Default-BS/color/default.css" rel="stylesheet">
 </head>
 
-<body style="background-color: #ffffff;">
+<body background="Locka/assets/Default-BS/img/dummy/lockers.png">
 <div class="eWallet_yx">
-
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <!--<div class="top-area">
         <div class="container">
           <div class="row">
@@ -37,25 +41,25 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-          <a class="navbar-brand" href="index.html">
-                    <img src="assets/Default-BS/img/logo.png" alt="" width="150" height="40" />
+          <a class="navbar-brand" href="Home">
+                    <img src="<?php echo base_url()?>assets/Default-BS/img/logo.png" alt="" width="150" height="40" />
                 </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#intro">Login</a></li>
-            <li><a href="#service">About Us</a></li>
-            <li><a href="#doctor">Lockers</a></li>
-            <li><a href="#facilities">Locations</a></li>
-            <li><a href="#pricing">Pricing</a></li>
+            <li class="active"><a href="<?php echo base_url();?>Home">Book a Locker</a></li>
+      <li><a href="<?php echo base_url();?>Home#LockerStatus">Locker Booking Status</a></li>
+            <li><a href="<?php echo base_url();?>Home#Lockers">Lockers</a></li>
+            <li><a href="<?php echo base_url();?>Home#locations">Locations</a></li>
+            <li><a href="<?php echo base_url();?>Home#pastTransactions">Past Transactions</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a><!--<span class="badge custom-badge red pull-right">Extra</span>-->
               <ul class="dropdown-menu">
-                <li><a href="index.html">FAQ</a></li>
-                <li><a href="index-form.html">Contact Us</a></li>
-                <li><a href="application/views/adminpanel.php">Admin Login</a></li>
+                <li><a href="">FAQ</a></li>
+                <li><a href="">Contact Us</a></li>
+                <li><a href="<?php echo base_url();?>Home/do_logout">Log Out</a></li>
               </ul>
             </li>
           </ul>
@@ -64,7 +68,6 @@
       </div>
       <!-- /.container -->
     </nav>
-	
   <header class="container">
     <h1>Payment</h1>
     <!-- <ul class="breadcrumb">
@@ -78,21 +81,6 @@
     <h4 class="payment-title">Choose your payment method</h4>
     <form action="" method="post">
       <div class="pymt-radio">
-
-        <div class="row-payment-method payment-row">
-          <div class="select-icon">
-            <input type="radio" id="radio1" name="radios" value="pp">
-            <label for="radio1"></label>
-          </div>
-          <div class="select-txt">
-            <p class="pymt-type-name">Paypal</p>
-            <p class="pymt-type-desc">Safe payment online. Credit card needed. PayPal account is not necessary.</p>
-          </div>
-          <div class="select-logo">
-            <img src="https://www.dropbox.com/s/pycofx0gngss4ef/logo-paypal.png?raw=1" alt="PayPal" />
-          </div>
-
-        </div>
 
       </div>
       <div class="pymt-radio">
@@ -192,9 +180,10 @@
 
       </div>
       <div class="button-master-container">
-        <div class="button-container"><a href="/CodeIgniter_v1/application/views/booking.php">Return to Booking</a>
+        <div class="button-container"><a href="<?php echo base_url();?>eWallet">Return to Booking</a>
         </div>
-        <div class="button-container button-finish"><a href="/CodeIgniter_v1/application/views/balance.php">Finish Order</a>
+        <!--<div class="button-container button-finish"><a href="/CodeIgniter_v1/application/views/balance.php">Top Up</a>-->
+		<a href="<?php echo base_url();?>eWallet_1" class="button-container button-finish">Continue</a>
         </div>
       </div>
     </form>

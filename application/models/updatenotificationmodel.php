@@ -33,5 +33,47 @@
                     // }
                     return $result;
                 }
+
+                function delete_notification($id)
+                {
+                    // Hide the pin by setting Show_Pin to false
+                    $data = array(
+                        'Is_Deleted' => true
+                    );
+
+                    $this->db->where('Username', $this->session->userdata('Username'));
+                    $this->db->where('ID', $id);
+                    $this->db->update('tbl_notifications', $data);
+                }
+
+                function get_notification_for_user()
+                {
+                    $this->db->select('*');
+                    $this->db->from('tbl_notifications');
+                    $this->db->where('Username', $this->session->userdata('Username'));
+                    $this->db->where('Is_Deleted', false);
+                    $query = $this->db->get();
+                    $result = $query->result();
+                    $list = Array();
+                    
+                    // There are notifications
+                    if($query->num_rows() > 0)
+                    {
+                        for ($i = 0; $i < count($result); $i++)
+                        {
+                            $list[$i] = (object)NULL;
+                            $list[$i]->ID = $result[$i]->ID;
+                            $list[$i]->Username = $result[$i]->Username;
+                            $list[$i]->Title = $result[$i]->Title;
+                            $list[$i]->Content = $result[$i]->Content;
+                            $list[$i]->Create_Date = $result[$i]->Create_Date;
+                        }
+                        return $list;
+                    }
+                    else //No notifications for user
+                    {
+                        return false;
+                    }
+                }
             }
 ?>

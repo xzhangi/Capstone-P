@@ -27,7 +27,26 @@ if (! defined('BASEPATH')) exit('No direct script access allowed');
 
             public function validateNotification(){
                 $this->load->library('form_validation');
+                $this->load->view('addNotifications');
 
+                //set validation rules (validate form input data posted by the db insert)
+                $this->form_validation->set_rules('Title', 'Title',
+                'required');
+                $this->form_validation->set_rules('Content', 'Content',
+                'required');
+                $this->form_validation->set_rules('Create_Date', 'Create Date',
+                'required');
+                $this->form_validation->set_rules('Username', 'Username',
+                'required');
+
+                // if submit valid data then insert into db else display the error message 
+                if ($this->form_validation->run() == FALSE)
+                {
+                    //fail validation
+                    $this->session->set_flashdata("message","Record Not Updated!");
+                }
+                else
+                {
                     $data = array(
                     'Title' => $this->input->post('Title'),
                     'Content' => $this->input->post('Content'),
@@ -40,7 +59,7 @@ if (! defined('BASEPATH')) exit('No direct script access allowed');
                     //display success message
                     $this->session->set_flashdata('msg', '<div class="alert alert-success textcenter">Notification Added Successfully.</div>');
                     redirect('AdminNotifications','refresh');
-
+                }
             }
                 
         

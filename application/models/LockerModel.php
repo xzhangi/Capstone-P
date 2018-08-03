@@ -175,8 +175,8 @@
 					$data = array(
 							'Rented' => true,
 							'Locker_ID' => $row->Locker_ID,
-							'Rent_From_Date' => $row->Rent_From_Date,
-							'Rent_To_Date' => $row->Rent_To_Date,
+							'Rent_From_Date' => substr($row->Rent_From_Date, 0, -3), 
+							'Rent_To_Date' => substr($row->Rent_To_Date, 0, -3),
 							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
 							'Pin_Code' => $row->Pin_Code,
@@ -190,8 +190,8 @@
 					$data = array(
 							'Rented' => true,
 							'Locker_ID' => $row->Locker_ID,
-							'Rent_From_Date' => $row->Rent_From_Date,
-							'Rent_To_Date' => $row->Rent_To_Date,
+							'Rent_From_Date' => substr($row->Rent_From_Date, 0, -3), 
+							'Rent_To_Date' => substr($row->Rent_To_Date, 0, -3),
 							'Rented_By' => $row->Username,
 							'Rental_Type' => $row->Rental_Type,
 							'Pin_Code' => '******',
@@ -226,8 +226,8 @@
 				{
 					$list[$i] = (object)NULL;
 					$list[$i]->Locker_ID = $result[$i]->Locker_ID;
-					$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
-					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
+					$list[$i]->Rent_From_Date = substr($result[$i]->Rent_From_Date, 0, -3);
+					$list[$i]->Rent_To_Date = substr($result[$i]->Rent_To_Date, 0, -3);
 					$list[$i]->Rented_By = $result[$i]->Username;
 					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
 					$list[$i]->Paid = $result[$i]->Paid;
@@ -256,8 +256,8 @@
 				{
 					$list[$i] = (object)NULL;
 					$list[$i]->Locker_ID = $result[$i]->Locker_ID;
-					$list[$i]->Rent_From_Date = $result[$i]->Rent_From_Date;
-					$list[$i]->Rent_To_Date = $result[$i]->Rent_To_Date;
+					$list[$i]->Rent_From_Date = substr($result[$i]->Rent_From_Date, 0, -3);
+					$list[$i]->Rent_To_Date = substr($result[$i]->Rent_To_Date, 0, -3);
 					$list[$i]->Rented_By = $result[$i]->Username;
 					$list[$i]->Rental_Type = $result[$i]->Rental_Type;
 					$list[$i]->Paid = $result[$i]->Paid;
@@ -326,25 +326,70 @@
 
 		public function Unlock_Locker()
 		{
-			$this->db->select('Locker_Unlocked');
-			$this->db->from('tbl_locker_rental');
-			$this->db->where('Username', $this->session->userdata('Username'));
-			$this->db->where('Is_Active', true);
-			$query = $this->db->get();
-			$result = $query->result();
-
-			// If record exists and pincode is correct (user currently renting locker)
-			if($query->num_rows() == 1)
+			if ($this->input->post('pincode') != '-') // unlock
 			{
-				//Change pin
-				$data = array(
-			        'Locker_Unlocked' => !$result[0]->Locker_Unlocked
-				);
+				// Verify pincode
+				$this->db->select('Is_Active');
+				$this->db->from('tbl_locker_rental');
 				$this->db->where('Username', $this->session->userdata('Username'));
 				$this->db->where('Is_Active', true);
-				$this->db->update('tbl_locker_rental', $data);
+				$this->db->where('Pin_Code', $this->input->post('pincode'));
+				$query = $this->db->get();
+				
+				// If record exists and pincode is correct (user currently renting locker)
+				if($query->num_rows() == 1)
+				{
+					// Set locker status
+					$this->db->select('Locker_Unlocked');
+					$this->db->from('tbl_locker_rental');
+					$this->db->where('Username', $this->session->userdata('Username'));
+					$this->db->where('Is_Active', true);
+					$query = $this->db->get();
+					$result = $query->result();
 
-				return !$result[0]->Locker_Unlocked;
+					if($query->num_rows() == 1)
+					{
+						//change status
+						$data = array(
+					        'Locker_Unlocked' => true
+						);
+						$this->db->where('Username', $this->session->userdata('Username'));
+						$this->db->where('Is_Active', true);
+						$this->db->update('tbl_locker_rental', $data);
+
+						$msg = '<font size=2 color=red>Your locker is unlocked.</font>';
+						return $msg;
+					}
+				}
+				else //Incorrect pin 
+				{
+					$msg = '<font size=2 color=red>Your pin is incorrect.</font>';
+							return $msg;
+				}
+			}
+			else //lock
+			{
+				// Set locker status
+				$this->db->select('Locker_Unlocked');
+				$this->db->from('tbl_locker_rental');
+				$this->db->where('Username', $this->session->userdata('Username'));
+				$this->db->where('Is_Active', true);
+				$query = $this->db->get();
+				$result = $query->result();
+
+				if($query->num_rows() == 1)
+				{
+					//change status
+					$data = array(
+				        'Locker_Unlocked' => false
+					);
+					$this->db->where('Username', $this->session->userdata('Username'));
+					$this->db->where('Is_Active', true);
+					$this->db->update('tbl_locker_rental', $data);
+
+					$msg = '<font size=2 color=red>Your locker is locked.</font>';
+					return $msg;
+				}
 			}
 		}
 
@@ -353,17 +398,9 @@
 			// Show the pin
 			if ($show)
 			{
-				// Verify credentials
-				$this->db->select('password');
-				$this->db->from('tbl_users');
-				$this->db->where('Username', $this->session->userdata('Username'));
-				$encryptpass = md5($this->input->post('userPass'));
-				$query = $this->db->get();
-				$result = $query->result();
-
-				// Password verified
-				if ($result[0]->password == $encryptpass)
+				if ($this->input->post('userPass') == '-') // hide pin
 				{
+					// Received ------, Hide pin
 					$this->db->select('Show_Pin');
 					$this->db->from('tbl_locker_rental');
 					$this->db->where('Username', $this->session->userdata('Username'));
@@ -374,22 +411,59 @@
 					// If record exists (user currently renting locker)
 					if($query->num_rows() == 1)
 					{
-						// Show the pin by setting Show_Pin to true
+						// Hide the pin by setting Show_Pin to false
 						$data = array(
-					        'Show_Pin' => true
+					        'Show_Pin' => false
 						);
 						$this->db->where('Username', $this->session->userdata('Username'));
 						$this->db->where('Is_Active', true);
 						$this->db->update('tbl_locker_rental', $data);
-
-						return true;
 					}
 
+					return '<font size=2 color=red>Your pin has been hidden.</font>';
 				}
-				else { //Wrong password
-					return false;
-				}
-			} else { //Hide the pin (for initial login)
+				else 
+				{
+					// Verify credentials
+					$this->db->select('password');
+					$this->db->from('tbl_users');
+					$this->db->where('Username', $this->session->userdata('Username'));
+					$encryptpass = md5($this->input->post('userPass'));
+					$query = $this->db->get();
+					$result = $query->result();
+
+					// Password verified
+					if ($result[0]->password == $encryptpass)
+					{
+						$this->db->select('Show_Pin');
+						$this->db->from('tbl_locker_rental');
+						$this->db->where('Username', $this->session->userdata('Username'));
+						$this->db->where('Is_Active', true);
+						$query = $this->db->get();
+						$result = $query->result();
+
+						// If record exists (user currently renting locker)
+						if($query->num_rows() == 1)
+						{
+							// Show the pin by setting Show_Pin to true
+							$data = array(
+						        'Show_Pin' => true
+							);
+							$this->db->where('Username', $this->session->userdata('Username'));
+							$this->db->where('Is_Active', true);
+							$this->db->update('tbl_locker_rental', $data);
+
+							return '<font size=2 color=red>Your pin has been revealed.</font>';
+						}
+					}
+					else 
+					{ //Wrong password
+						return '<font size=2 color=red>Your password is incorrect.</font>';
+					}
+				} 
+			}
+			else 
+			{ //Hide the pin (for initial login)
 				$this->db->select('Show_Pin');
 				$this->db->from('tbl_locker_rental');
 				$this->db->where('Username', $this->session->userdata('Username'));
@@ -402,7 +476,8 @@
 				{
 					// Hide the pin by setting Show_Pin to false
 					$data = array(
-				        'Show_Pin' => false
+				        'Show_Pin' => false,
+				        'Locker_Unlocked' => false //Lock locker too
 					);
 					$this->db->where('Username', $this->session->userdata('Username'));
 					$this->db->where('Is_Active', true);

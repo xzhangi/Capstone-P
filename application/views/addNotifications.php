@@ -32,7 +32,6 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
@@ -322,10 +321,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="Title" class="control-label">Notification Name</label>
+                                    <label for="Title" class="control-label">Title</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <input id="Title" name="Title" type="text" class="form-control"/>
+                                    <input id="Title" name="Title" type="text" class="form-control" required/>
                                 </div>
                             </div>
                         </div>
@@ -333,10 +332,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="Content" class="control-label">Notification Description</label>
+                                    <label for="Content" class="control-label">Content</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <textarea id="Content" name="Content" type="text" class="form-control"></textarea>
+                                    <textarea id="Content" name="Content" type="text" class="form-control" required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -344,10 +343,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="Create_Date" class="control-label">Notification Date</label>
+                                    <label for="Create_Date" class="control-label">Date</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                    <input id="Create_Date" name="Create_Date" type="date" class="form-control"/>
+                                    <input id="Create_Date" name="Create_Date" type="date" class="form-control" min="<?php echo date('Y-m-d'); ?>" required/>
                                 </div>
                             </div>
                         </div>
@@ -355,10 +354,10 @@
                         <div class="form-group">
                             <div class="row colbox">
                                 <div class="col-lg-4 col-sm-4">
-                                    <label for="Username" class="control-label">Notification User</label>
+                                    <label for="Username" class="control-label">Username</label>
                                 </div>
                                 <div class="col-lg-8 col-sm-8">
-                                <select id="Username" name="Username" class="form-control">
+                                <select id="Username" name="Username" class="form-control" required>
                                 <?php foreach ($userlist as $row)
                                   { ?>
                                     <option value="<?php echo $row['username'] ?>"> <?php echo $row['username'] ?></option>";
@@ -406,7 +405,7 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="<?php echo base_url()?>assets/Admin-BS/dist/js/sb-admin-2.js"></script>
-
+    
 </body>
 
 </html>

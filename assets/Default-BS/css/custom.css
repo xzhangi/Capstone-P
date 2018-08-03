@@ -20,20 +20,77 @@ td {
 	width: 100%;
 }
 
-.lockerboxunavailable{
+.smallavailable {
   text-align: left;
-  background: #f44b42;
+  background: #fff;
   width: 100%;
   padding-top: 50%;
   margin: 15px 0;
-  /*display: none; <-- uncomment this rule for use with MixItUp */
+  background-image: url("../../Default-BS/img/lockers/small.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
-.lockerboxavailable{
+.mediumavailable {
   text-align: left;
-  background: #50f441;
+  background: #fff;
   width: 100%;
   padding-top: 50%;
   margin: 15px 0;
-  /*display: none; <-- uncomment this rule for use with MixItUp */
+  background-image: url("../../Default-BS/img/lockers/medium.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.largeavailable {
+  text-align: left;
+  background: #fff;
+  width: 100%;
+  padding-top: 50%;
+  margin: 15px 0;
+  background-image: url("../../Default-BS/img/lockers/big.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.smalunavailable {
+  text-align: left;
+  background: #fff;
+  width: 100%;
+  padding-top: 50%;
+  margin: 15px 0;
+  background-image: url("../../Default-BS/img/lockers/small.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+}
+
+.mediumunavailable {
+  text-align: left;
+  background: #fff;
+  width: 100%;
+  padding-top: 50%;
+  margin: 15px 0;
+  background-image: url("../../Default-BS/img/lockers/medium.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+}
+
+.largeunavailable {
+  text-align: left;
+  background: #fff;
+  width: 100%;
+  padding-top: 50%;
+  margin: 15px 0;
+  background-image: url("../../Default-BS/img/lockers/big.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.2;
 }
