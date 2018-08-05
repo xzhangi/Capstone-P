@@ -83,7 +83,7 @@
                 <?php if(!is_null($MsgtoDisplay)) echo $MsgtoDisplay; ?>
               </div>
               <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.1s">
-                <h2>Balance</h2><span> <input type="number" name="balance" id="balance" class="form-control input-md" style="font-size: 20px" value="<?php echo $userWallet ?>" disabled></span>
+                <h2 style="color: black;">Balance</h2><span> <input type="number" name="balance" id="balance" class="form-control input-md" style="font-size: 20px" value="<?php echo $userWallet ?>" disabled></span>
                 <a href="<?php echo base_url();?>cardDetails_conc/cardDetails" class="btn btn-primary btn-block btn-lg" style="margin-top: 15px;">Top up eWallet</a>
                 <a href="<?php echo base_url();?>Home" class="btn btn-primary btn-block btn-lg" style="margin-top: 15px; margin-bottom: 15px;">Back to home</a>
               </div>

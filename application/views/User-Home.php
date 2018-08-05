@@ -338,7 +338,6 @@
         <?php foreach($availablelockerlist as $lockerItem) { ?>
           <?php if ($lockerItem->Is_Available) { ?>
             <div class="col-xs-12 col-sm-6 col-md-3">
-              <div class="lockerboxavailable"></div>
                 <?php if ($lockerItem->Locker_Size_ID == '1') { ?>
                   <div class="smallavailable"></div>
                 <?php } else if ($lockerItem->Locker_Size_ID == '2'){ ?>
@@ -358,7 +357,7 @@
                 <?php } else { ?>
                   <div class="largeunavailable"></div>
                 <?php } ?>
-              <div><?php echo $lockerItem->Name ?></div>
+              <div><p style="text-align: center;"><?php echo $lockerItem->Name ?></p></div>
             </div>
           <?php } ?>
         <?php } ?>

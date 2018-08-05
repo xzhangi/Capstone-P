@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 03, 2018 at 04:49 AM
+-- Generation Time: Aug 03, 2018 at 07:26 AM
 -- Server version: 5.7.21
 -- PHP Version: 5.6.35
 
@@ -40,14 +40,16 @@ CREATE TABLE IF NOT EXISTS `tbl_ewallet` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`),
   KEY `Username_idx` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_ewallet`
 --
 
 INSERT INTO `tbl_ewallet` (`ID`, `Username`, `Balance`, `Created_Date`, `Has_Pending_Payments`) VALUES
-(1, '18A123A', 99.88, '2018-07-31 19:53:46', 0);
+(1, '18A123A', 89.64, '2018-07-31 19:53:46', 0),
+(6, 'babgyadultg', 0, '2018-08-03 14:28:34', 0),
+(7, 'testuser', 0, '2018-08-03 14:29:34', 0);
 
 -- --------------------------------------------------------
 
@@ -75,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `tbl_locker` (
 --
 
 INSERT INTO `tbl_locker` (`ID`, `Location_ID`, `Locker_Size_ID`, `Name`, `Desc`, `Remarks`, `Is_Available`, `Is_Active`, `Created_By`, `Created_Date`) VALUES
-(1, 1, 1, 'SEG - Small 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
+(1, 1, 1, 'SEG - Small 01', NULL, NULL, 1, 0, 'SYS_ADMIN', '2017-06-15'),
 (2, 1, 2, 'SEG - Medium 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (3, 1, 3, 'SEG - Large 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (4, 2, 1, 'SIT - Small 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
@@ -93,9 +95,12 @@ INSERT INTO `tbl_locker` (`ID`, `Location_ID`, `Locker_Size_ID`, `Name`, `Desc`,
 (16, 6, 1, 'SCL - Small 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (17, 6, 2, 'SCL - Medium 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
 (18, 6, 3, 'SCL - Large 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
-(19, 7, 1, 'SDN - Small 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
+(19, 7, 1, 'SDN - Small 01', NULL, NULL, 0, 1, 'SYS_ADMIN', '2017-06-15'),
 (20, 7, 2, 'SDN - Medium 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
-(21, 7, 3, 'SDN - Large 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15');
+(21, 7, 3, 'SDN - Large 01', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
+(22, 1, 2, 'SEG - Medium 02', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
+(23, 2, 2, 'SIT - Medium 02', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15'),
+(24, 3, 2, 'SIDM - Medium 02', NULL, NULL, 1, 1, 'SYS_ADMIN', '2017-06-15');
 
 -- --------------------------------------------------------
 
@@ -152,22 +157,21 @@ CREATE TABLE IF NOT EXISTS `tbl_locker_rental` (
   `Total_Charge` double DEFAULT NULL,
   PRIMARY KEY (`Rent_ID`),
   KEY `Username_idx` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_locker_rental`
 --
 
 INSERT INTO `tbl_locker_rental` (`Rent_ID`, `Locker_ID`, `Rent_From_Date`, `Rent_To_Date`, `Username`, `Rental_Type`, `Creation_Date`, `Is_Active`, `Pin_Code`, `Points_Obtained`, `Paid`, `Locker_Unlocked`, `Show_Pin`, `Total_Charge`) VALUES
-(91, 19, '2018-08-03 12:22:00', '2018-08-03 12:22:00', '18A123A', 3, '2018-08-03 12:22:00', 0, '308370', 0, 1, 0, 0, NULL),
-(92, 18, '2018-08-03 12:22:00', '2018-08-03 12:22:00', '18A123A', 3, '2018-08-03 12:22:00', 0, '589147', 0, 1, 0, 0, NULL),
-(93, 19, '2018-08-03 12:25:00', '2018-08-03 12:26:00', '18A123A', 1, '2018-08-03 12:25:00', 0, '013211', 0, 1, 0, 0, NULL),
-(94, 14, '2018-08-03 12:27:00', '2018-08-03 12:29:00', '18A123A', 2, '2018-08-03 12:27:00', 0, '196603', 0, 1, 0, 0, NULL),
-(95, 18, '2018-08-03 12:35:00', '2018-08-03 12:39:00', '18A123A', 2, '2018-08-03 12:35:00', 0, '776709', 0, 1, 0, 0, 0.08),
-(96, 19, '2018-08-03 12:41:00', '2018-08-03 12:41:00', '18A123A', 5, '2018-08-03 12:41:00', 0, '468649', 0, 1, 0, 0, 0),
-(97, 18, '2018-08-03 12:42:00', '2018-08-03 12:43:00', '18A123A', 5, '2018-08-03 12:42:00', 0, '118716', 0, 1, 0, 0, 0),
-(98, 18, '2018-08-03 12:46:00', '2018-08-03 12:46:00', '18A123A', 1, '2018-08-03 12:46:00', 0, '730426', 0, 1, 0, 0, 0),
-(99, 18, '2018-08-03 12:46:00', '2018-08-03 12:46:00', '18A123A', 4, '2018-08-03 12:46:00', 0, '114533', 0, 1, 0, 0, 0);
+(105, 19, '2018-08-03 13:03:00', '2018-08-03 13:03:00', '18A123A', 4, '2018-08-03 13:03:00', 0, '036969', 0, 1, 0, 0, 40),
+(106, 18, '2018-08-03 13:06:00', '2018-08-03 13:06:00', '18A123A', 6, '2018-08-03 13:06:00', 0, '057764', 0, 1, 0, 0, 60),
+(107, 19, '2018-08-03 13:30:00', '2018-08-03 13:30:00', '18A123A', 1, '2018-08-03 13:30:00', 0, '048446', 0, 1, 0, 0, 0),
+(108, 19, '2018-08-03 13:52:00', '2018-08-03 13:54:00', '18A123A', 1, '2018-08-03 13:52:00', 0, '475799', 0, 1, 0, 0, 0.02),
+(109, 18, '2018-08-03 13:54:00', '2018-08-03 14:01:00', '18A123A', 2, '2018-08-03 13:54:00', 0, '024621', 0, 1, 0, 0, 0.14),
+(110, 4, '2018-08-03 14:17:00', '2018-08-03 14:21:00', '18A123A', 1, '2018-08-03 14:17:00', 0, '123456', 0, 1, 0, 1, 0.04),
+(111, 19, '2018-08-03 15:10:00', '2018-08-03 15:12:00', '18A123A', 2, '2018-08-03 15:10:00', 0, '123456', 0, 1, 0, 0, 0.04),
+(112, 19, '2018-08-03 15:24:00', NULL, '18A123A', 1, '2018-08-03 15:24:00', 1, '139388', 0, 0, 0, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -237,15 +241,17 @@ CREATE TABLE IF NOT EXISTS `tbl_notifications` (
   `Create_By` varchar(12) NOT NULL DEFAULT 'SYS_ADMIN',
   `Create_Date` date NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_notifications`
 --
 
 INSERT INTO `tbl_notifications` (`ID`, `Username`, `Title`, `Content`, `Is_Read`, `Is_Deleted`, `Create_By`, `Create_Date`) VALUES
-(1, '18A123A', 'Test', 'This is a test notification for debugging purposes.', 0, '1', 'SYS_ADMIN', '2017-06-20'),
-(7, '18A123A', 'Test notification 3', 'Hello world', 0, '1', 'SYS_ADMIN', '2018-08-03');
+(9, '18A123A', 'Rental expiring', 'Your locker rental is expiring soon.', 0, '1', 'SYS_ADMIN', '2018-08-03'),
+(10, '18A123A', 'Locker open', 'Your locker is not locked properly!', 0, '0', 'SYS_ADMIN', '2018-08-03'),
+(11, '18A123A', 'Test notification from admin', 'Please ignore.', 0, '0', 'SYS_ADMIN', '2018-08-03'),
+(12, '18A123A', 'Babyg', '<script>alert(\"fail liao\");</script>', 0, '1', 'SYS_ADMIN', '2018-08-03');
 
 -- --------------------------------------------------------
 
@@ -285,18 +291,34 @@ CREATE TABLE IF NOT EXISTS `tbl_users` (
   `Is_Admin` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
 INSERT INTO `tbl_users` (`ID`, `Username`, `NRIC`, `Display_Name`, `Email`, `Mobile_No`, `Password`, `Create_Time`, `Points`, `Is_Active`, `Is_Admin`) VALUES
-(1, '18A123A', 'S1234555A', 'Tom', 'tom@fakeemail.com', '12345678', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 33, 1, 0),
-(2, '18B123B', 'S1234567B', 'Jane', 'jane@fakeemail.com', '87654321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 11, 1, 0),
-(3, '18C123C', 'S1234567C', 'God', 'god@fakeemail.com', '12348765', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 0, 1, 0),
-(4, '18D123D', 'S1234567D', 'Hacker', 'hacker@fakeemail.com', '12344321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:45:23', 9999, 0, 0),
-(5, 'Admin', 'AdminIC', 'Administrator', 'administrator@fakeemail.com', '12341234', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:56:43', 0, 1, 1);
+(1, '18A123A', 'S1234555A', 'Tom', 'tom@nyp.edu.com', '12345678', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 33, 1, 0),
+(2, '18B123B', 'S1234567B', 'Jane Tan', 'jane@nyp.edu.com', '87654321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 11, 1, 0),
+(3, '14C123C', 'S1234567C', 'Mary Lee', 'mary@nyp.edu.com', '12348765', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 0, 1, 0),
+(4, '18D123D', 'S1234567D', 'Jan', 'jan@nyp.edu.com', '12344321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:45:23', 9999, 0, 0),
+(5, 'Admin', 'AdminIC', 'Administrator', 'administrator@nyp.edu.com', '12341234', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:56:43', 0, 1, 1),
+(6, '151631C', 'S1234555A', 'Tom', 'tom@nyp.edu.com', '12345678', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 33, 1, 0),
+(7, '151711C', 'S1234567B', 'Jane', 'jane@nyp.edu.com', '87654321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:58', 11, 1, 0),
+(8, '18C129C', 'S1234567C', 'Mary Bob Tan', 'god@nyp.edu.com', '96654281', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:45:54', 0, 1, 0),
+(9, '18D123A', 'S1234555A', 'Tom', 'tom@nyp.edu.com', '12345678', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 33, 1, 0),
+(10, '178323A', 'S9748555A', 'Lee Siok Khim', 'siok@nyp.edu.com', '96402483', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 10:43:58', 11, 1, 0),
+(11, '188523B', 'S1234567B', 'Mavis Yew', 'mavis@nyp.edu.com', '87654321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 11, 1, 0),
+(12, '14C1235', 'S1234567C', 'Alyssa Ong', 'alyssa@nyp.edu.com', '12348765', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 0, 1, 0),
+(13, '18D152D', 'S1234567D', 'Chong Yu Xuan', 'yuxuan@nyp.edu.com', '12344321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:45:23', 9999, 0, 0),
+(14, '151781C', 'AdminIC', 'Zhang Xi', 'zhangxi@nyp.edu.com', '12341234', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:56:43', 0, 1, 1),
+(15, '151961C', 'S1234555A', 'Bobby Lee', 'bobby@nyp.edu.com', '12345678', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 33, 1, 0),
+(16, '131711C', 'S1234567B', 'Bob Ang', 'bobang@nyp.edu.com', '87654321', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:58', 11, 1, 0),
+(17, '14G129C', 'S1234567C', 'Mary Bob Tan', 'mary@nyp.edu.com', '96654281', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:45:54', 0, 1, 0),
+(18, '14G189C', 'S1234555A', 'Tom', 'tom@nyp.edu.com', '12345678', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 08:43:54', 33, 1, 0),
+(19, '178313A', 'S9748555A', 'Lee Siok Khim', 'siok@nyp.edu.com', '96402483', 'e10adc3949ba59abbe56e057f20f883e', '2018-06-11 10:43:58', 11, 1, 0),
+(20, 'babgyadultg', 'S1234567A', 'I am baby g', 'babyg@gmail.com', '12345678', '98c66047c57614f5ef3a1190a3615382', '2018-08-03 06:28:34', 0, 1, 0),
+(21, 'testuser', 'S1234567A', 'test user ', 'test@email.com', '12345678', '98c66047c57614f5ef3a1190a3615382', '2018-08-03 06:29:34', 0, 1, 0);
 
 --
 -- Constraints for dumped tables

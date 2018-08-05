@@ -618,7 +618,7 @@
             <div class="wow bounceInUp" data-wow-delay="0.1s">
               <div class="pricing-content featured" >
                 <h2>Small Locker</h2>
-                <h3>$30<span> / month</span><br><span>$0.03 / minute</span></h3>
+                <h3>$30<span> / month</span><br><span>$0.01 / minute</span></h3>
                 <ul>
                   <li>Laptop<i class="fa fa-check icon-success"></i></li>
                   <li>Lab Coat<i class="fa fa-check icon-success"></i></li>
@@ -637,7 +637,7 @@
             <div class="wow bounceInUp" data-wow-delay="0.1s">
               <div class="pricing-content featured">
                 <h2>Medium Locker</h2>
-                <h3>$40<span> / month</span><br><span>$0.04 / minute</span></h3>
+                <h3>$40<span> / month</span><br><span>$0.02 / minute</span></h3>
                 <ul>
                   <li>Laptop <i class="fa fa-check icon-success"></i></li>
                   <li>Lab Coat <i class="fa fa-check icon-success"></i></li>
@@ -656,7 +656,7 @@
             <div class="wow bounceInUp" data-wow-delay="0.1s">
               <div class="pricing-content featured">
                 <h2>Large Locker</h2>
-                <h3>$50<span>/ month</span><br><span>$0.05 / minute</span></h3>
+                <h3>$50<span>/ month</span><br><span>$0.03 / minute</span></h3>
                 <ul>
                   <li>Laptop <i class="fa fa-check icon-success"></i></li>
                   <li>Lab Coat <i class="fa fa-check icon-success"></i></li>

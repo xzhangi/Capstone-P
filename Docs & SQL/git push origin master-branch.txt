@@ -1,0 +1,11 @@
+cd C:\wamp64\www\locka
+
+git push origin master:nyimasv2
+
+git push origin master:janessav2
+
+git push origin master:tiffanyv2
+
+git push origin master:yuxuanv2
+
+git push origin master:zhangxi
